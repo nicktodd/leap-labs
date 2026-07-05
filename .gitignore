@@ -12,4 +12,7 @@ report.txt
 report_*.txt
 *_output.txt
 *.png
+clean_trades_loaded.csv
+.pytest_cache/
+
 
