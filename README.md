@@ -6,7 +6,7 @@ Data Analytics**, week 4 of the Fidelity LEAP graduate programme.
 ## Prerequisites
 
 - Python 3.11+ and `pip`
-- `pandas`, `matplotlib`, `seaborn` (or `plotly`), `requests`, `pytest`, `scikit-learn` — installed
+- `pandas`, `matplotlib`, `seaborn` (or `plotly`), `requests`, `flask`, `pytest`, `scikit-learn` — installed
   per-module as they're introduced
 - GitHub Copilot Chat (continuing as a learning aid, and specifically used in Module 12 to help
   interpret an unfamiliar failing-test error)
