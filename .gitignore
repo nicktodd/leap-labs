@@ -8,5 +8,7 @@ venv/
 .idea/
 instrument_summary.txt
 client_summary.txt
+report.txt
+report_*.txt
 *_output.txt
 
