@@ -2,13 +2,20 @@
 
 See `trade_math.py` and `trade_summary.py`. Key points to check:
 
-- **Two files, one `import`.** `trade_summary.py` imports `trade_value` and `classify_trade`
-  from `trade_math` — delegates sometimes redefine the functions in both files instead of
-  actually importing, which defeats the point of the exercise.
-- **`except TypeError`, not a bare `except:`.** A bare `except` would also silently swallow
-  genuine bugs (e.g. a typo'd dictionary key), not just the malformed-quantity case it's meant to
-  catch.
-- **The keyword-argument form is demonstrated separately** (the "VIP check"), not forced
-  awkwardly into the main loop — showing the concept clearly matters more than cramming it in.
-- **Behaviour for well-formed trades is unchanged** from Module 1's version — refactoring should
-  never change output for the cases that already worked.
+- **`InvalidTradeError` inherits from `Exception`**, not from a built-in like `ValueError`
+  unless there's a reason to — a plain custom class is the right default for a new domain rule.
+- **`except (TypeError, ValueError) as e` is one block, not two.** Delegates sometimes write two
+  separate `except` blocks with identical bodies instead of combining the tuple — functionally
+  fine, but the combined form communicates "these are handled the same way" more clearly.
+- **`else` accumulates the total, `finally` prints the processed-marker.** A common mix-up is
+  putting the total-accumulation inside `finally` instead of `else` — that would add to the total
+  even for a trade that failed validation, silently corrupting the running total.
+- **`safe_trade_value` uses `raise ... from e`**, not a bare `raise InvalidTradeError(...)` — the
+  `from e` preserves the original exception as the visible cause in the traceback, which matters
+  when debugging a chain of re-raises.
+- **`starter_math.py`'s `__main__` guard only prints when run directly.** Importing it from
+  `trade_summary.py` should produce no output of its own — if it does, the guard is missing or
+  misplaced.
+- Type hints (`quantity: float`, `-> float`) are not enforced at runtime — a delegate correctly
+  passing `quantity="N/A"` despite the hint is expected and is exactly what the `except
+  (TypeError, ValueError)` block is there to catch.
