@@ -2,8 +2,9 @@
 
 See `predictive.py`. Verified results against `shared/trades.csv`:
 
-- Model MAE ≈ 16,513, RMSE ≈ 19,507. Baseline (always predict the training mean) MAE ≈ 15,630,
-  RMSE ≈ 18,357. The trained model is **worse** than the naive baseline.
+- Model MAE (Mean Absolute Error) ≈ 16,513, RMSE (Root Mean Squared Error) ≈ 19,507. Baseline
+  (always predict the training mean) MAE ≈ 15,630, RMSE ≈ 18,357. The trained model is **worse**
+  than the naive baseline.
 - All three rows where `quantity * price != value` (T0003, T0009, T0017) are Bond trades. Every
   other asset class in the dataset satisfies `value = quantity * price` exactly.
 - The actual Bond relationship is `value = quantity * price / 100` — a standard bond-market

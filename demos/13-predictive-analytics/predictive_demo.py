@@ -8,7 +8,9 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error, accuracy_sc
 DATA_PATH = Path(__file__).resolve().parents[2] / "shared" / "trades.csv"
 df = pd.read_csv(DATA_PATH)
 
-# --- Part 3: regression, evaluated honestly ---
+# --- Part 4: regression, evaluated honestly ---
+# MAE (Mean Absolute Error) and RMSE (Root Mean Squared Error) are both measures of
+# regression error, in the original units -- see demo-guide.md Part 3 for what each means.
 X = df[["quantity"]]
 y = df["value"]
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)

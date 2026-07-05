@@ -14,13 +14,22 @@ By the end of this lab you will have:
 - `pip install pandas scikit-learn`
 - `shared/trades.csv` (repo root)
 
+## Two acronyms used throughout this lab
+
+- **MAE — Mean Absolute Error**: the average size of the prediction error, in the original units
+  (e.g. dollars). Easy to explain to a non-technical stakeholder: "predictions are off by about
+  $X, on average."
+- **RMSE — Root Mean Squared Error**: like MAE, but errors are squared before averaging (then
+  square-rooted back to the original units), so a few large errors count for more than many small
+  ones. RMSE is always >= MAE for the same set of predictions.
+
 ## Task
 
 Starter file: `starter_predictive.py`, in `labs/13-predictive-analytics/`.
 
 1. Build a `LinearRegression` model predicting `value` from **both** `quantity` and `price`.
 2. Split the data with `train_test_split(test_size=0.3, random_state=42)`.
-3. Evaluate the model on the test set with both MAE and RMSE.
+3. Evaluate the model on the test set with both MAE and RMSE (defined above).
 4. Build a `DummyRegressor(strategy="mean")` baseline, evaluate it the same way, and compare.
 
 You should find the model **does not clearly beat the baseline** — which is surprising, since

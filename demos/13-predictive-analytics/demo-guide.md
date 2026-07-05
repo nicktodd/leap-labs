@@ -22,11 +22,23 @@ good, it's memorised the answers, not learned the underlying pattern. `train_tes
 back a portion of the data (here, 30%) that the model never sees during training, so the
 evaluation reflects how it performs on data it hasn't memorised.
 
-## Part 3: A regression model, evaluated honestly (7 min)
+## Part 3: Two acronyms you need before running anything (3 min)
 
-Build a `LinearRegression` predicting `value` from `quantity` alone. Compute MAE and RMSE on the
-held-out test set. Then compute the same two metrics for a **naive baseline** that always
-predicts the training mean, using `DummyRegressor`.
+Narration, before any code runs: this module measures regression error with two acronyms that
+will appear everywhere from here on, so define them up front rather than mid-demo.
+
+- **MAE — Mean Absolute Error.** The average size of the error, in the original units. Easy to
+  explain to a non-technical stakeholder: "on average, predictions are off by about $X."
+- **RMSE — Root Mean Squared Error.** Errors are squared before averaging (then the average is
+  square-rooted back to the original units), so it penalises large errors more heavily than
+  small ones — useful when a few very wrong predictions matter more than many slightly-wrong
+  ones. RMSE is always >= MAE for the same set of predictions.
+
+## Part 4: A regression model, evaluated honestly (7 min)
+
+Build a `LinearRegression` predicting `value` from `quantity` alone. Compute MAE and RMSE (both
+defined above) on the held-out test set. Then compute the same two metrics for a **naive
+baseline** that always predicts the training mean, using `DummyRegressor`.
 
 Run it and look at the actual numbers together: the trained model's MAE (≈15,363) barely beats
 the naive baseline's MAE (≈15,630). Narration: this matches Module 8's finding directly — the
@@ -35,14 +47,8 @@ alone was never going to predict `value` well. **A model that barely beats a nai
 an honest, useful result, not a failure of the exercise** — it tells you `quantity` alone isn't a
 strong enough signal, which is worth knowing.
 
-## Part 4: MAE vs. RMSE — what each actually measures (3 min)
-
-Narration: MAE (Mean Absolute Error) is the average size of the error, in the original units —
-easy to explain to a non-technical stakeholder ("on average, predictions are off by about
-$15,363"). RMSE (Root Mean Squared Error) squares errors before averaging, so it penalises large
-errors more heavily than small ones — useful when a few very wrong predictions matter more than
-many slightly-wrong ones. RMSE is always >= MAE for the same predictions; here it's meaningfully
-higher, meaning a handful of large errors are dragging it up.
+Also point out: here RMSE (≈18,188) is meaningfully higher than MAE (≈15,363), meaning a handful
+of large errors are dragging the squared-error average up more than the plain average.
 
 ## Part 5: A classification model — and a humbling result (4 min)
 
