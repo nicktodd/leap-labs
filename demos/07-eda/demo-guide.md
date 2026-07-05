@@ -1,6 +1,6 @@
 # Demo: Module 7 — Exploratory Data Analysis (EDA)
 
-**Duration:** 18 minutes
+**Duration:** 22 minutes
 **Files:** `eda_demo.py`
 **Data:** `shared/trades.csv` (already clean, from Module 6)
 
@@ -18,16 +18,31 @@ point out that `quantity` and `value`'s ranges look sensible now (Module 6 clean
 dataset's messy twin), but the range alone doesn't tell you *why* they vary, that needs the next
 step: segmenting.
 
-## Part 3: Segmenting with value_counts and groupby (6 min)
+## Part 3: Segmenting with value_counts, crosstab, and correlation (9 min)
 
 Show `df["asset_class"].value_counts()` — Equity dominates (11 of 20 trades). Then
-`df["advisor"].value_counts()` — J. Okafor has almost double R. Alvarez's trade count.
+`.value_counts(normalize=True)` to express the same thing as a proportion (55%) — narration:
+counts and proportions answer slightly different questions ("how many" vs. "how dominant"), and
+a proportion is often the more useful one when comparing across differently-sized datasets later.
 
-Narration: neither of these is "the answer" to anything yet, they're **patterns worth
-questioning**. Is Equity dominance because Equity is genuinely the desk's focus, or because this
-particular week happened to have more Equity activity? Is J. Okafor's higher count because they
-manage more clients, or because they trade more per client? EDA surfaces the question; it
-doesn't answer it by itself.
+Show `df["advisor"].value_counts()` — J. Okafor has almost double R. Alvarez's trade count.
+
+Narration: none of these is "the answer" to anything yet, they're **patterns worth questioning**.
+Is Equity dominance because Equity is genuinely the desk's focus, or because this particular week
+happened to have more Equity activity? Is J. Okafor's higher count because they manage more
+clients, or because they trade more per client? EDA surfaces the question; it doesn't answer it
+by itself.
+
+Introduce `pd.crosstab(df["asset_class"], df["side"])` as a **two-way** segmentation in one
+table — narration: `value_counts()` and simple `groupby` answer "how does X vary," a crosstab
+answers "how do X and Y vary *together*," which is often the more interesting question (here:
+every Bond trade in the book is a BUY — no Bond SELLs at all, a genuine pattern worth asking
+about).
+
+Finally, show `df[["quantity", "price", "value"]].corr(numeric_only=True)` as a first glance at
+correlation. Narration: this is deliberately just a glance, not a conclusion — Module 8 covers
+what a correlation coefficient actually means, its limitations, and how to avoid mistaking it for
+causation. Here it's one more thing EDA surfaces for later, structured investigation.
 
 ## Part 4: A segment-level comparison, and a hypothesis (5 min)
 
