@@ -29,6 +29,8 @@ def plot_weekly_trend():
     ax.set_title("Total Trade Value by Week ($)")
     ax.set_xlabel("Week Ending")
     ax.set_ylabel("Total Value ($)")
+    ax.set_xticks(by_week.index)
+    ax.set_xticklabels([d.strftime("%Y-%m-%d") for d in by_week.index])
     fig.tight_layout()
     fig.savefig(OUT / "weekly_trend.png")
     plt.close(fig)
