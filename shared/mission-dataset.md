@@ -14,6 +14,8 @@ from an analytics angle rather than a relational-schema angle).
   client name), a duplicated row, inconsistent casing (`equity` vs `Equity`), and a single
   extreme outlier (a 99,999-unit trade). Used specifically in Module 06's cleaning exercise —
   every issue seeded here has a matching, nameable pandas cleaning technique.
+- **`shared/advisors.csv`** — a small reference table (advisor, team, years of experience).
+  Introduced in Module 09 to demonstrate `merge`, combining `trades.csv` with a second table.
 
 ## How it's used across the sprint
 

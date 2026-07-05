@@ -19,6 +19,8 @@ See **[`shared/mission-dataset.md`](shared/mission-dataset.md)**. In short:
   plain Python from Module 03, then with pandas from Module 05 onward.
 - **`shared/messy-trades-raw.csv`** — the same data, deliberately dirtied (bad dates, missing
   values, a duplicate row, inconsistent casing, an outlier) for Module 06's cleaning exercise.
+- **`shared/advisors.csv`** — a small reference table (advisor, team, years of experience), used
+  from Module 09 onward to demonstrate merging `trades.csv` with a second table.
 
 ## Structure
 
