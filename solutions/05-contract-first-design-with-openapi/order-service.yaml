@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: Order Processing & Settlement Service
+  description: >
+    Retrieves the status of a previously submitted order.
+  version: 1.0.0
+  license:
+    name: Internal use only - Fidelity
+
+servers:
+  - url: /v1
+
+paths:
+  /orders/{id}:
+    get:
+      summary: Retrieve the status of a previously submitted order
+      operationId: getOrder
+      security:
+        - bearerAuth: []
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: The id returned when the order was originally submitted
+          schema:
+            type: string
+      responses:
+        '200':
+          description: The order was found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+              example:
+                id: "42"
+                status: ACCEPTED
+                fee: 15.0
+        '401':
+          description: Missing or invalid JWT
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: No order exists with the given id
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                message: "no order found with id 999"
+
+components:
+  schemas:
+    OrderResponse:
+      type: object
+      required: [id, status]
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum: [ACCEPTED, REJECTED]
+        fee:
+          type: number
+          format: double
+          nullable: true
+          description: Present only when status is ACCEPTED
+        reason:
+          type: string
+          nullable: true
+          description: Present only when status is REJECTED
+
+    ErrorResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT

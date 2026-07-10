@@ -37,6 +37,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 2 | Spring Boot Quickstart | [labs/02-spring-boot-quickstart/README.md](labs/02-spring-boot-quickstart/README.md) |
 | 3 | Layered Architecture in Spring Boot | [labs/03-layered-architecture-in-spring-boot/README.md](labs/03-layered-architecture-in-spring-boot/README.md) |
 | 4 | REST API Design Principles | [labs/04-rest-api-design-principles/README.md](labs/04-rest-api-design-principles/README.md) |
+| 5 | Contract-First Design with OpenAPI | [labs/05-contract-first-design-with-openapi/README.md](labs/05-contract-first-design-with-openapi/README.md) |
 
 ## Getting started
 
