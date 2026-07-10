@@ -1,0 +1,48 @@
+# Fidelity LEAP Program — Sprint 6 Lab Exercises
+
+This repository contains the hands-on lab exercises accompanying **Sprint 6: Software
+Architecture & Enterprise Java**, week 6 of the Fidelity LEAP graduate programme.
+
+## Prerequisites
+
+- Java 21 (JDK) and Maven
+- Docker (for Modules 12-13)
+- Postgres (the Sprint 3 enterprise schema — see `shared/`)
+- Node.js (for the auth stub used in Modules 9 and 13)
+- GitHub Copilot Chat (continuing as a learning aid — Module 9 specifically has you critically
+  interpret a GenAI-suggested explanation of an unfamiliar security stack trace, not accept it
+  outright)
+
+## Coming from Sprint 5
+
+This sprint takes the Order Processing & Settlement Engine you built in Sprint 5 and turns it
+into a real, deployable microservice. The core domain logic — `OrderValidator`, `HoldingUpdater`,
+the `Instrument`/`Feeable` hierarchy — doesn't change; it gets wrapped in a Spring Boot service,
+persisted to Postgres, secured with JWT, and containerised. See `shared/mission-brief.md`.
+
+## Structure
+
+Each module has its own folder under `demos/`, `labs/`, and `solutions/`. Java modules are
+self-contained Maven projects (`pom.xml` in each), runnable independently:
+
+- `demos/<module>/` — instructor-led demo assets and guides
+- `labs/<module>/` — your starter files and the task README for that module
+- `solutions/<module>/` — reference solutions (try the lab first!)
+
+## Modules
+
+| # | Module | Lab |
+|---|---|---|
+| 1 | Microservices & the Mission Service | [labs/01-microservices-and-the-mission-service/README.md](labs/01-microservices-and-the-mission-service/README.md) |
+
+## Getting started
+
+1. Clone this repository.
+2. `cd` into a module's `labs/<module>/` folder and check that module's README for setup.
+3. Work through the modules in order, starting with
+   `labs/01-microservices-and-the-mission-service/README.md`.
+
+## Support
+
+Ask your trainer or Scrum team lead during class, or raise a question in the cohort's usual
+support channel.
