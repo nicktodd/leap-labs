@@ -36,6 +36,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 1 | Microservices & the Mission Service | [labs/01-microservices-and-the-mission-service/README.md](labs/01-microservices-and-the-mission-service/README.md) |
 | 2 | Spring Boot Quickstart | [labs/02-spring-boot-quickstart/README.md](labs/02-spring-boot-quickstart/README.md) |
 | 3 | Layered Architecture in Spring Boot | [labs/03-layered-architecture-in-spring-boot/README.md](labs/03-layered-architecture-in-spring-boot/README.md) |
+| 4 | REST API Design Principles | [labs/04-rest-api-design-principles/README.md](labs/04-rest-api-design-principles/README.md) |
 
 ## Getting started
 
