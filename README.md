@@ -41,6 +41,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 6 | DTOs & Request Validation | [labs/06-dtos-and-request-validation/README.md](labs/06-dtos-and-request-validation/README.md) |
 | 7 | Persistence with MyBatis: Mappers & Connecting to Postgres | [labs/07-persistence-with-mybatis/README.md](labs/07-persistence-with-mybatis/README.md) |
 | 8 | MyBatis in Context: vs JPA/Hibernate | [labs/08-mybatis-in-context/README.md](labs/08-mybatis-in-context/README.md) |
+| 9 | Securing the Service: JWT Validation | [labs/09-securing-the-service-jwt-validation/README.md](labs/09-securing-the-service-jwt-validation/README.md) |
 
 ## Getting started
 
