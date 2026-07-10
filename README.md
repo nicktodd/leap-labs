@@ -40,6 +40,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 5 | Contract-First Design with OpenAPI | [labs/05-contract-first-design-with-openapi/README.md](labs/05-contract-first-design-with-openapi/README.md) |
 | 6 | DTOs & Request Validation | [labs/06-dtos-and-request-validation/README.md](labs/06-dtos-and-request-validation/README.md) |
 | 7 | Persistence with MyBatis: Mappers & Connecting to Postgres | [labs/07-persistence-with-mybatis/README.md](labs/07-persistence-with-mybatis/README.md) |
+| 8 | MyBatis in Context: vs JPA/Hibernate | [labs/08-mybatis-in-context/README.md](labs/08-mybatis-in-context/README.md) |
 
 ## Getting started
 
