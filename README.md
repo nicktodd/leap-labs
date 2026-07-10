@@ -39,6 +39,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 4 | REST API Design Principles | [labs/04-rest-api-design-principles/README.md](labs/04-rest-api-design-principles/README.md) |
 | 5 | Contract-First Design with OpenAPI | [labs/05-contract-first-design-with-openapi/README.md](labs/05-contract-first-design-with-openapi/README.md) |
 | 6 | DTOs & Request Validation | [labs/06-dtos-and-request-validation/README.md](labs/06-dtos-and-request-validation/README.md) |
+| 7 | Persistence with MyBatis: Mappers & Connecting to Postgres | [labs/07-persistence-with-mybatis/README.md](labs/07-persistence-with-mybatis/README.md) |
 
 ## Getting started
 
