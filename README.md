@@ -38,6 +38,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 3 | Layered Architecture in Spring Boot | [labs/03-layered-architecture-in-spring-boot/README.md](labs/03-layered-architecture-in-spring-boot/README.md) |
 | 4 | REST API Design Principles | [labs/04-rest-api-design-principles/README.md](labs/04-rest-api-design-principles/README.md) |
 | 5 | Contract-First Design with OpenAPI | [labs/05-contract-first-design-with-openapi/README.md](labs/05-contract-first-design-with-openapi/README.md) |
+| 6 | DTOs & Request Validation | [labs/06-dtos-and-request-validation/README.md](labs/06-dtos-and-request-validation/README.md) |
 
 ## Getting started
 
