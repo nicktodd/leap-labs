@@ -45,6 +45,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 10 | Handling Errors Gracefully | [labs/10-handling-errors-gracefully/README.md](labs/10-handling-errors-gracefully/README.md) |
 | 11 | Mission Build: Assembling the Full Service | [labs/11-mission-build-assembling-the-full-service/README.md](labs/11-mission-build-assembling-the-full-service/README.md) |
 | 12 | Containerising Spring Boot Services | [labs/12-containerising-spring-boot-services/README.md](labs/12-containerising-spring-boot-services/README.md) |
+| 13 | Mission Build: Containerise, Integration Test & Wrap-up | [labs/13-mission-build-containerise-integration-test-wrap-up/README.md](labs/13-mission-build-containerise-integration-test-wrap-up/README.md) |
 
 ## Getting started
 
