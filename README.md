@@ -44,6 +44,7 @@ self-contained Maven projects (`pom.xml` in each), runnable independently:
 | 9 | Securing the Service: JWT Validation | [labs/09-securing-the-service-jwt-validation/README.md](labs/09-securing-the-service-jwt-validation/README.md) |
 | 10 | Handling Errors Gracefully | [labs/10-handling-errors-gracefully/README.md](labs/10-handling-errors-gracefully/README.md) |
 | 11 | Mission Build: Assembling the Full Service | [labs/11-mission-build-assembling-the-full-service/README.md](labs/11-mission-build-assembling-the-full-service/README.md) |
+| 12 | Containerising Spring Boot Services | [labs/12-containerising-spring-boot-services/README.md](labs/12-containerising-spring-boot-services/README.md) |
 
 ## Getting started
 
