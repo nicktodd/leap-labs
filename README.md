@@ -1,0 +1,63 @@
+# Fidelity LEAP Program — Sprint 8 Lab Exercises
+
+This repository contains the hands-on lab exercises accompanying **Sprint 8: Node.js / NestJS
+Authentication Service**, week 8 of the Fidelity LEAP graduate programme.
+
+## Prerequisites
+
+- Node.js (LTS) and npm
+- No prior JavaScript or TypeScript experience assumed — Days 1–2 build this from zero
+- Postgres (the Sprint 3 enterprise schema, extended with a `users` table — see `shared/`)
+- Java 21 (JDK) and Maven, and Docker — to run Sprint 6/7's mission service, which the new auth
+  service integrates with from Module 15 onward
+- GitHub Copilot Chat (continuing as a learning aid)
+
+## Coming from Sprint 7
+
+Sprint 6 built a Spring Boot mission service that trusts JWTs from `shared/auth-stub` — a
+minimal, hardcoded-credentials Node service, good enough to build and test `SecurityConfig`
+against, never intended to be real. Sprint 8 builds the real thing: a NestJS auth service with
+genuine user registration, password hashing, and database-backed login, issuing tokens the
+mission service already knows how to validate without any changes on its side. See
+`shared/mission-brief.md`.
+
+## Structure
+
+Each module has its own folder under `demos/`, `labs/`, and `solutions/`. From Module 8 onward,
+modules are self-contained Node/npm projects; Modules 2–7 are smaller, dependency-free JavaScript/
+TypeScript exercises runnable directly with `node` or `ts-node`.
+
+- `demos/<module>/` — instructor-led demo assets and guides
+- `labs/<module>/` — your starter files and the task README for that module
+- `solutions/<module>/` — reference solutions (try the lab first!)
+
+## Getting started
+
+1. Clone this repository.
+2. `cd` into a module's `labs/<module>/` folder and check that module's README for setup.
+3. Work through the modules in order, starting with `labs/01-.../README.md`.
+
+## Modules
+
+| # | Module | Lab |
+|---|---|---|
+| 1 | Identity, Access Management & Zero-Trust: Why This Service Matters | _coming soon_ |
+| 2 | JavaScript Fundamentals: Syntax, Variables, Functions & Control Flow | _coming soon_ |
+| 3 | Working with Objects, Arrays & Modern JavaScript | _coming soon_ |
+| 4 | Asynchronous JavaScript: Callbacks, Promises & Async/Await | _coming soon_ |
+| 5 | Introduction to TypeScript: Why Types & Basic Annotations | _coming soon_ |
+| 6 | The TypeScript Build Process: tsconfig, Compiling & Tooling | _coming soon_ |
+| 7 | TypeScript Deeper: Interfaces, Generics & Type Inference | _coming soon_ |
+| 8 | Node.js Fundamentals: Event Loop, Modules & npm | _coming soon_ |
+| 9 | NestJS Fundamentals: Modules, Controllers, Providers & DI | _coming soon_ |
+| 10 | DTOs & Validation in NestJS | _coming soon_ |
+| 11 | Building the Auth Service Skeleton: Login, Register, Refresh | _coming soon_ |
+| 12 | Secure DB Access & Password Hashing | _coming soon_ |
+| 13 | JWT Essentials: Issuing & Validating Tokens | _coming soon_ |
+| 14 | Securing & Testing the Service — Lightweight Pass | _coming soon_ |
+| 15 | Mission Build: OpenAPI Docs & Replacing the Sprint 7 Stub | _coming soon_ |
+
+## Support
+
+Ask your trainer or Scrum team lead during class, or raise a question in the cohort's usual
+support channel.

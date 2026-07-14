@@ -1,0 +1,12 @@
+.claude/
+target/
+*.class
+.idea/
+*.iml
+node_modules/
+dist/
+.mermaid-cache/
+*.log
+*.jar
+!.mvn/wrapper/*.jar
+.env
