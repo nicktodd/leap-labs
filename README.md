@@ -44,7 +44,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 1 | Identity, Access Management & Zero-Trust: Why This Service Matters | [labs/01-identity-access-management-and-zero-trust-why-this-service-matters/README.md](labs/01-identity-access-management-and-zero-trust-why-this-service-matters/README.md) |
 | 2 | JavaScript Fundamentals: Syntax, Variables, Functions & Control Flow | [labs/02-javascript-fundamentals-syntax-variables-functions-and-control-flow/README.md](labs/02-javascript-fundamentals-syntax-variables-functions-and-control-flow/README.md) |
 | 3 | Working with Objects, Arrays & Modern JavaScript | [labs/03-working-with-objects-arrays-and-modern-javascript/README.md](labs/03-working-with-objects-arrays-and-modern-javascript/README.md) |
-| 4 | Asynchronous JavaScript: Callbacks, Promises & Async/Await | _coming soon_ |
+| 4 | Asynchronous JavaScript: Callbacks, Promises & Async/Await | [labs/04-asynchronous-javascript-callbacks-promises-and-async-await/README.md](labs/04-asynchronous-javascript-callbacks-promises-and-async-await/README.md) |
 | 5 | Introduction to TypeScript: Why Types & Basic Annotations | _coming soon_ |
 | 6 | The TypeScript Build Process: tsconfig, Compiling & Tooling | _coming soon_ |
 | 7 | TypeScript Deeper: Interfaces, Generics & Type Inference | _coming soon_ |
