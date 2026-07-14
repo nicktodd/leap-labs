@@ -1,0 +1,13 @@
+# Known false positives from Module 13's teaching material. Every value
+# gitleaks flags below is a deliberately fake, non-functional credential
+# used ONLY to demonstrate secret-scanning tooling (Module 13's demo guide
+# and lab README) - none of them belong to any real account or service.
+#
+# This file is itself an example of a real, common DevSecOps practice: every
+# gitleaks setup needs a maintained baseline of confirmed false positives,
+# reviewed deliberately - not blindly ignored wholesale.
+
+demos/13-devsecops-shifting-security-left/demo-guide.md:generic-api-key:96
+demos/13-devsecops-shifting-security-left/demo-guide.md:generic-api-key:101
+labs/13-devsecops-shifting-security-left/README.md:stripe-access-token:59
+labs/13-devsecops-shifting-security-left/README.md:generic-api-key:60
