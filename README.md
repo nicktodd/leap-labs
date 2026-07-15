@@ -50,7 +50,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 7 | TypeScript Deeper: Interfaces, Generics & Type Inference | [labs/07-typescript-deeper-interfaces-generics-and-type-inference/README.md](labs/07-typescript-deeper-interfaces-generics-and-type-inference/README.md) |
 | 8 | Node.js Fundamentals: Event Loop, Modules & npm | [labs/08-nodejs-fundamentals-event-loop-modules-and-npm/README.md](labs/08-nodejs-fundamentals-event-loop-modules-and-npm/README.md) |
 | 9 | NestJS Fundamentals: Modules, Controllers, Providers & DI | [labs/09-nestjs-fundamentals-modules-controllers-providers-and-di/README.md](labs/09-nestjs-fundamentals-modules-controllers-providers-and-di/README.md) |
-| 10 | DTOs & Validation in NestJS | _coming soon_ |
+| 10 | DTOs & Validation in NestJS | [labs/10-dtos-and-validation-in-nestjs/README.md](labs/10-dtos-and-validation-in-nestjs/README.md) |
 | 11 | Building the Auth Service Skeleton: Login, Register, Refresh | _coming soon_ |
 | 12 | Secure DB Access & Password Hashing | _coming soon_ |
 | 13 | JWT Essentials: Issuing & Validating Tokens | _coming soon_ |
