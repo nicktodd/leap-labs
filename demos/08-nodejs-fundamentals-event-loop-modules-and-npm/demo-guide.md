@@ -24,8 +24,31 @@ built-in APIs are roughly the JDK's standard library (`java.io`, `java.net`).
 ## Part 1: The Event Loop, For Real
 
 Module 4 said JavaScript is single-threaded and `setTimeout` doesn't start a thread —
-it registers a callback with the event loop. This demo shows the actual ORDER things
-run in.
+it registers a callback with the event loop. Before looking at execution ORDER, it's
+worth naming the four pieces actually involved — see the accompanying diagram slide
+("The Event Loop: How the Pieces Fit Together") for the visual version of this:
+
+- **The call stack** — the ONLY place JavaScript code actually executes. One function
+  frame at a time, strictly synchronous. Nothing else in this list runs code directly;
+  everything else exists to get work ONTO the call stack at the right moment.
+- **Node APIs / libuv** — where async work actually HAPPENS: timers counting down,
+  files being read, network requests in flight — all handled by libuv's own C code and
+  thread pool, completely off the JavaScript thread. This is the box `setTimeout` and
+  `fs.readFile` hand work off to.
+- **The microtask queue** — holds `process.nextTick` and `Promise` callbacks. Crucially,
+  this queue is filled directly from code running ON the call stack (calling `.then()`
+  or `process.nextTick()`), not by libuv finishing something asynchronous.
+- **The macrotask (callback) queue** — where libuv puts a callback once its async work
+  is actually done. `setTimeout` callbacks, completed I/O callbacks, `setInterval` ticks
+  all arrive here.
+
+**The event loop itself is just a loop**, repeatedly asking one question: *is the call
+stack empty?* If yes: drain the microtask queue completely (every `nextTick`, then every
+`Promise` callback, including any NEW ones queued while draining). Only once the
+microtask queue is fully empty does it take exactly ONE task off the macrotask queue,
+run it, and ask the same question again.
+
+This demo shows the actual ORDER things run in, given that loop.
 
 ```bash
 node event-loop-demo.cjs
