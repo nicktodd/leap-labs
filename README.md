@@ -48,7 +48,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 5 | Introduction to TypeScript: Why Types & Basic Annotations | [labs/05-introduction-to-typescript-why-types-and-basic-annotations/README.md](labs/05-introduction-to-typescript-why-types-and-basic-annotations/README.md) |
 | 6 | The TypeScript Build Process: tsconfig, Compiling & Tooling | [labs/06-the-typescript-build-process-tsconfig-compiling-and-tooling/README.md](labs/06-the-typescript-build-process-tsconfig-compiling-and-tooling/README.md) |
 | 7 | TypeScript Deeper: Interfaces, Generics & Type Inference | [labs/07-typescript-deeper-interfaces-generics-and-type-inference/README.md](labs/07-typescript-deeper-interfaces-generics-and-type-inference/README.md) |
-| 8 | Node.js Fundamentals: Event Loop, Modules & npm | _coming soon_ |
+| 8 | Node.js Fundamentals: Event Loop, Modules & npm | [labs/08-nodejs-fundamentals-event-loop-modules-and-npm/README.md](labs/08-nodejs-fundamentals-event-loop-modules-and-npm/README.md) |
 | 9 | NestJS Fundamentals: Modules, Controllers, Providers & DI | _coming soon_ |
 | 10 | DTOs & Validation in NestJS | _coming soon_ |
 | 11 | Building the Auth Service Skeleton: Login, Register, Refresh | _coming soon_ |
