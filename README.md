@@ -51,7 +51,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 8 | Node.js Fundamentals: Event Loop, Modules & npm | [labs/08-nodejs-fundamentals-event-loop-modules-and-npm/README.md](labs/08-nodejs-fundamentals-event-loop-modules-and-npm/README.md) |
 | 9 | NestJS Fundamentals: Modules, Controllers, Providers & DI | [labs/09-nestjs-fundamentals-modules-controllers-providers-and-di/README.md](labs/09-nestjs-fundamentals-modules-controllers-providers-and-di/README.md) |
 | 10 | DTOs & Validation in NestJS | [labs/10-dtos-and-validation-in-nestjs/README.md](labs/10-dtos-and-validation-in-nestjs/README.md) |
-| 11 | Building the Auth Service Skeleton: Login, Register, Refresh | _coming soon_ |
+| 11 | Building the Auth Service Skeleton: Login, Register, Refresh | [labs/11-building-the-auth-service-skeleton-login-register-refresh/README.md](labs/11-building-the-auth-service-skeleton-login-register-refresh/README.md) |
 | 12 | Secure DB Access & Password Hashing | _coming soon_ |
 | 13 | JWT Essentials: Issuing & Validating Tokens | _coming soon_ |
 | 14 | Securing & Testing the Service — Lightweight Pass | _coming soon_ |
