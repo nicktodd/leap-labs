@@ -46,7 +46,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 3 | Working with Objects, Arrays & Modern JavaScript | [labs/03-working-with-objects-arrays-and-modern-javascript/README.md](labs/03-working-with-objects-arrays-and-modern-javascript/README.md) |
 | 4 | Asynchronous JavaScript: Callbacks, Promises & Async/Await | [labs/04-asynchronous-javascript-callbacks-promises-and-async-await/README.md](labs/04-asynchronous-javascript-callbacks-promises-and-async-await/README.md) |
 | 5 | Introduction to TypeScript: Why Types & Basic Annotations | [labs/05-introduction-to-typescript-why-types-and-basic-annotations/README.md](labs/05-introduction-to-typescript-why-types-and-basic-annotations/README.md) |
-| 6 | The TypeScript Build Process: tsconfig, Compiling & Tooling | _coming soon_ |
+| 6 | The TypeScript Build Process: tsconfig, Compiling & Tooling | [labs/06-the-typescript-build-process-tsconfig-compiling-and-tooling/README.md](labs/06-the-typescript-build-process-tsconfig-compiling-and-tooling/README.md) |
 | 7 | TypeScript Deeper: Interfaces, Generics & Type Inference | _coming soon_ |
 | 8 | Node.js Fundamentals: Event Loop, Modules & npm | _coming soon_ |
 | 9 | NestJS Fundamentals: Modules, Controllers, Providers & DI | _coming soon_ |
