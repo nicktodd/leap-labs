@@ -53,7 +53,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 10 | DTOs & Validation in NestJS | [labs/10-dtos-and-validation-in-nestjs/README.md](labs/10-dtos-and-validation-in-nestjs/README.md) |
 | 11 | Building the Auth Service Skeleton: Login, Register, Refresh | [labs/11-building-the-auth-service-skeleton-login-register-refresh/README.md](labs/11-building-the-auth-service-skeleton-login-register-refresh/README.md) |
 | 12 | Secure DB Access & Password Hashing | [labs/12-secure-db-access-and-password-hashing/README.md](labs/12-secure-db-access-and-password-hashing/README.md) |
-| 13 | JWT Essentials: Issuing & Validating Tokens | _coming soon_ |
+| 13 | JWT Essentials: Issuing & Validating Tokens | [labs/13-jwt-essentials-issuing-and-validating-tokens/README.md](labs/13-jwt-essentials-issuing-and-validating-tokens/README.md) |
 | 14 | Securing & Testing the Service — Lightweight Pass | _coming soon_ |
 | 15 | Mission Build: OpenAPI Docs & Replacing the Sprint 7 Stub | _coming soon_ |
 
