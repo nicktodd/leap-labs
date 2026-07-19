@@ -54,7 +54,7 @@ TypeScript exercises runnable directly with `node` or `ts-node`.
 | 11 | Building the Auth Service Skeleton: Login, Register, Refresh | [labs/11-building-the-auth-service-skeleton-login-register-refresh/README.md](labs/11-building-the-auth-service-skeleton-login-register-refresh/README.md) |
 | 12 | Secure DB Access & Password Hashing | [labs/12-secure-db-access-and-password-hashing/README.md](labs/12-secure-db-access-and-password-hashing/README.md) |
 | 13 | JWT Essentials: Issuing & Validating Tokens | [labs/13-jwt-essentials-issuing-and-validating-tokens/README.md](labs/13-jwt-essentials-issuing-and-validating-tokens/README.md) |
-| 14 | Securing & Testing the Service — Lightweight Pass | _coming soon_ |
+| 14 | Securing & Testing the Service — Lightweight Pass | [labs/14-securing-and-testing-the-service-lightweight-pass/README.md](labs/14-securing-and-testing-the-service-lightweight-pass/README.md) |
 | 15 | Mission Build: OpenAPI Docs & Replacing the Sprint 7 Stub | _coming soon_ |
 
 ## Support
