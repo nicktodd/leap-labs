@@ -1,6 +1,3 @@
-# Starter: plain Python trade records. No libraries.
-# TODO: iterate over `trades`, flag large trades (value > 20000), and print a summary.
-
 trades = [
     {"trade_id": "T0001", "side": "BUY", "quantity": 120, "price": 185.32},
     {"trade_id": "T0002", "side": "BUY", "quantity": 60, "price": 402.11},
@@ -19,14 +16,17 @@ sell_count = 0
 for trade in trades:
     value = trade["quantity"] * trade["price"]
     total_value += value
+
     if trade["side"] == "BUY":
         buy_count += 1
     else:
         sell_count += 1
-    if value > 20000:
-        print(trade["trade_id"], "LARGE TRADE", value)
 
-print("Total trades:", len(trades))
-print("Total value:", total_value)
-print("BUY:", buy_count)
-print("SELL:", sell_count)
+    if value > 20000:
+        print(f"Large trade: {trade['trade_id']} ({trade['side']}) — value £{value:,.2f}")
+
+print(f"\nSummary:")
+print(f"  Total trades : {len(trades)}")
+print(f"  Total value  : £{total_value:,.2f}")
+print(f"  BUY trades   : {buy_count}")
+print(f"  SELL trades  : {sell_count}")

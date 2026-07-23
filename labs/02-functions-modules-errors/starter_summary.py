@@ -1,8 +1,6 @@
-# TODO: import from starter_math, then refactor the loop below to:
-# - catch (TypeError, ValueError) together for a wrong-type quantity/price
-# - catch InvalidTradeError separately for a business-rule failure
-# - use else to accumulate the running total only on success
-# - use finally to print a "processed <trade_id>" line unconditionally
+"""Process a list of trades, catching type errors and business-rule violations separately."""
+
+from starter_math import InvalidTradeError, safe_trade_value, classify_trade
 
 trades = [
     {"trade_id": "T0001", "quantity": 120, "price": 185.32},
@@ -15,9 +13,19 @@ trades = [
 total = 0.0
 
 for trade in trades:
-    value = trade["quantity"] * trade["price"]  # will crash on T0002/T0003 as-is
-    total += value
-    label = "large" if value > 20000 else "normal"
-    print(f"{trade['trade_id']}: {label} trade worth {value:,.2f}")
+    try:
+        value = safe_trade_value(trade)
+    except (TypeError, ValueError) as e:
+        print(f"{trade['trade_id']}: SKIPPED — wrong type for quantity/price: {e}")
+    except InvalidTradeError as e:
+        print(f"{trade['trade_id']}: SKIPPED — business-rule violation: {e}")
+    else:
+        # Only runs on success; accumulate running total here, not inside try
+        label = classify_trade(value)
+        total += value
+        print(f"{trade['trade_id']}: {label} trade worth {value:,.2f}")
+    finally:
+        # Always runs, regardless of success or failure
+        print(f"  processed {trade['trade_id']}")
 
 print(f"\nTotal value processed: {total:,.2f}")
