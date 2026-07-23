@@ -11,30 +11,32 @@ import java.util.Properties;
 // KATA: this is Module 6's fourth consumer group - fraud detection - reading
 // the SAME trade-events topic the demo's OrderService already published to.
 //
-// It was written by copying SettlementConsumer and changing the group.id -
-// but it does not run. Run it, read the real stack trace, and fix it.
-// Consider asking GenAI to explain the error - but verify its explanation
-// against the actual Kafka client docs before trusting it (Sprint 5's
-// critical-evaluation habit, applied here).
+// Root-cause explanation (Part B): The original used IntegerDeserializer for
+// the key, but the producer keyed events by account ID (a String), so the
+// key bytes cannot be deserialized as an Integer - this causes a
+// SerializationException at runtime. The fix is to use StringDeserializer
+// for the key, matching how the producer serialized it.
 public class FraudDetectionConsumer {
 
     public static void main(String[] args) {
         Properties props = new Properties();
         props.put("bootstrap.servers", "localhost:9092");
-        props.put("key.deserializer", "org.apache.kafka.common.serialization.IntegerDeserializer");
+        // FIX: was IntegerDeserializer - the producer uses String keys (account IDs),
+        // so this must be StringDeserializer to avoid SerializationException.
+        props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
         props.put("group.id", "fraud-detection-service");
         props.put("auto.offset.reset", "earliest");
 
-        try (KafkaConsumer<Integer, String> consumer = new KafkaConsumer<>(props)) {
+        try (KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props)) {
             consumer.subscribe(List.of("trade-events"));
 
             System.out.println("FraudDetectionConsumer polling for up to 10 seconds...");
             long deadline = System.currentTimeMillis() + 10_000;
             int received = 0;
             while (System.currentTimeMillis() < deadline) {
-                ConsumerRecords<Integer, String> records = consumer.poll(Duration.ofMillis(500));
-                for (ConsumerRecord<Integer, String> record : records) {
+                ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(500));
+                for (ConsumerRecord<String, String> record : records) {
                     System.out.printf("Fraud check: account=%s partition=%d offset=%d  %s%n",
                             record.key(), record.partition(), record.offset(), record.value());
                     received++;

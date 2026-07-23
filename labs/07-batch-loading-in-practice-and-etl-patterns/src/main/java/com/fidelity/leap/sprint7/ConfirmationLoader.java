@@ -18,12 +18,11 @@ public class ConfirmationLoader {
     public static void main(String[] args) throws Exception {
         try (Connection conn = DriverManager.getConnection(URL, USER, PASSWORD)) {
             try (Statement st = conn.createStatement()) {
-                // TODO 1: this table has no primary key, so the database has
-                // no way to detect "this confirmation was already loaded."
-                // Add a PRIMARY KEY constraint on confirmation_id.
+                // TODO 1 DONE: added PRIMARY KEY on confirmation_id so the
+                // database can detect duplicates and ON CONFLICT can target it.
                 st.execute("""
                     CREATE TABLE IF NOT EXISTS trade_confirmations (
-                        confirmation_id VARCHAR(20),
+                        confirmation_id VARCHAR(20) PRIMARY KEY,
                         account_id VARCHAR(20),
                         ticker VARCHAR(20),
                         side VARCHAR(10),
@@ -32,14 +31,16 @@ public class ConfirmationLoader {
                     """);
             }
 
-            // TODO 2: this is a plain INSERT - every rerun inserts the same
-            // rows again. Change it to an UPSERT: INSERT ... ON CONFLICT
-            // (confirmation_id) DO UPDATE SET ... so reruns converge instead
-            // of duplicating. (You'll need TODO 1's primary key for this to
-            // work - ON CONFLICT needs a unique constraint to target.)
+            // TODO 2 DONE: changed to INSERT ... ON CONFLICT DO UPDATE so
+            // reruns update existing rows instead of inserting new duplicates.
             String insertSql = "INSERT INTO trade_confirmations " +
                     "(confirmation_id, account_id, ticker, side, quantity) " +
-                    "VALUES (?, ?, ?, ?, ?)";
+                    "VALUES (?, ?, ?, ?, ?) " +
+                    "ON CONFLICT (confirmation_id) DO UPDATE SET " +
+                    "account_id = EXCLUDED.account_id, " +
+                    "ticker = EXCLUDED.ticker, " +
+                    "side = EXCLUDED.side, " +
+                    "quantity = EXCLUDED.quantity";
 
             int processed = 0;
             try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/confirmations.csv"));
