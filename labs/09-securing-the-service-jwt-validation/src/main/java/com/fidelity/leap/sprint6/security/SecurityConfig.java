@@ -5,9 +5,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-// KATA A - wire JWT validation into this service.
+import javax.crypto.spec.SecretKeySpec;
+
 @Configuration
 public class SecurityConfig {
 
@@ -16,20 +18,21 @@ public class SecurityConfig {
 
     @Bean
     public JwtDecoder jwtDecoder() {
-        // TODO: build a NimbusJwtDecoder using sharedSecret as an HMAC-SHA256
-        // key (a SecretKeySpec, algorithm "HmacSHA256"). This is the same
-        // secret the Node auth stub signs tokens with.
-        throw new UnsupportedOperationException("TODO: implement jwtDecoder");
+        SecretKeySpec key = new SecretKeySpec(sharedSecret.getBytes(), "HmacSHA256");
+        return NimbusJwtDecoder.withSecretKey(key).build();
     }
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // TODO:
-        //  - disable CSRF (this is a stateless API, not a browser form)
-        //  - permit /public with no authentication required
-        //  - require authentication for every other request
-        //  - enable oauth2ResourceServer().jwt() (the default JwtAuthenticationConverter
-        //    is fine for this kata - you don't need to customise the roles claim)
-        throw new UnsupportedOperationException("TODO: implement filterChain");
+        http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests(auth -> auth
+                .requestMatchers("/public").permitAll()
+                .anyRequest().authenticated()
+            )
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(jwt -> jwt.decoder(jwtDecoder()))
+            );
+        return http.build();
     }
 }

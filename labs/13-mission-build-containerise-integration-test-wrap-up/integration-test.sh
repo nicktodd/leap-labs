@@ -36,38 +36,83 @@ docker run -d --name "$SERVICE_CONTAINER" --network "$NETWORK" -p "$SERVICE_PORT
   "$SERVICE_IMAGE"
 
 echo "== Stage: Wait for Both to Be Ready =="
-# TODO 1: poll http://localhost:$AUTH_PORT/health in a retry loop until it
-# responds (up to ~30 tries, 2s apart). Remember set -e's gotcha: a plain
-# `curl ... && break` inside a loop will kill the whole script the FIRST
-# time curl fails while the container is still starting - wrap it in
-# `if ...; then break; fi` instead.
+echo "  Waiting for auth stub on port $AUTH_PORT ..."
+for i in $(seq 1 30); do
+  if curl -sf "http://localhost:$AUTH_PORT/health" >/dev/null 2>&1; then
+    echo "  Auth stub is ready."
+    break
+  fi
+  if [ "$i" -eq 30 ]; then
+    echo "FAIL: auth stub did not become ready in time"
+    exit 1
+  fi
+  sleep 2
+done
 
-# TODO 2: same idea, but poll SERVICE_PORT with a POST to
-# /accounts/1/orders (any body is fine - you're only checking it responds
-# at all, not that the response is meaningful yet).
-echo "TODO 1/2 not implemented"; exit 1
+echo "  Waiting for mission service on port $SERVICE_PORT ..."
+for i in $(seq 1 45); do
+  if curl -sf -o /dev/null -X POST "http://localhost:$SERVICE_PORT/accounts/1/orders" \
+      -H "Content-Type: application/json" -d '{}' 2>/dev/null; then
+    echo "  Mission service is ready."
+    break
+  fi
+  # Accept any HTTP response (including 401/400) - that means the service is up
+  STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST "http://localhost:$SERVICE_PORT/accounts/1/orders" \
+      -H "Content-Type: application/json" -d '{}' 2>/dev/null || true)
+  if [ -n "$STATUS" ] && [ "$STATUS" != "000" ]; then
+    echo "  Mission service is ready (HTTP $STATUS)."
+    break
+  fi
+  if [ "$i" -eq 45 ]; then
+    echo "FAIL: mission service did not become ready in time"
+    exit 1
+  fi
+  sleep 2
+done
 
 echo "== Stage: Smoke Test - No Token Is Rejected =="
-# TODO 3: POST a well-formed order to $SERVICE_PORT with NO Authorization
-# header. Capture the HTTP status code (curl -o /dev/null -w "%{http_code}").
-# Fail the script (echo a clear message, exit 1) if it isn't 401.
-echo "TODO 3 not implemented"; exit 1
+SMOKE_STATUS=$(curl -s -o /dev/null -w "%{http_code}" -X POST \
+  "http://localhost:$SERVICE_PORT/accounts/1/orders" \
+  -H "Content-Type: application/json" \
+  -d '{"ticker":"ULVR.L","instrumentType":"EQUITY","quantity":5,"price":40.0,"side":"BUY"}')
+if [ "$SMOKE_STATUS" != "401" ]; then
+  echo "FAIL: expected 401 for unauthenticated request, got $SMOKE_STATUS"
+  exit 1
+fi
+echo "PASS: unauthenticated request returned 401"
 
 echo "== Stage: End-to-End Authenticated Order =="
-# TODO 4: POST to $AUTH_PORT/login (alice / mission123) to get a real
-# token from the CONTAINERISED auth stub. Extract the token from the JSON
-# response - `sed -n 's/.*"token":"\([^"]*\)".*/\1/p'` works without
-# needing any extra tooling.
+TOKEN=$(curl -s -X POST "http://localhost:$AUTH_PORT/login" \
+  -H "Content-Type: application/json" \
+  -d '{"username":"alice","password":"mission123"}' \
+  | sed -n 's/.*"token":"\([^"]*\)".*/\1/p')
 
-# TODO 5: use that token to POST a real order to $SERVICE_PORT. Fail loudly
-# if the response doesn't contain "ACCEPTED".
-echo "TODO 4/5 not implemented"; exit 1
+if [ -z "$TOKEN" ]; then
+  echo "FAIL: could not obtain a token from the containerised auth stub"
+  exit 1
+fi
+echo "  Token obtained from containerised auth stub."
+
+ORDER_RESPONSE=$(curl -s -X POST "http://localhost:$SERVICE_PORT/accounts/1/orders" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $TOKEN" \
+  -d '{"ticker":"ULVR.L","instrumentType":"EQUITY","quantity":5,"price":40.0,"side":"BUY"}')
+
+if echo "$ORDER_RESPONSE" | grep -q '"ACCEPTED"'; then
+  echo "PASS: authenticated order returned ACCEPTED"
+else
+  echo "FAIL: expected ACCEPTED in response, got: $ORDER_RESPONSE"
+  exit 1
+fi
 
 echo "== Stage: Confirm It Actually Landed in Postgres =="
-# TODO 6: query the holdings/instruments join for account 1's ULVR.L
-# holding directly against $POSTGRES via `docker exec ... psql ...` - the
-# same query the demo used. This is your proof the write really happened,
-# not just that the HTTP response claimed it did.
-echo "TODO 6 not implemented"; exit 1
+DB_RESULT=$(docker exec -e PGPASSWORD=mission "$POSTGRES" psql -U postgres -d mission -t -c \
+  "SELECT h.quantity FROM holdings h JOIN instruments i ON h.instrument_id=i.instrument_id WHERE h.account_id=1 AND i.ticker='ULVR.L';")
+
+if [ -z "$(echo "$DB_RESULT" | tr -d '[:space:]')" ]; then
+  echo "FAIL: no holding row found in Postgres for account 1 / ULVR.L"
+  exit 1
+fi
+echo "PASS: holding confirmed in Postgres: quantity =$(echo "$DB_RESULT" | tr -d '[:space:]')"
 
 echo "== ALL STAGES PASSED =="
