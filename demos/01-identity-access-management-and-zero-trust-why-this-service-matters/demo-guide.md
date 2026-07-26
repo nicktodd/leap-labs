@@ -9,7 +9,7 @@ missing, and understand what this sprint replaces before writing a single line o
 Sprint 6's fully containerised mission service + auth stub, run exactly as Sprint 6 left it:
 
 ```bash
-cd ../../../fidelity-leap-sprint6/solutions/13-mission-build-containerise-integration-test-wrap-up
+cd ../../../leap-sprint6/solutions/13-mission-build-containerise-integration-test-wrap-up
 bash integration-test.sh
 ```
 

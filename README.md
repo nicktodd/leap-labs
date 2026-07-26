@@ -1,7 +1,7 @@
-# Fidelity LEAP Program — Sprint 8 Lab Exercises
+# LEAP Program — Sprint 8 Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Sprint 8: Node.js / NestJS
-Authentication Service**, week 8 of the Fidelity LEAP graduate programme.
+Authentication Service**, week 8 of the LEAP graduate programme.
 
 ## Prerequisites
 
