@@ -1,7 +1,7 @@
-# Fidelity LEAP Program — Sprint 4 Lab Exercises
+# LEAP Program — Sprint 4 Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Sprint 4: Financial Services &
-Data Analytics**, week 4 of the Fidelity LEAP graduate programme.
+Data Analytics**, week 4 of the LEAP graduate programme.
 
 ## Prerequisites
 
