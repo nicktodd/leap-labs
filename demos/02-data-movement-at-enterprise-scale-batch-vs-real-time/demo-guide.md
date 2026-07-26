@@ -36,7 +36,7 @@ Write both definitions on the board, from what was just observed, not from a tex
 ## What Actually Changes as Volume Grows
 
 This is the second half of the module's objectives — not just definitions, but consequences at
-Fidelity's actual scale:
+real enterprise scale:
 
 - A batch job that takes 4 minutes at today's volume might take 40 minutes at 10x volume — and if
   it's scheduled to run in a 30-minute overnight window before markets reopen, that's not a

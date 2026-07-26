@@ -36,7 +36,7 @@ Confirm with the same OSV query against the new version — expect `{}`.
 
 ## Part B — Secret Detection (Do This in a Throwaway Local Repo)
 
-**Do not do this inside the `fidelity-leap-sprint7` labs repo.** Create a separate, throwaway
+**Do not do this inside the `leap-sprint7` labs repo.** Create a separate, throwaway
 folder anywhere on your machine — this exercise deliberately commits a (fake) secret, and the
 point of Part B is practicing the cleanup, not leaving a trace in a real shared repository.
 

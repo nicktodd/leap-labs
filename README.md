@@ -1,7 +1,7 @@
-# Fidelity LEAP Program — Sprint 7 Lab Exercises
+# LEAP Program — Sprint 7 Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Sprint 7: Enterprise Data &
-Engineering Excellence**, week 7 of the Fidelity LEAP graduate programme.
+Engineering Excellence**, week 7 of the LEAP graduate programme.
 
 ## Prerequisites
 

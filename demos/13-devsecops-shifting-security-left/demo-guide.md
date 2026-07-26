@@ -172,7 +172,7 @@ not. This is the single most important, most counter-intuitive lesson about a le
 
 ## A Real Baseline, From This Repo
 
-Running gitleaks against the WHOLE `fidelity-leap-sprint7` repo (not just the demo scratch repo)
+Running gitleaks against the WHOLE `leap-sprint7` repo (not just the demo scratch repo)
 flags 4 findings — every one of them the fake credentials THIS module's own demo guide and lab
 README contain, as documentation text. This is a genuinely common real-world situation: teaching
 material, sample `.env.example` files, and README snippets often contain realistic-looking fake
