@@ -39,7 +39,7 @@ Write a short answer (2-4 sentences each) to every question below.
    instead. Would it be easier or harder than the MyBatis XML version? What would you need to add
    to `Instrument`/`Holding` that isn't there today?
 
-5. **Your call.** If Fidelity's mission service were entirely new, would you pick MyBatis, JPA, or
+5. **Your call.** If the mission service were entirely new, would you pick MyBatis, JPA, or
    a mix of both? Justify it in terms of *this specific service* — order processing, holdings,
    transaction history — not persistence technology in the abstract.
 

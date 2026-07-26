@@ -16,7 +16,7 @@ By the end of this lab you will have:
   ```bash
   docker run -d --name sprint6-postgres -e POSTGRES_PASSWORD=mission -e POSTGRES_DB=mission \
     -p 5433:5432 postgres:16-alpine
-  docker cp ../../../fidelity-leap-sprint3/shared/enterprise-schema.sql sprint6-postgres:/schema.sql
+  docker cp ../../../leap-sprint3/shared/enterprise-schema.sql sprint6-postgres:/schema.sql
   docker exec -e PGPASSWORD=mission sprint6-postgres psql -U postgres -d mission -f /schema.sql
   ```
 
