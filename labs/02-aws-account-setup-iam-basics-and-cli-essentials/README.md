@@ -7,47 +7,57 @@ Access the AWS console and CLI as per your instructor's instructions for this co
 
 ## Task
 
-### Part 1: Regions and Availability Zones
+### Part 1: What is AWS, and where does it run?
 
-1. In the console, note the region shown in the top-right selector. Switch it to a different
+1. In your own words: why is AWS better described as "a collection of independent services"
+   than as one product? Name three services from today's demo and the one job each does.
+2. In the console, note the region shown in the top-right selector. Switch it to a different
    region and observe what happens to the resource lists you were just looking at.
-2. Run `aws ec2 describe-availability-zones --region <your-region>
+3. Before running anything, write down: why does AWS split a region into multiple Availability
+   Zones, rather than one big data centre per region?
+4. Run `aws ec2 describe-availability-zones --region <your-region>
    --query 'AvailabilityZones[].{Name:ZoneName,State:State}' --output table`. How many AZs does
    this region have, and are they all `available`?
-3. In your own words: what's the difference between "which region" and "which Availability
+5. In your own words: what's the difference between "which region" and "which Availability
    Zone," and why would a database care about the second one specifically (you'll meet this
    again directly in Module 9)?
 
 ### Part 2: Explore the console
 
-4. Sign in to the AWS console. Find the search bar at the top and use it to jump directly to
+6. Sign in to the AWS console. Find the search bar at the top and use it to jump directly to
    the S3, EC2, and IAM services, rather than using the left-hand menu.
-5. Open the IAM service and find your own user. Note its ARN.
+7. Open the IAM service and find your own user. Note its ARN.
 
 ### Part 3: Confirm CLI access
 
-6. Run `aws sts get-caller-identity`. Record the account number and your IAM ARN, and confirm
+8. Run `aws sts get-caller-identity`. Record the account number and your IAM ARN, and confirm
    they match what the console showed in Part 2.
-7. Run `aws configure list`. Confirm it shows your active profile and region, and that the
+9. Run `aws configure list`. Confirm it shows your active profile and region, and that the
    access key and secret key are both masked to their last four characters only.
-8. Confirm the CLI's default region matches the console's region selector from Part 1 — a
-   mismatch here is a common source of "my resource doesn't exist" confusion later this sprint.
+10. Confirm the CLI's default region matches the console's region selector from Part 1 — a
+    mismatch here is a common source of "my resource doesn't exist" confusion later this sprint.
 
 ### Part 4: Explore what your identity can do
 
-9. Run `aws iam list-attached-user-policies --user-name <your-username>`. What policy is
-   attached, and what does that policy's name suggest about its scope?
-10. In the console, open IAM → Users → your user → the Permissions tab, and open the attached
+11. IAM has four building blocks: users, groups, roles, and policies. In your own words, what
+    is the *only* one of the four that actually contains any permissions — and what do the
+    other three do instead?
+12. Run `aws iam list-attached-user-policies --user-name <your-username>`. What policy is
+    attached, and what does that policy's name suggest about its scope?
+13. In the console, open IAM → Users → your user → the Permissions tab, and open the attached
     policy's JSON. Find the `Action` and `Resource` fields. What do `"Action": "*"` and
     `"Resource": "*"` mean, read literally?
+14. Still in the console, check whether your user belongs to any IAM Groups. If it does, does
+    the group have any policies attached, separately from the ones attached to your user
+    directly?
 
 ### Part 5: Run your first real commands
 
-11. List the S3 buckets in the account: `aws s3 ls`. (There are several already — this is a
+15. List the S3 buckets in the account: `aws s3 ls`. (There are several already — this is a
     shared training account; leave anyone else's buckets alone.)
-12. List the VPCs in the account: `aws ec2 describe-vpcs --query
+16. List the VPCs in the account: `aws ec2 describe-vpcs --query
     'Vpcs[].{Id:VpcId,Cidr:CidrBlock}' --output table`. You'll use this VPC directly in Module 3.
-13. List the ECS clusters in the account: `aws ecs list-clusters`. Confirm it returns an empty
+17. List the ECS clusters in the account: `aws ecs list-clusters`. Confirm it returns an empty
     list — nothing has been deployed yet.
 
 ## Verify

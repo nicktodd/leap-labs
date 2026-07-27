@@ -19,19 +19,32 @@ training environment):
 - `aws ecs list-clusters`: `{"clusterArns": []}` — confirmed empty before any deployment work
   begins.
 
-## Part 1: Regions and Availability Zones
+## Part 1: What Is AWS, and Where Does It Run?
+
+AWS is better described as a collection of independent services than as one product because
+each service — S3, EC2, RDS, and the several hundred others — does one specific job, is called
+through its own API, and has its own separately-controlled set of permissions. There's no single
+"AWS" action; there's `s3:GetObject`, `ec2:RunInstances`, `rds:CreateDBInstance`, each a
+distinct, separately-grantable capability belonging to a distinct service.
 
 Switching the console's region selector changes every resource list shown — an S3 bucket, VPC,
 or ECS cluster visible in one region simply doesn't appear when a different region is selected,
 even though it's the same account. This isn't a permissions issue; the resource genuinely lives
 in only one region (with the exception of a handful of account-wide services like IAM).
 
-A region is a geographic area; an Availability Zone is one of several physically separate data
-centres within that region, each with independent power and networking. A database cares about
-which AZ specifically because RDS's Multi-AZ option (Module 9) keeps a live standby copy in a
-*second*, physically separate AZ — if the primary AZ has a power or network outage, the standby
-in the other AZ is unaffected and can take over. Two resources in the same region but different
-AZs are still close enough for low-latency replication between them.
+AWS splits each region into several Availability Zones rather than building one large data
+centre per region because a single data centre can lose power, lose network connectivity, or
+suffer a hardware failure — concentrating everything in one building means that one failure
+takes down the entire region. Multiple, physically separate AZs mean a failure in one doesn't
+affect the others, while still being close enough to each other for low-latency connections
+between them.
+
+A region is a geographic area; an Availability Zone is one of those several physically separate
+data centres within that region, each with independent power and networking. A database cares
+about which AZ specifically because RDS's Multi-AZ option (Module 9) keeps a live standby copy
+in a *second*, physically separate AZ — if the primary AZ has a power or network outage, the
+standby in the other AZ is unaffected and can take over. Two resources in the same region but
+different AZs are still close enough for low-latency replication between them.
 
 ## Part 2 & 3: Console and CLI Identity
 
@@ -42,7 +55,14 @@ between the console's selector and the CLI's default is worth checking explicitl
 several services this sprint uses are region-scoped and will appear to "not exist" if you're
 looking in the wrong region rather than because the resource wasn't created.
 
-## Part 4: Policy Scope
+## Part 4: IAM's Building Blocks and Policy Scope
+
+Of IAM's four building blocks, **only the policy actually contains any permissions**. A user, a
+group, and a role are all just different ways of attaching a policy to something: a policy
+attached to a user affects only that user; a policy attached to a group affects every current
+and future member of that group; a role has no permanent credentials of its own at all —
+something else (an ECS task, an EC2 instance) assumes it temporarily and inherits whatever
+policies are attached to it for the duration.
 
 `AdministratorAccess`'s name accurately describes its scope: full access to every AWS service
 and action, on every resource in the account, with one narrow, deliberate exception (it cannot
@@ -51,6 +71,11 @@ modify AWS's own root-account billing settings). Reading the policy JSON directl
 `"Resource": "*"` means "every resource in the account, of every type" — read literally, this
 single two-field statement is the entire policy; there's no further narrowing anywhere else in
 the document.
+
+If your user belongs to a group, that group may carry its own attached policies, separate from
+anything attached to the user directly — a user's total effective permissions are the union of
+everything attached to it directly *and* everything attached to every group it belongs to, not
+just whichever one you happened to check first.
 
 ## The Reflection Question
 
