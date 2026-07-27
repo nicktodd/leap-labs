@@ -102,12 +102,46 @@ The lesson generalises regardless of what your own account contains: **always ch
 table directly** — never assume "public" or "private" from a subnet's name, its tags, or
 `MapPublicIpOnLaunch` alone.
 
-## Part 4: Security Groups — Access Control at the Network Level (10 min)
+## Part 4: A Familiar Gotcha, Then Security Groups (12 min)
 
-Route tables decide whether traffic *can* reach a subnet at all. A security group is a second,
-independent layer on top of that: a stateful virtual firewall attached to a specific resource (an
-ECS task, a load balancer, an RDS instance) — it doesn't route traffic, it decides whether
-traffic reaching that resource is allowed through.
+Before naming security groups, put candidates in a situation many will recognise from deploying
+a Spring Boot API in an earlier sprint: the route table is correct, an Internet Gateway is
+attached, and the API is genuinely running — and it's still unreachable from anywhere but the
+server itself.
+
+```bash
+# On the instance itself:
+ssh ec2-user@<instance>
+curl localhost:8080/api/health
+# {"status":"UP"} - works, Spring Boot is listening on 8080
+
+# From your own laptop, though:
+curl http://<instance-public-ip>:8080/api/health
+# curl: (28) Failed to connect - Connection timed out
+```
+
+Nothing is wrong with the app or its network route. AWS security groups deny *all* inbound
+traffic by default — no rule for port 8080 means no way in, full stop, regardless of what the
+application itself is doing. This is deliberately the same "it works when I curl it myself, but
+nobody else can reach it" moment most people hit the first time they deploy an API to a real
+server, not a hypothetical.
+
+```bash
+aws ec2 authorize-security-group-ingress --group-id <app-sg-id> \
+  --protocol tcp --port 8080 --source-group <web-sg-id>
+
+curl http://<instance-public-ip>:8080/api/health
+# {"status":"UP"} - reachable now, same app, same code, same route -
+# only the security group rule changed
+```
+
+Land the general concept now that the concrete example has done its job: route tables decide
+whether traffic *can* reach a subnet at all. A security group is a second, independent layer on
+top of that: a stateful virtual firewall attached to a specific resource (an ECS task, a load
+balancer, an RDS instance) — it doesn't route traffic, it decides whether traffic reaching that
+resource is allowed through, port by port. This is exactly why every later module that exposes a
+port — ECS in Module 8, RDS in Module 9 — has its own security group rule to write, not an
+afterthought.
 
 Build two, demonstrating a real least-privilege pattern, in an example VPC:
 
