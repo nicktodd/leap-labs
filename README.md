@@ -50,7 +50,7 @@ used, since the underlying infrastructure is torn down after each module's lab.
 
 | # | Module | Lab |
 |---|---|---|
-| 1 | Cloud Engineering Foundations & the Deployment Plan | _coming soon_ |
+| 1 | Cloud Engineering Foundations & the Deployment Plan | [labs/01-cloud-engineering-foundations-and-the-deployment-plan/README.md](labs/01-cloud-engineering-foundations-and-the-deployment-plan/README.md) |
 | 2 | AWS Account Setup, IAM Basics & CLI Essentials | _coming soon_ |
 | 3 | Networking Foundations: VPC, Subnets & Security Groups | _coming soon_ |
 | 4 | S3 Fundamentals & Deploying the Frontend | _coming soon_ |
