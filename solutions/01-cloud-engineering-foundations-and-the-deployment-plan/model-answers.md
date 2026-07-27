@@ -11,23 +11,25 @@
 | Kafka | **Stays local** | N/A (Docker Compose) | Not part of this sprint's deployment |
 
 Kafka is the odd one out, and deliberately so — see the demo's Part 3. AWS's managed Kafka
-service (MSK) is genuinely expensive to run correctly (a real cluster needs multiple broker
-nodes at a non-trivial minimum size) and is its own multi-day topic to configure well. The
-deployment plan's honest answer is that Kafka is out of scope for this sprint, not silently
-forgotten.
+service (MSK) is expensive to run correctly (a real cluster needs multiple broker nodes at a
+non-trivial minimum size) and is its own multi-day topic to configure well. Kafka is out of
+scope for this sprint by deliberate decision, not an oversight.
 
 ## Part 2: The Request Trace
 
 ```
-Browser
-  → CloudFront (public internet, TLS terminates here)
-  → S3 (serves mission-ui's static files — HTML/CSS/JS only)
-  [ browser now has the Angular app running; it makes its own API calls directly, not through
-    CloudFront/S3 ]
-  → Application Load Balancer (public internet)
-  → ECS Fargate task running mission-service (private subnet)
-  → RDS Postgres (private subnet, reachable only from inside the VPC)
+Loading the app:
+  Browser → CloudFront (public internet, TLS terminates here) → S3 (serves mission-ui's
+  static files — HTML/CSS/JS only)
+
+Once loaded, a separate, independent path for every API call the app makes:
+  Browser → Application Load Balancer (public internet) → ECS Fargate task running
+  mission-service (private subnet) → RDS Postgres (private subnet, reachable only from
+  inside the VPC)
 ```
+
+These are two unconnected branches, not one continuous chain — S3 never calls the load
+balancer, and the load balancer never calls S3.
 
 Two hops cross the public internet: browser-to-CloudFront and browser-to-ALB. Everything after
 the ALB — the ECS task talking to RDS — never leaves AWS's private network. This mirrors
@@ -53,7 +55,7 @@ credential change without touching the running task's code at all.
 either serves static content (fits into the S3/CloudFront pattern, no new AWS service needed)
 or runs as its own long-lived process (fits into the ECS pattern — another task definition,
 possibly its own ECR repository, sharing the same cluster and VPC as `mission-service`). A
-websocket-based extension is the one case genuinely worth flagging as different: ECS/Fargate
+websocket-based extension is the one case worth flagging as different: ECS/Fargate
 can run a long-lived WebSocket server without any special handling, but an Application Load
 Balancer needs to be configured for WebSocket support specifically (it works, but it's a real
 configuration detail, not automatic) — worth raising with an instructor rather than assuming

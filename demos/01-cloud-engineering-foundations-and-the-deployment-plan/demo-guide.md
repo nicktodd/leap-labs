@@ -49,24 +49,29 @@ six services this specific mission actually needs, not a tour of the AWS console
 Draw this on the whiteboard, live, narrating each hop:
 
 ```
-Browser
-  |
-  v
-CloudFront (edge, cached, TLS)
-  |
-  v
-S3 (mission-ui's static build - HTML/CSS/JS only, nothing runs here)
-  |
-  | (browser then calls the API directly, not through CloudFront/S3)
-  v
-Application Load Balancer
-  |
-  v
-ECS Fargate task (mission-service container, in a private subnet)
-  |
-  v
-RDS (Postgres, in a private subnet, unreachable from the internet)
+                    +---------+
+                    | Browser |
+                    +---------+
+                     |       |
+     (loads the app) |       | (the app's own API calls, once loaded)
+                      v       v
+              CloudFront   Application Load Balancer
+              (edge, TLS)         |
+                  |               v
+                  v         ECS Fargate task
+                S3          (mission-service container,
+        (mission-ui's        in a private subnet)
+        static build -              |
+        HTML/CSS/JS                 v
+        only, nothing         RDS (Postgres, in a
+        runs here)            private subnet, unreachable
+                               from the internet)
 ```
+
+S3 and the Application Load Balancer are two separate, unconnected branches from the
+browser — S3 never talks to the load balancer, and the load balancer never talks to S3. The
+browser loads the app from CloudFront/S3 once, then makes its own, independent API calls
+straight to the load balancer from then on.
 
 Two things worth pausing on, both real gotchas the lab will ask candidates to reason about
 directly:
@@ -84,11 +89,10 @@ directly:
 ## Part 3: What Stays Local — and Why That's a Real Decision, Not a Gap (10 min)
 
 Kafka (Sprint 7) is the one piece of the mission's architecture that deliberately does **not**
-move to AWS this sprint. AWS has a managed Kafka service (MSK), but it's genuinely expensive
-to run correctly (multiple broker nodes, minimum cluster sizing) and non-trivial to configure
-well in four days alongside ECS, RDS, and CloudFront. The deployment plan's honest answer is:
-Kafka stays on Docker Compose, locally, as a deliberate scope decision — not because nobody
-thought about it.
+move to AWS this sprint. AWS has a managed Kafka service (MSK), but it's expensive to run
+correctly (multiple broker nodes, minimum cluster sizing) and non-trivial to configure well in
+four days alongside ECS, RDS, and CloudFront. Kafka stays on Docker Compose, locally, as a
+deliberate scope decision — not because nobody thought about it.
 
 This is the point of the lab: given the mission's full architecture, decide *and justify*
 what moves and what doesn't, rather than assuming everything automatically goes to the cloud
