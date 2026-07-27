@@ -55,7 +55,7 @@ used, since the underlying infrastructure is torn down after each module's lab.
 | 3 | Networking Foundations: VPC, Subnets & Security Groups | [labs/03-networking-foundations-vpc-subnets-and-security-groups/README.md](labs/03-networking-foundations-vpc-subnets-and-security-groups/README.md) |
 | 4 | S3 Fundamentals & Deploying the Frontend | [labs/04-s3-fundamentals-and-deploying-the-frontend/README.md](labs/04-s3-fundamentals-and-deploying-the-frontend/README.md) |
 | 5 | CloudFront: CDN Fundamentals & Fronting the Frontend | [labs/05-cloudfront-cdn-fundamentals-and-fronting-the-frontend/README.md](labs/05-cloudfront-cdn-fundamentals-and-fronting-the-frontend/README.md) |
-| 6 | Containerising for the Cloud: From Docker to ECR | _coming soon_ |
+| 6 | Containerising for the Cloud: From Docker to ECR | [labs/06-containerising-for-the-cloud-from-docker-to-ecr/README.md](labs/06-containerising-for-the-cloud-from-docker-to-ecr/README.md) |
 | 7 | Introduction to ECS: Clusters, Task Definitions & Services | _coming soon_ |
 | 8 | Deploying the Backend to ECS | _coming soon_ |
 | 9 | Managed Data & Secrets: RDS & Secrets Manager | _coming soon_ |
