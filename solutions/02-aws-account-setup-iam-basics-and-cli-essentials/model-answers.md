@@ -2,29 +2,47 @@
 
 ## Verified Output
 
-Run for real, against the training AWS account:
+Run for real, against the training AWS account (account number and username shown here are
+illustrative examples, not the real values, to keep this document safe to share outside the
+training environment):
 
-- `aws sts get-caller-identity`: `Account: 149465616946`, `Arn:
-  arn:aws:iam::149465616946:user/Nicktodd`.
-- `aws iam list-account-aliases`: `watchelmtraining`.
-- `aws iam list-attached-user-policies --user-name Nicktodd`: one attached policy,
-  `AdministratorAccess` (`arn:aws:iam::aws:policy/AdministratorAccess`).
+- `aws ec2 describe-availability-zones --region us-east-1`: five AZs (`us-east-1a` through
+  `us-east-1e`), all `available`.
+- `aws sts get-caller-identity`: an account number and an IAM ARN of the form
+  `arn:aws:iam::<account-id>:user/<username>`.
+- `aws configure list`: active profile, active region, and both keys masked to their last four
+  characters only.
+- `aws iam list-attached-user-policies`: one attached policy, `AdministratorAccess`
+  (`arn:aws:iam::aws:policy/AdministratorAccess`).
 - `aws ec2 describe-vpcs`: one VPC, non-default, CIDR `172.31.0.0/16` — this is the VPC Module
   3 explores in detail.
 - `aws ecs list-clusters`: `{"clusterArns": []}` — confirmed empty before any deployment work
   begins.
 
-## Part 1: Identity
+## Part 1: Regions and Availability Zones
 
-The account number (`149465616946`) is the account's real, permanent identifier — the alias
-(`watchelmtraining`) is a display convenience that can be changed or removed without affecting
-anything else; scripts and IAM policies should never rely on the alias, only the account number
-or ARNs. Region mismatch between the console's selector and the CLI's default is worth checking
-explicitly here because several services in this sprint (S3 buckets are global-ish but bucket
-*contents* and most other services are region-scoped) will appear to "not exist" if you're
+Switching the console's region selector changes every resource list shown — an S3 bucket, VPC,
+or ECS cluster visible in one region simply doesn't appear when a different region is selected,
+even though it's the same account. This isn't a permissions issue; the resource genuinely lives
+in only one region (with the exception of a handful of account-wide services like IAM).
+
+A region is a geographic area; an Availability Zone is one of several physically separate data
+centres within that region, each with independent power and networking. A database cares about
+which AZ specifically because RDS's Multi-AZ option (Module 9) keeps a live standby copy in a
+*second*, physically separate AZ — if the primary AZ has a power or network outage, the standby
+in the other AZ is unaffected and can take over. Two resources in the same region but different
+AZs are still close enough for low-latency replication between them.
+
+## Part 2 & 3: Console and CLI Identity
+
+The account number is the account's real, permanent identifier — an account alias (if set) is a
+display convenience that can be changed or removed without affecting anything else; scripts and
+IAM policies should never rely on an alias, only account numbers or ARNs. Region mismatch
+between the console's selector and the CLI's default is worth checking explicitly, because
+several services this sprint uses are region-scoped and will appear to "not exist" if you're
 looking in the wrong region rather than because the resource wasn't created.
 
-## Part 2: Policy Scope
+## Part 4: Policy Scope
 
 `AdministratorAccess`'s name accurately describes its scope: full access to every AWS service
 and action, on every resource in the account, with one narrow, deliberate exception (it cannot
