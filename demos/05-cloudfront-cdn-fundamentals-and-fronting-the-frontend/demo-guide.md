@@ -22,7 +22,7 @@ For a single-region app like this one, three concrete benefits, not abstract one
 - **Caching**: a repeat request for the same file is served from the edge cache, without
   touching S3 (or paying its request/transfer cost) at all.
 
-## Part 1: A Genuinely Private Bucket, This Time (7 min)
+## Part 1: A Fully Private Bucket, This Time (7 min)
 
 Unlike Module 4, Block Public Access stays on — untouched:
 
@@ -81,7 +81,7 @@ specific distribution's ARN, was never public to begin with.
 
 ## Part 3: Verified — Private Bucket, Public CDN (15 min)
 
-Confirm the bucket is genuinely unreachable directly, first:
+Confirm the bucket is unreachable directly, first:
 
 ```bash
 curl -s "https://<bucket-name>.s3.us-east-1.amazonaws.com/index.html"
@@ -95,7 +95,7 @@ Real output:
 ```
 
 Wait for the distribution to finish deploying (`aws cloudfront get-distribution --id <id>
---query 'Distribution.Status'` — this genuinely takes several minutes, not instant), then hit
+--query 'Distribution.Status'` — this takes several real minutes, not instant), then hit
 the CloudFront domain directly:
 
 ```bash

@@ -12,7 +12,7 @@ Access the AWS console and CLI as per your instructor's instructions for this co
 1. Create a new bucket. This time, leave Block Public Access exactly as created — do not touch
    it. Confirm with `get-public-access-block` that all four settings are still `true`.
 2. Upload your `mission-ui` build to it.
-3. Confirm the bucket is genuinely unreachable: `curl
+3. Confirm the bucket is unreachable: `curl
    https://<bucket-name>.s3.<region>.amazonaws.com/index.html` should return an `AccessDenied`
    error. If it doesn't, stop and check what changed before continuing.
 
