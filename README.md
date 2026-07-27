@@ -52,7 +52,7 @@ used, since the underlying infrastructure is torn down after each module's lab.
 |---|---|---|
 | 1 | Cloud Engineering Foundations & the Deployment Plan | [labs/01-cloud-engineering-foundations-and-the-deployment-plan/README.md](labs/01-cloud-engineering-foundations-and-the-deployment-plan/README.md) |
 | 2 | AWS Account Setup, IAM Basics & CLI Essentials | [labs/02-aws-account-setup-iam-basics-and-cli-essentials/README.md](labs/02-aws-account-setup-iam-basics-and-cli-essentials/README.md) |
-| 3 | Networking Foundations: VPC, Subnets & Security Groups | _coming soon_ |
+| 3 | Networking Foundations: VPC, Subnets & Security Groups | [labs/03-networking-foundations-vpc-subnets-and-security-groups/README.md](labs/03-networking-foundations-vpc-subnets-and-security-groups/README.md) |
 | 4 | S3 Fundamentals & Deploying the Frontend | _coming soon_ |
 | 5 | CloudFront: CDN Fundamentals & Fronting the Frontend | _coming soon_ |
 | 6 | Containerising for the Cloud: From Docker to ECR | _coming soon_ |
