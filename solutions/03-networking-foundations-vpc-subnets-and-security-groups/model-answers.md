@@ -1,84 +1,71 @@
 # Lab 3 Model Answers
 
-## Verified Output
+## Part 1: CIDR Notation
 
-Run for real, against the training AWS account (resource IDs shown here are the real,
-non-sensitive identifiers this account actually returned — unlike an account number or IAM
-username, a VPC/subnet/security-group ID reveals nothing about who owns the account and is safe
-to record as-is):
+A `/24` fixes the first 24 bits of the address, leaving 8 bits free: `2^8 = 256` addresses. A
+`/16` fixes only the first 16 bits, leaving 16 bits free: `2^16 = 65,536` addresses. The `/16`
+range is bigger, because *fewer* fixed bits means *more* possible combinations in the free bits
+— the number after the slash counts fixed bits, not the size of the range, which is why a
+smaller number produces a larger range. (In practice, subtract 5 reserved addresses from any
+AWS subnet's usable count — a `/24` subnet has 251 usable addresses, not 256.)
 
-- The account's existing VPC (`vpc-0030f5799ebc2bbee`, CIDR `172.31.0.0/16`) is tagged with a
-  CloudFormation StackSet name referencing `AWSControlTowerBP-VPC-ACCOUNT-FACTORY-V1` — it was
-  provisioned automatically when this account was created, as part of AWS Control Tower's
-  standard account setup, not hand-built.
-- That VPC has three subnets, one per AZ (`us-east-1a`, `us-east-1b`, `us-east-1c`), each with
-  `MapPublicIpOnLaunch: false`.
-- `aws ec2 describe-internet-gateways` for that VPC returns an empty list. Further checks
-  (`describe-nat-gateways`, `describe-transit-gateway-attachments`) also return empty — the
-  VPC's only non-local route, on every subnet, points to a Gateway VPC Endpoint for S3, not to
-  general internet access.
-- `leap-mission-vpc` (CIDR `10.42.0.0/16`) has four subnets: two public (`10.42.1.0/24`,
-  `10.42.2.0/24`, one per AZ), two private (`10.42.11.0/24`, `10.42.12.0/24`, one per AZ).
-- The public subnets' route table has a real `0.0.0.0/0 → igw-...` route, confirmed by
-  `describe-route-tables`.
-- `leap-app-sg`'s inbound rule on port 8090 has an empty `IpRanges` and a populated
-  `UserIdGroupPairs` referencing `leap-web-sg`'s ID directly — not a CIDR block at all.
+`10.0.4.0/24` covers `10.0.4.0` through `10.0.4.255`; `10.0.5.0/24` covers `10.0.5.0` through
+`10.0.5.255`. These are completely separate, non-overlapping ranges — the third number (`4` vs
+`5`) is part of each range's fixed network portion, so the two blocks share no addresses at all.
 
-## Part 1: What Makes a Subnet Public
+## Part 2 & 3: Verified Output (Illustrative)
 
-The CloudFormation StackSet tag means this VPC was created by automation as part of a
-standardised account template (AWS Control Tower's "Account Factory") — every new account in an
-organisation using Control Tower gets an identical VPC baseline, not something an individual
-engineer designed for this specific account.
+The exact resources found here depend entirely on your own account — there is no single correct
+answer to compare against. As a real, verified example from one account explored during course
+preparation, worth checking your own findings against the same *method*, not the same result:
 
-The correct definition: a subnet is public if and only if its route table sends `0.0.0.0/0` to
-an Internet Gateway. `MapPublicIpOnLaunch` only controls whether an instance launched into that
-subnet is automatically assigned a public IP address — it has no effect on whether traffic can
-actually reach that IP, and a `true` value on a subnet with no Internet Gateway route is
-meaningless. By the correct test, **none of the account's existing VPC's three subnets are
-public** — none of them have any path to the general internet at all, public IP or not.
+- That account had one pre-existing VPC (CIDR `172.31.0.0/16`), tagged with a CloudFormation
+  StackSet name referencing an AWS Control Tower account-factory template — provisioned
+  automatically when the account was created, not hand-built.
+- It had three subnets, one per Availability Zone, all with `MapPublicIpOnLaunch: false`.
+- `aws ec2 describe-internet-gateways` for that VPC returned an empty list — no Internet Gateway
+  anywhere in the account. Further checks found no NAT Gateway and no Transit Gateway attachment
+  either; the only non-local route on any subnet pointed at a Gateway VPC Endpoint for S3.
+- **By the correct test (a `0.0.0.0/0` route to an Internet Gateway), none of that account's
+  three subnets were actually public** — despite having spare IP addresses and looking like a
+  normal three-AZ layout.
 
-## Part 2: The Mission's VPC
+Whatever your own account contains, the method is the same: read the route table directly for
+each subnet, and judge "public" or "private" from that alone.
 
-`leap-mission-vpc` uses `10.42.0.0/16`, a deliberately different range from the account's
-existing `172.31.0.0/16` VPC, so the two networks can never be ambiguous with each other even if
-they were ever connected (they are not, in this sprint). The two `leap-public-*` subnets have a
-route table with a real `0.0.0.0/0 → igw-...` entry; the two `leap-private-*` subnets' route
-tables have only the automatic local route, no internet path at all — genuinely private, by the
-same test applied in Part 1.
+For the hand-built VPC in Part 3, a correctly-built version should show: two subnets whose
+associated route table contains a `0.0.0.0/0` route pointing at your Internet Gateway (genuinely
+public), and two subnets on the VPC's default route table with only the automatic `local` route
+(genuinely private, no internet path at all).
 
-Of the mission's services: the Application Load Balancer (Module 8) belongs in the public
-subnets — it's the one thing meant to be reachable from the internet. The mission-service and
-auth-service ECS tasks, and the RDS instance (Module 9), belong in the private subnets — none of
-them should be reachable directly from the internet; they're reached only via the load balancer,
-which is itself inside the VPC.
+## Part 4: Security Groups
 
-## Part 3: Security Groups
+A security group rule with a populated `IpRanges` field is a fixed, static allowlist of IP
+addresses. A rule with a populated `UserIdGroupPairs` field and empty `IpRanges` instead
+dynamically covers whatever resources currently have that *other* security group attached — the
+rule doesn't name any IP address at all, so it automatically covers new resources that get the
+referenced group attached later, without ever needing an update.
 
-`leap-web-sg` allows inbound traffic on 80/443 from `0.0.0.0/0` — any IP address on the
-internet, which is correct for a public load balancer's security group. `leap-app-sg` allows
-inbound traffic on 8090 only from anything carrying `leap-web-sg` — not from any IP address,
-including IPs inside the same VPC that don't have `leap-web-sg` attached. The practical
-difference: a CIDR-based rule is a fixed, static allowlist of addresses; a security-group-based
-rule dynamically covers whatever resources have that other group attached, now or in the future,
-without ever needing to know or update an IP address.
-
-**Only `leap-app-sg` should be allowed to reach a future database security group directly** —
-`leap-web-sg` (the load balancer) has no legitimate reason to talk to Postgres at all; it only
-ever talks to the mission-service task. Allowing `leap-web-sg` direct database access would mean
-the load balancer's security group — the one thing directly exposed to the internet — has a path
-straight to the database, defeating the entire point of putting the database in a private subnet
-behind an application tier in the first place.
+**Only the second security group (the one restricted to the first group, not the one open to
+`0.0.0.0/0`) should be allowed to reach a database's security group.** The group open on port 80
+to `0.0.0.0/0` represents the one thing directly exposed to the internet — allowing it a direct
+path to the database would mean anyone on the internet is one hop away from the data tier,
+defeating the entire purpose of putting a database behind an application tier and a private
+subnet in the first place.
 
 ## The Reflection Question
 
-Checking only `MapPublicIpOnLaunch` would have concluded the account's existing VPC's subnets
-were private (since it's `false` on all three) — which happens to be the right conclusion here,
-but for the wrong reason, and only by coincidence. The real risk is the opposite case: a subnet
-with `MapPublicIpOnLaunch: true` but no Internet Gateway route looks "public" by that one
-attribute while genuinely having no internet path, and a subnet with `MapPublicIpOnLaunch:
-false` but a real `0.0.0.0/0` route to an Internet Gateway is genuinely reachable from the
-internet by anything given an explicit public IP, despite "looking" private. Trusting the wrong
-signal could lead directly to a real deployment mistake later this sprint: assuming a subnet is
-safely private and placing RDS or an ECS task's only network interface there, when the route
-table actually gives it a live path to the internet.
+A subnet with `MapPublicIpOnLaunch: true` but no `0.0.0.0/0` route to an Internet Gateway is
+**private**, by the only test that actually matters — `MapPublicIpOnLaunch` only controls
+whether AWS *assigns* a public IP address automatically to something launched there; it says
+nothing about whether traffic can actually reach that address, because without an Internet
+Gateway route, nothing outside the VPC can route to it regardless of what IP it has.
+
+Trusting `MapPublicIpOnLaunch` instead of the route table is dangerous in the *opposite*
+direction from what it looks like at first: a subnet that "looks public" (flag set to true) but
+has no real route is merely wasted effort, not a security problem. The genuinely dangerous case
+is the reverse — a subnet with `MapPublicIpOnLaunch: false` (looking reassuringly private) that
+*does* have a real `0.0.0.0/0 → Internet Gateway` route in its table is actually reachable from
+the internet by anything given an explicit public IP, despite every surface signal suggesting
+otherwise. Placing a database or an internal service there while believing it was private, based
+on the flag alone, would leave it genuinely exposed.
