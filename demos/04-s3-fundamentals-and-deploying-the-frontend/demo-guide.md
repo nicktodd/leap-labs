@@ -40,18 +40,18 @@ aws s3api put-bucket-website --bucket <bucket-name> --website-configuration \
 aws s3api put-bucket-policy --bucket <bucket-name> --policy file://public-read-policy.json
 ```
 
-Real, verified output — a genuine first-try failure:
+Real, verified output — a first-try failure, not a hypothetical:
 
 ```
 An error occurred (AccessDenied) when calling the PutBucketPolicy operation: User:
-.../Nicktodd is not authorized to perform: s3:PutBucketPolicy on resource:
+.../alex.morgan is not authorized to perform: s3:PutBucketPolicy on resource:
 "arn:aws:s3:::<bucket-name>" because public policies are prevented by the BlockPublicPolicy
 setting in S3 Block Public Access.
 ```
 
 Every new bucket, in every AWS account, has all four Block Public Access settings enabled by
-default — this is a genuinely deliberate AWS platform decision (made permanent account-wide
-default in 2023) specifically because accidentally-public S3 buckets containing sensitive data
+default — this is a deliberate AWS platform decision (made permanent account-wide default in
+2023) specifically because accidentally-public S3 buckets containing sensitive data
 were, for years, one of the most common real-world cloud security incidents. The error is the
 platform doing its job, not a bug to work around casually.
 
@@ -72,7 +72,7 @@ aws s3api get-public-access-block --bucket <bucket-name>
 
 ## Part 3: Deploying the Real Frontend (15 min)
 
-Since this module's job is genuinely public static hosting (Module 5 fixes this properly with
+Since this module's job is deliberately public static hosting (Module 5 fixes this properly with
 CloudFront and a private bucket — this module's public bucket is a deliberate, temporary
 stepping stone, not the sprint's final answer), disable Block Public Access explicitly and
 knowingly:
@@ -122,7 +122,7 @@ and the browser did all the work rendering Angular's compiled JavaScript.
 
 ## Part 4: What Just Got Built vs What Module 5 Fixes (5 min)
 
-Name the real gap in what was just built, honestly: the bucket is now genuinely public — anyone
+Name the real gap in what was just built: the bucket is now fully public — anyone
 with the bucket name can list and read every object directly, and the URL is an ugly
 `s3-website-us-east-1.amazonaws.com` address with no TLS. Module 5 solves both: CloudFront sits
 in front of the bucket, the bucket goes back to fully private (Block Public Access re-enabled),
@@ -132,8 +132,8 @@ and only CloudFront — via an Origin Access Control — is allowed to read from
 
 S3 stores objects, not files in folders, and every new bucket is private by default for a real,
 deliberate security reason — making one public is an explicit, auditable action, never an
-accident. Today's public bucket genuinely works and genuinely serves the real Angular app, but
-it's a stepping stone: Module 5 replaces the public bucket with a private one, fronted properly.
+accident. Today's public bucket works and serves the real Angular app, but it's a stepping
+stone: Module 5 replaces the public bucket with a private one, fronted properly.
 
 ## Transition to the Lab
 

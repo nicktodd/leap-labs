@@ -41,7 +41,7 @@ ends up more expensive overall than Standard's simpler, no-retrieval-fee pricing
 
 An S3 bill has three components: storage (per GB per month, based on how much data sits in the
 bucket), requests (per thousand GET/PUT/LIST/etc. calls), and data transfer out to the internet
-(free to upload into S3, charged to serve back out). For a genuinely popular website, data
+(free to upload into S3, charged to serve back out). For a widely-visited website, data
 transfer out dominates — every visitor downloading the same JavaScript bundles adds up fast, and
 this exact cost is why Module 5 puts CloudFront in front of the bucket, since CloudFront caches
 responses at edge locations and serves repeat requests without going back to S3 (or paying its

@@ -38,7 +38,7 @@ checkout of `mission-ui` (Sprint 9), buildable with `ng build`.
    by default, and is that the right choice for a frontend build that's requested on every page
    load? Justify your answer.
 10. In your own words: name the three components of an S3 bill, and which one is most likely to
-    dominate for a genuinely popular website versus a rarely-visited one.
+    dominate for a widely-visited website versus a rarely-visited one.
 
 ## Verify
 
@@ -55,7 +55,7 @@ properly private bucket from scratch.
 
 ## A Question Worth Sitting With
 
-The bucket you just built is genuinely public — anyone with the bucket name can list and read
+The bucket you just built is fully public — anyone with the bucket name can list and read
 every object in it directly, bypassing your Angular app entirely. What's the most sensitive
 thing that could end up in a frontend build's output directory by mistake (think about what a
 `ng build` actually bundles), and why does that make "public bucket, public website" a
