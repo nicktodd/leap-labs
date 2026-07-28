@@ -12,19 +12,11 @@ Run for real, building on Module 3's VPC and Module 7's cluster and execution ro
   that one secret's ARN specifically.
 - A new task definition revision with a `secrets` entry (`DB_PASSWORD`, `valueFrom` the secret
   ARN) alongside plain `environment` entries for host, port, database name, and username.
-- The first attempt at a reachability check — a `run-task` **override** of `command` — genuinely
-  didn't work: the image's Dockerfile ends `ENTRYPOINT ["java", "-jar", "app.jar"]` (exec form),
-  so the override became *extra arguments* appended to that entrypoint. Spring Boot just booted
-  normally, ignoring them, and the task sat there `RUNNING` as a web server, never touching the
-  database.
-- The fix: a small, dedicated task definition with `entryPoint` set directly (there's no
-  `run-task` override for `entryPoint` itself). That produced a second real, honest failure:
-  `sh: can't create /dev/tcp/...amazonaws.com/5432: nonexistent directory` — `/dev/tcp` is a
-  *Bash* built-in, and this image's `sh` is BusyBox `ash` (Alpine base), which doesn't have it.
-- BusyBox's own `nc` applet does exist, though (`which nc` confirmed it). Using
-  `nc -zv -w 5 <endpoint> 5432` produced a genuine result: `... (10.42.12.68:5432) open` /
-  `REACHABLE` — real TCP connectivity, confirming the security group and subnet routing both
-  work, independent of whether the application itself can authenticate.
+- A dedicated task definition, `entryPoint` set to `["sh", "-c"]` and `command` running
+  `nc -zv -w 5 <endpoint> 5432`, run in a **private** subnet with the app security group: real
+  CloudWatch output — `... (10.42.12.68:5432) open` / `REACHABLE` — genuine TCP connectivity,
+  confirming the security group and subnet routing both work, independent of whether the
+  application itself can authenticate.
 
 ## The Reflection Question
 
@@ -41,3 +33,18 @@ Secrets Manager secret — separate from the master user's. The master user's cr
 (AWS-managed here) stay reserved for genuine administrative tasks: creating the application user
 in the first place, running migrations, or emergency access — not for the application's everyday
 traffic.
+
+## The Second Reflection Question
+
+Cost isn't the only factor, and for a database password specifically it isn't even the deciding
+one: Secrets Manager can **automatically rotate** a credential on a schedule, with a ready-made
+Lambda rotation function for RDS specifically that changes the database password *and* updates
+the secret together, with no application downtime. Parameter Store has no equivalent — a
+`SecureString` parameter's value only changes when something explicitly updates it.
+
+A database password is exactly the kind of value that benefits from rotating regularly without
+manual intervention — the security value of automatic rotation is worth Secrets Manager's small
+monthly cost. `DB_HOST`, `DB_PORT`, and `DB_NAME`, by contrast, rarely if ever change and don't
+need rotation at all — Parameter Store's free standard tier is the better fit for values like
+those, and using Secrets Manager for everything would just be paying for a capability those
+particular values never use.

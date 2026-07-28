@@ -10,6 +10,9 @@ place.
 
 ### Part 1: A private RDS instance
 
+A production RDS instance belongs in a private subnet, never a public one — a database should
+never be directly reachable from the internet, only through the application tier in front of it.
+
 1. Create a DB subnet group from the two **private** subnets.
 2. Create a security group for the database, allowing inbound `5432` only from your app
    security group — not from any CIDR block.
@@ -35,13 +38,10 @@ place.
 
 8. Create a small, dedicated task definition (reusing your mission-service image) with
    `entryPoint` set to `["sh", "-c"]` and `command` set to a real TCP check against your
-   database's endpoint on port 5432. Two things worth knowing before you try this:
-   - A `run-task` **override** of `command` does *not* replace this image's `ENTRYPOINT`
-     (`java -jar app.jar`) — it becomes extra arguments appended to it, and the application just
-     boots normally, ignoring them. Set `entryPoint` in the task definition itself instead.
-   - This image's `sh` is BusyBox `ash` (Alpine-based), not Bash — Bash's `/dev/tcp` trick isn't
-     available. BusyBox does include a real `nc`, though (`nc -zv -w 5 <host> <port>`).
-9. Run it, and confirm a genuine `open`/`REACHABLE` result in its CloudWatch logs.
+   database's endpoint on port 5432 (BusyBox's `nc -zv -w 5 <host> <port>` needs no extra
+   tooling in the image).
+9. Run it in a **private** subnet with your app security group — confirm a genuine `open` /
+   `REACHABLE` result in its CloudWatch logs.
 
 ## Verify
 
@@ -64,3 +64,11 @@ can reuse them.
 `--manage-master-user-password` puts the *master* user's password in Secrets Manager
 automatically. A real application, though, usually shouldn't connect as the master user at all —
 why not, and what would you create instead?
+
+## A Second Question Worth Sitting With
+
+The task definition's `DB_HOST`, `DB_PORT`, and `DB_NAME` values are plain `environment` entries,
+not secrets — but they could just as easily have come from AWS Systems Manager Parameter Store
+instead of being hardcoded in the task definition itself. Parameter Store's standard tier is
+free, unlike Secrets Manager. Given that, why did this module still use Secrets Manager for the
+database *password* specifically, rather than Parameter Store?

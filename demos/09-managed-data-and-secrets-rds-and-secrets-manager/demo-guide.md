@@ -12,10 +12,31 @@ importantly — a way to give the application that database's credentials withou
 them into a Dockerfile, a task definition, or source control. Two AWS services solve this: **RDS**
 (a managed relational database) and **Secrets Manager** (for the credentials that reach it).
 
+## Part 0b: What RDS Actually Is (8 min)
+
+RDS (Relational Database Service) runs a real database engine — the same engine you'd install
+yourself — on infrastructure AWS manages for you. It supports several engines directly: MySQL,
+PostgreSQL, MariaDB, Oracle, and SQL Server, plus Aurora, AWS's own MySQL- and
+PostgreSQL-compatible engine built for higher throughput and faster failover. Whatever engine you
+pick, you connect to it exactly the way you always have — the same driver, the same connection
+string shape, the same SQL — nothing about the application's own database code needs to change to
+use RDS instead of a self-hosted database.
+
+What "managed" actually buys: automated backups and point-in-time restore, automated engine
+patching on a schedule you control, optional Multi-AZ deployments that fail over to a standby
+automatically if the primary instance has a problem, and CloudWatch metrics out of the box — all
+work a team would otherwise do by hand on a self-hosted database. Underneath, an RDS instance is
+still a real virtual machine running the engine, placed inside your own VPC like any other
+resource, reachable over the network the same way EC2 or ECS is — which is exactly why it needs
+a subnet group and a security group, just like everything else this sprint has provisioned.
+
 ## Part 1: A Private RDS Instance (15 min)
 
-RDS needs to know which subnets it's allowed to place its instance in — a **DB subnet group**,
-built from the same private subnets everything else in this sprint has used:
+**A production RDS instance belongs in a private subnet, never a public one** — there is no
+legitimate reason for a database to be reachable directly from the internet; every access path
+should go through the application tier that already sits in front of it. RDS needs to know which
+subnets it's allowed to place its instance in — a **DB subnet group**, built from the same
+private subnets everything else in this sprint has used:
 
 ```bash
 aws rds create-db-subnet-group --db-subnet-group-name leap-mission-db-subnets \
@@ -70,6 +91,29 @@ This is the pattern worth landing: a password that's never typed by a human, nev
 a repository, and never hardcoded into a container image — generated once by AWS, stored once by
 AWS, and read only by the specific IAM identities explicitly granted permission to read it.
 
+## Part 2b: Secrets Manager vs. Parameter Store (5 min)
+
+Secrets Manager isn't the only place to keep this kind of value. **AWS Systems Manager Parameter
+Store** can store the exact same kind of value (a `SecureString` parameter, encrypted with KMS)
+and a task definition's `secrets` field can read from either service interchangeably.
+
+The real difference is cost and rotation, and it's worth being explicit about both:
+
+- **Cost**: Parameter Store's *standard* tier is free — no per-parameter monthly charge, no API
+  charge for standard throughput. Secrets Manager charges per secret per month (roughly $0.40)
+  plus a small charge per API call. For a large number of simple values, that adds up.
+- **Rotation**: Secrets Manager can **automatically rotate** a credential on a schedule — for an
+  RDS secret specifically, AWS provides a ready-made Lambda rotation function that changes the
+  database password *and* updates the secret, with no application downtime. Parameter Store has
+  **no built-in rotation at all** — a `SecureString` parameter's value only ever changes when
+  something (a person, a script) explicitly updates it.
+
+The practical guideline: Parameter Store is the right, free choice for configuration values that
+rarely change and don't need automatic rotation — the `DB_HOST`/`DB_PORT`-style values in this
+module's task definition are a reasonable candidate. A database credential that should rotate on
+a schedule, like this module's master password, is exactly the case Secrets Manager's extra cost
+is buying you protection against.
+
 ## Part 3: Getting the Secret Into the Task — the Execution Role, Again (12 min)
 
 Module 7 drew a distinction between the execution role (ECS's own identity, pulling images and
@@ -107,41 +151,19 @@ injects the resolved value as a real environment variable inside the container �
 code reads `DB_PASSWORD` like any other environment variable and never calls the Secrets Manager
 API itself.
 
-## Part 4: Verified — Real Network Reachability, and Two Real Detours (15 min)
+## Part 4: Verified — Real Network Reachability (10 min)
 
 Rather than assume the security group and subnet placement are correct, test them directly, the
-same discipline Module 7 used for the container's own port. The first, most obvious attempt
-genuinely didn't work — worth walking through exactly why, not skipping to the version that does.
-
-**Attempt 1 — `run-task` overrides, `/dev/tcp`.** The mission-service image's Dockerfile ends
-with `ENTRYPOINT ["java", "-jar", "app.jar"]` — *exec* form. A `run-task` `containerOverrides`
-`command` doesn't replace that entrypoint; it becomes *extra arguments appended to it*. The real
-result: `java -jar app.jar sh -c "..."` — Spring Boot booted normally, silently ignoring the
-unrecognised arguments, and the task just sat there `RUNNING` as a web server, never touching the
-database at all.
-
-**Attempt 2 — a dedicated task definition, with `entryPoint` set directly.** `run-task` has no
-override for `entryPoint` itself, so the real fix is a small, purpose-built task definition
-(`leap-db-connectivity-check`), reusing the same ECR image but with `entryPoint: ["sh", "-c"]`
-set in the definition itself. Running that produced a second real, honest failure:
-
-```
-sh: can't create /dev/tcp/leap-mission-db...amazonaws.com/5432: nonexistent directory
-```
-
-`/dev/tcp` is a *Bash* built-in, not a POSIX shell feature — this image's `sh` is BusyBox `ash`
-(Alpine's `eclipse-temurin:21-jre-alpine` base), which doesn't have it.
-
-**Attempt 3 — BusyBox's own `nc`.** A quick check (`which nc`) confirmed Alpine's BusyBox
-includes a real `nc` applet. Using that instead:
+same discipline Module 7 used for the container's own port — a simple TCP check against the
+database's endpoint and port, run as a one-off ECS task carrying the app tier's security group:
 
 ```bash
 aws ecs register-task-definition --cli-input-json file://connectivity-check-taskdef.json
 # entryPoint: ["sh","-c"], command: ["nc -zv -w 5 <rds-endpoint> 5432 && echo REACHABLE || echo UNREACHABLE"]
 
 aws ecs run-task --cluster leap-mission-cluster \
-  --task-definition leap-db-connectivity-check:3 --launch-type FARGATE \
-  --network-configuration 'awsvpcConfiguration={subnets=[<public-subnet>],securityGroups=[<app-sg-id>],assignPublicIp=ENABLED}'
+  --task-definition leap-db-connectivity-check --launch-type FARGATE \
+  --network-configuration 'awsvpcConfiguration={subnets=[<private-subnet>],securityGroups=[<app-sg-id>],assignPublicIp=DISABLED}'
 ```
 
 Real output in CloudWatch Logs:
@@ -153,7 +175,10 @@ REACHABLE
 
 Genuine TCP connectivity from a task carrying the app security group to the database on port
 5432 — confirming the security group rule and subnet routing are both correct, independent of
-whether the application code itself ever successfully authenticates.
+whether the application code itself ever authenticates successfully. This check runs in a
+**private** subnet, the same one the real application tier uses — there's no need for the
+checking task to be in a public subnet at all, since it only needs to reach another resource
+inside the same VPC.
 
 ## Key Message
 
@@ -162,7 +187,9 @@ RDS handles the data's durability and availability; Secrets Manager handles neve
 credential exist anywhere a human or a source-control system could see it. `--manage-master-user-
 password` ties them together at creation time, and the execution role — already ECS's identity
 for pulling images and writing logs — is the natural, least-surprising place for "read this one
-secret" to live too.
+secret" to live too. Secrets Manager's monthly cost buys something Parameter Store's free tier
+doesn't: automatic rotation — worth paying for on a credential, not on every piece of
+configuration.
 
 ## Transition to the Lab
 
