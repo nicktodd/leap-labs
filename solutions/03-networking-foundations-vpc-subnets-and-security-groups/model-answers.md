@@ -53,6 +53,16 @@ path to the database would mean anyone on the internet is one hop away from the 
 defeating the entire purpose of putting a database behind an application tier and a private
 subnet in the first place.
 
+## Part 5: A Private Subnet That Still Needs Out
+
+A NAT Gateway, added to a *public* subnet (it needs its own route to the internet via the
+Internet Gateway to work at all), with its own Elastic IP. The change goes on the **private**
+route table, not the public one: add a `0.0.0.0/0 -> <NAT Gateway>` route alongside the existing
+`local` route. The public route table is untouched — it already reaches the internet directly via
+the Internet Gateway, and public subnets have no need for a NAT Gateway. This is exactly the
+route table change Module 8 makes live, immediately before deploying an ECS service into these
+same private subnets.
+
 ## The Reflection Question
 
 A subnet with `MapPublicIpOnLaunch: true` but no `0.0.0.0/0` route to an Internet Gateway is

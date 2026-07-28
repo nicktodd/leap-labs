@@ -76,6 +76,26 @@ not a "public" tag, not whether an instance in it gets a public IP automatically
 (`MapPublicIpOnLaunch`, which only controls IP assignment, not reachability) — makes a subnet
 actually public.
 
+## Part 2b: A Private Subnet That Still Needs to Reach Out (5 min)
+
+Private means no *inbound* route from the internet — it doesn't mean the resources inside can
+never talk out at all. An ECS task sitting in one of these private subnets still needs to reach
+ECR to pull its own container image: a connection it starts itself, outbound only.
+
+A **NAT Gateway** provides exactly that. It lives in a *public* subnet, with its own Elastic IP,
+and the private subnets get a route table entry sending `0.0.0.0/0` to it instead of to the
+Internet Gateway directly:
+
+- `local + 0.0.0.0/0 -> NAT Gateway` (private route table) instead of `local + 0.0.0.0/0 -> IGW`
+  (public route table)
+- One-directional: a private-subnet resource can initiate a connection out through it; nothing
+  on the internet can initiate one back in through it — the opposite of what an Internet Gateway
+  allows
+
+This is conceptual today — it's built and verified live in Module 8, deploying the mission's
+backend, alongside a real ECS task placement error that shows exactly what happens when a
+private-subnet task tries to reach ECR without one.
+
 ## Part 3: A Real, Verified Example of the Definition Mattering (10 min)
 
 During preparation for this course, exploring one AWS account's pre-existing VPC (provisioned

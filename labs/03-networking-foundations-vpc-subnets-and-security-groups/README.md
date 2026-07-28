@@ -61,6 +61,13 @@ Compare your Part 1 and Part 4 reasoning against `solutions/03-.../model-answers
 2 and 3, there's no single expected answer — what matters is that your conclusions are drawn
 from the actual route tables you queried, not an assumption about what a subnet "should" be.
 
+### Part 5: A private subnet that still needs out (conceptual)
+
+13. Without provisioning anything (a NAT Gateway costs money per hour, and Module 8 builds one
+    live), work out on paper: if you wanted the two private subnets from Part 3 to let an
+    application inside them pull an image from ECR, what would you need to add, and to which
+    route table — the public one or the private one?
+
 ## A Question Worth Sitting With
 
 Imagine a subnet in your account has `MapPublicIpOnLaunch: true` but, when you check its route
