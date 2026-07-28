@@ -16,6 +16,56 @@ engine. ECS (Module 7 onward) needs to pull that image from somewhere every AWS 
 reach — a registry. ECR (Elastic Container Registry) is AWS's own registry, and today's job is
 getting a real image from local Docker into it.
 
+## Part 0b: What a Registry Actually Is, and How push/pull Work (8 min)
+
+Before touching ECR specifically, establish the general pattern. A container registry stores
+images the same way a package registry (npm, Maven Central) stores packages — versioned, named
+artefacts, addressable by anyone with the right access. A *repository* is one image's home
+inside a registry: `leap-mission-service` is a repository; `latest` and a git SHA are two tags
+within that one repository, not two separate repositories. Docker Hub is the best-known public
+registry; ECR is AWS's own, private by default, living inside one specific account and region.
+
+Exactly two commands cover the entire interaction with any registry:
+
+```bash
+docker push <registry>/<repository>:<tag>
+docker pull <registry>/<repository>:<tag>
+```
+
+An image is stored as a set of content-addressed layers, not one opaque blob — `push` uploads
+only the layers the registry doesn't already have, then records the tag against them; `pull`
+downloads only the layers the local machine doesn't already have, then assembles the image from
+them locally. This is the same behaviour already seen once this module: pushing a second tag of
+an identical image reused every layer from the first push.
+
+Authentication is the one thing that genuinely differs between registries. The traditional
+pattern, e.g. Docker Hub:
+
+```bash
+docker login docker.io
+# Username: alex-morgan
+# Password: ********
+```
+
+A real username and a real, long-lived password, typed once and cached locally until it's
+changed or revoked by hand. It works, but the password itself is the credential — if it leaks,
+it stays valid until someone notices and rotates it.
+
+ECR does the same `docker login` under the hood, but the "password" is never typed or stored
+anywhere:
+
+```bash
+aws ecr get-login-password --region us-east-1 | \
+  docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com
+```
+
+`get-login-password` calls ECR's `GetAuthorizationToken` API using whatever IAM identity is
+already active — the same identity Module 2's `aws sts get-caller-identity` confirmed, not a
+separate registry account. The token it returns is valid for 12 hours and worthless afterward,
+piped straight into `docker login` as the password, with the username fixed as the literal
+string `AWS`. Nobody types a password, nobody stores one long-term — only someone who already
+holds valid IAM credentials can ever request a token in the first place.
+
 ## Part 1: Building the Real Images (7 min)
 
 Nothing new here — the exact Dockerfiles from Sprint 6 and Sprint 8:
