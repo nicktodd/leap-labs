@@ -17,42 +17,56 @@ subnet. Three real gaps stand between that and a genuine backend deployment:
 - **No ongoing management.** `run-task` starts one task and stops there — nothing restarts it if
   it crashes, and nothing coordinates replacing multiple tasks without downtime.
 
-Three AWS pieces solve these, one each: a **NAT Gateway** for outbound internet access from
-private subnets, an **Application Load Balancer (ALB)** for a stable entry point, and an **ECS
-service** for ongoing management.
+Three AWS pieces solve these, one each: **PrivateLink** (VPC Interface Endpoints) for reaching
+ECR and CloudWatch Logs without an internet route at all, an **Application Load Balancer (ALB)**
+for a stable entry point, and an **ECS service** for ongoing management.
 
-## Part 1: NAT Gateway — Giving Private Subnets a Way Out (12 min)
+## Part 1: PrivateLink — Reaching AWS Services With No Internet Route at All (12 min)
 
-A NAT Gateway lives in a *public* subnet, with its own Elastic IP, and lets resources in private
-subnets initiate outbound connections to the internet — without the internet being able to
-initiate connections back in. This is exactly what a private-subnet ECS task needs to reach
-ECR's API.
+Module 3 covered two ways to solve "a private subnet needs to reach ECR": a NAT Gateway (general
+internet access) or PrivateLink (a direct, private connection to specific AWS services, entirely
+over AWS's own network). **This module uses PrivateLink, not a NAT Gateway** — and it's worth
+being explicit about *why* that choice is safe here:
+
+> **This container never needs to reach anything outside AWS.** It pulls its image from ECR and
+> ships logs to CloudWatch — both AWS services — and nothing else. There is no external
+> third-party API call anywhere in its code. That is precisely the condition under which
+> PrivateLink alone is sufficient and a NAT Gateway isn't needed at all. A workload that *does*
+> need to call out to the wider internet (a payment gateway, a third-party data feed) would still
+> need a NAT Gateway, or PrivateLink for the AWS-service traffic plus a NAT Gateway for
+> everything else.
+
+Three interface endpoints cover this container's actual needs — the two ECR API surfaces and
+CloudWatch Logs:
 
 ```bash
-aws ec2 allocate-address --domain vpc
-aws ec2 create-nat-gateway --subnet-id <public-subnet-id> --allocation-id <eip-alloc-id>
+aws ec2 create-security-group --group-name leap-vpc-endpoints-sg --vpc-id <vpc-id>
+aws ec2 authorize-security-group-ingress --group-id <endpoints-sg-id> \
+  --protocol tcp --port 443 --source-group <app-sg-id>
+
+for SVC in ecr.api ecr.dkr logs; do
+  aws ec2 create-vpc-endpoint --vpc-id <vpc-id> \
+    --service-name com.amazonaws.us-east-1.$SVC --vpc-endpoint-type Interface \
+    --subnet-ids <private-subnet-a> <private-subnet-b> \
+    --security-group-ids <endpoints-sg-id> --private-dns-enabled
+done
 ```
 
-Real output: `NatGatewayId: nat-09d80fa620c22385d`, state `pending` → `available` after a few
-minutes.
-
-A new route table, associated with *both* private subnets, sends their internet-bound traffic
-through the NAT Gateway — the public route table (Module 3) still points at the Internet Gateway
-directly, since NAT Gateways and Internet Gateways serve opposite directions of traffic:
+Plus a **gateway** endpoint for S3 — no hourly charge — since ECR image layers are actually
+stored in S3 under the hood, associated with a private route table (local traffic only, still no
+NAT route):
 
 ```bash
 aws ec2 create-route-table --vpc-id <vpc-id>
-aws ec2 create-route --route-table-id <private-rtb-id> \
-  --destination-cidr-block 0.0.0.0/0 --nat-gateway-id <nat-gateway-id>
 aws ec2 associate-route-table --route-table-id <private-rtb-id> --subnet-id <private-subnet-a>
 aws ec2 associate-route-table --route-table-id <private-rtb-id> --subnet-id <private-subnet-b>
+
+aws ec2 create-vpc-endpoint --vpc-id <vpc-id> --service-name com.amazonaws.us-east-1.s3 \
+  --vpc-endpoint-type Gateway --route-table-ids <private-rtb-id>
 ```
 
-A real, genuine finding: creating an ECS service immediately after the NAT Gateway reported
-`available` still produced one real `CannotPullContainerError: ... i/o timeout` on the very
-first task placement attempt — the control plane reports `available` slightly before the data
-plane is fully routing traffic. ECS's own service scheduler retried automatically and the next
-placement attempt succeeded; nothing needed fixing by hand.
+Real output: all three interface endpoints go `pending` → `available` within a couple of
+minutes; the S3 gateway endpoint is `available` immediately.
 
 ## Part 2: The Application Load Balancer (15 min)
 
@@ -118,12 +132,28 @@ aws elbv2 describe-target-health --target-group-arn <tg-arn>
 # both targets: "State": "healthy"
 ```
 
+A real, worth-naming finding along the way: one of the two initial tasks was replaced —
+`"Amazon ECS replaced 1 tasks due to an unhealthy status"` — a normal, self-healing event during
+startup, not a PrivateLink problem; the service settled at `2/2 healthy` shortly after.
+
 A real request to the ALB's own DNS name, from outside AWS entirely:
 
 ```bash
-curl -i http://leap-mission-alb-1691128842.us-east-1.elb.amazonaws.com/actuator/health
+curl -i http://leap-mission-alb-63036275.us-east-1.elb.amazonaws.com/actuator/health
 # HTTP/1.1 401 - genuine end-to-end reachability: public ALB, through a
-# target group, to a task with no public IP of its own, in a private subnet.
+# target group, to a task with no public IP of its own, in a private
+# subnet, that never touched the public internet to get its image or
+# ship this response's logs.
+```
+
+CloudWatch confirms the same thing from the other direction — real application logs, shipped
+entirely over the `logs` interface endpoint:
+
+```bash
+aws logs get-log-events --log-group-name /ecs/leap-mission-service \
+  --log-stream-name <stream-name>
+# Started MissionServiceApplication in 38.9 seconds - a genuine Spring
+# Boot startup, identical to Module 6 and 7's local/public-subnet runs.
 ```
 
 ## Part 4: A Real Rolling Deployment (8 min)
@@ -142,12 +172,16 @@ routes traffic to a task that isn't ready.
 ## Key Message
 
 Module 7 proved a task definition works in isolation. Today wires up the three pieces that turn
-that into a real, continuously available backend: a NAT Gateway so private-subnet tasks can
-still reach ECR, an ALB and target group for a stable entry point that tracks tasks by IP, and
-an ECS service that keeps the right number running and rolls out changes without downtime.
+that into a real, continuously available backend: PrivateLink so private-subnet tasks can still
+reach ECR and CloudWatch Logs with no internet route at all, an ALB and target group for a
+stable entry point that tracks tasks by IP, and an ECS service that keeps the right number
+running and rolls out changes without downtime. The choice of PrivateLink over a NAT Gateway is
+itself worth remembering as a pattern, not just a fact about this one deployment: it's the right
+default whenever a container's own outbound needs are limited to AWS services it can name in
+advance — reach for a NAT Gateway only once something genuinely needs the wider internet.
 
 ## Transition to the Lab
 
-Candidates deploy their own service the same way — NAT Gateway, ALB, target group, and ECS
-service — placing tasks in the private subnets behind the load balancer, and verify a real HTTP
-response from outside AWS.
+Candidates deploy their own service the same way — PrivateLink endpoints, ALB, target group, and
+ECS service — placing tasks in the private subnets behind the load balancer, and verify a real
+HTTP response from outside AWS.
