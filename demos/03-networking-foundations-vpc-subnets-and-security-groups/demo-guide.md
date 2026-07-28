@@ -127,36 +127,20 @@ exactly the kind of trade-off Module 10 (Observability & Cost Awareness) covers 
 isn't a detail bolted on after an architecture is chosen; it's one of the real factors in
 choosing between options like this one in the first place.
 
-## Part 3: A Real, Verified Example of the Definition Mattering (10 min)
+## Part 3: Security Groups — A Second, Independent Layer (12 min)
 
-During preparation for this course, exploring one AWS account's pre-existing VPC (provisioned
-automatically by AWS Control Tower, a service many organisations — Fidelity included, per the
-mission brief — use to standardise every new account's setup) turned up a genuine surprise worth
-sharing as a real example, even though your own account will likely look different:
+Everything so far — subnets, Internet Gateways, route tables — decides whether traffic *can*
+reach a subnet at all. A **security group** is a second, entirely independent layer on top of
+that: a stateful virtual firewall attached to a specific resource itself (an ECS task, a load
+balancer, an RDS instance, an EC2 instance) — not to a subnet. It doesn't route traffic; it
+decides whether traffic that has already reached that resource is *allowed through*, port by
+port. A new security group denies *all* inbound traffic by default — allowing a port is always
+an explicit, deliberate rule, never assumed. This is exactly why every later module that exposes
+a port — ECS in Module 8, RDS in Module 9 — has its own security group rule to write, not an
+afterthought.
 
-```bash
-aws ec2 describe-internet-gateways --region <your-region>
-```
-
-```json
-{"InternetGateways": []}
-```
-
-That account's VPC had three subnets across three AZs, all looking perfectly normal — spare IP
-addresses, real CIDR blocks — but **no Internet Gateway at all**, anywhere in the account.
-Checking further found no NAT Gateway and no Transit Gateway attachment either; the only
-non-local route on any subnet pointed at a VPC Endpoint for S3, not general internet access. By
-the correct test from Part 2, none of those three subnets were actually public, regardless of
-how normal they looked.
-
-The lesson generalises regardless of what your own account contains: **always check the route
-table directly** — never assume "public" or "private" from a subnet's name, its tags, or
-`MapPublicIpOnLaunch` alone.
-
-## Part 4: A Familiar Gotcha, Then Security Groups (12 min)
-
-Before naming security groups, put candidates in a situation many will recognise from deploying
-a Spring Boot API in an earlier sprint: the route table is correct, an Internet Gateway is
+Land the concept, then make it concrete with a situation many will recognise from deploying a
+Spring Boot API in an earlier sprint: the route table is correct, an Internet Gateway is
 attached, and the API is genuinely running — and it's still unreachable from anywhere but the
 server itself.
 
@@ -171,11 +155,10 @@ curl http://<instance-public-ip>:8080/api/health
 # curl: (28) Failed to connect - Connection timed out
 ```
 
-Nothing is wrong with the app or its network route. AWS security groups deny *all* inbound
-traffic by default — no rule for port 8080 means no way in, full stop, regardless of what the
-application itself is doing. This is deliberately the same "it works when I curl it myself, but
-nobody else can reach it" moment most people hit the first time they deploy an API to a real
-server, not a hypothetical.
+Nothing is wrong with the app or its network route — this is deliberately the same "it works
+when I curl it myself, but nobody else can reach it" moment most people hit the first time they
+deploy an API to a real server, not a hypothetical. The missing piece is the security group rule
+just explained a moment ago:
 
 ```bash
 aws ec2 authorize-security-group-ingress --group-id <app-sg-id> \
@@ -186,15 +169,7 @@ curl http://<instance-public-ip>:8080/api/health
 # only the security group rule changed
 ```
 
-Land the general concept now that the concrete example has done its job: route tables decide
-whether traffic *can* reach a subnet at all. A security group is a second, independent layer on
-top of that: a stateful virtual firewall attached to a specific resource (an ECS task, a load
-balancer, an RDS instance) — it doesn't route traffic, it decides whether traffic reaching that
-resource is allowed through, port by port. This is exactly why every later module that exposes a
-port — ECS in Module 8, RDS in Module 9 — has its own security group rule to write, not an
-afterthought.
-
-Build two, demonstrating a real least-privilege pattern, in an example VPC:
+Build two security groups, demonstrating a real least-privilege pattern, in an example VPC:
 
 ```bash
 aws ec2 create-security-group --group-name example-web-sg \
