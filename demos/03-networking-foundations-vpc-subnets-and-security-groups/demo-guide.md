@@ -96,6 +96,37 @@ This is conceptual today — it's built and verified live in Module 8, deploying
 backend, alongside a real ECS task placement error that shows exactly what happens when a
 private-subnet task tries to reach ECR without one.
 
+## Part 2c: An Alternative to the NAT Gateway — PrivateLink (5 min)
+
+A NAT Gateway solves "reach ECR" by giving the private subnet a general-purpose path to the
+*entire* internet — ECR happens to be reachable that way, but so is everything else out there.
+That's more access than the actual problem needs, and every byte the task pulls from ECR travels
+out over the public internet before coming back in, even though both the task and ECR are AWS
+services in the same region.
+
+**AWS PrivateLink**, via **VPC Interface Endpoints**, solves the same problem more narrowly:
+a private connection directly to a specific AWS service, entirely over AWS's own network, with
+no route to the public internet involved at all. For ECS pulling from ECR, that means:
+
+- An interface endpoint for `com.amazonaws.<region>.ecr.api` and one for
+  `com.amazonaws.<region>.ecr.dkr` (ECR's two API surfaces)
+- A **gateway** endpoint for S3 (no hourly charge) — image layers are actually stored in S3
+  under the hood, so an ECR pull needs this too
+- Usually `com.amazonaws.<region>.logs` as well, if the task ships logs to CloudWatch
+
+The genuine trade-off: a NAT Gateway is one resource that covers *any* outbound destination,
+public internet included — simple, but broader than the problem requires, and it does route
+through the internet path, even between two AWS services. PrivateLink is narrower and keeps
+traffic entirely inside AWS's network (a real benefit for a regulated environment like
+Fidelity's), but it only covers the specific services you provision an endpoint for — reaching
+some unrelated third-party API from that same private subnet would still need a NAT Gateway (or
+nothing, if no such need exists).
+
+Which one costs less depends on the number of endpoints needed versus the data volume moved —
+exactly the kind of trade-off Module 10 (Observability & Cost Awareness) covers properly. Cost
+isn't a detail bolted on after an architecture is chosen; it's one of the real factors in
+choosing between options like this one in the first place.
+
 ## Part 3: A Real, Verified Example of the Definition Mattering (10 min)
 
 During preparation for this course, exploring one AWS account's pre-existing VPC (provisioned

@@ -55,18 +55,24 @@ Build this yourself, matching today's four-layer demo exactly:
     should be allowed to reach it, and why should the answer definitely not be "the one open to
     `0.0.0.0/0`"?
 
-## Verify
-
-Compare your Part 1 and Part 4 reasoning against `solutions/03-.../model-answers.md`. For Parts
-2 and 3, there's no single expected answer — what matters is that your conclusions are drawn
-from the actual route tables you queried, not an assumption about what a subnet "should" be.
-
 ### Part 5: A private subnet that still needs out (conceptual)
 
 13. Without provisioning anything (a NAT Gateway costs money per hour, and Module 8 builds one
     live), work out on paper: if you wanted the two private subnets from Part 3 to let an
     application inside them pull an image from ECR, what would you need to add, and to which
     route table — the public one or the private one?
+14. A NAT Gateway isn't the only way to solve that problem — AWS PrivateLink (VPC Interface
+    Endpoints) can too. In your own words, what does PrivateLink give you that a NAT Gateway
+    doesn't, and what does a NAT Gateway give you that PrivateLink doesn't? Module 10
+    (Observability & Cost Awareness) covers the cost side of this choice properly — for now,
+    just reason about what each option actually does.
+
+## Verify
+
+Compare your Part 1, Part 4, and Part 5 reasoning against `solutions/03-.../model-answers.md`.
+For Parts 2 and 3, there's no single expected answer — what matters is that your conclusions are
+drawn from the actual route tables you queried, not an assumption about what a subnet "should"
+be.
 
 ## A Question Worth Sitting With
 

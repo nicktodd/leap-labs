@@ -63,6 +63,18 @@ the Internet Gateway, and public subnets have no need for a NAT Gateway. This is
 route table change Module 8 makes live, immediately before deploying an ECS service into these
 same private subnets.
 
+**NAT Gateway vs PrivateLink:** a NAT Gateway gives a private subnet a path to the internet in
+general — ECR included, but so is anything else out there, and the traffic genuinely travels the
+internet path even between two AWS services in the same region. PrivateLink (VPC Interface
+Endpoints) gives a direct, private connection to one specific AWS service over AWS's own
+network, with no internet route involved — narrower, since it only covers whichever services you
+provision an endpoint for, but tighter, since nothing travels the public internet at all. A
+private subnet that only ever needs to reach ECR and CloudWatch Logs could use PrivateLink alone
+and never need a NAT Gateway; a private subnet that also needs to call an external third-party
+API would still need one, or need PrivateLink for the AWS-service traffic and a NAT Gateway for
+everything else. Which is cheaper depends on the number of endpoints required versus the data
+volume moved — covered properly in Module 10.
+
 ## The Reflection Question
 
 A subnet with `MapPublicIpOnLaunch: true` but no `0.0.0.0/0` route to an Internet Gateway is
