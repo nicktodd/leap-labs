@@ -7,3 +7,13 @@ TASK_DEF_REVISION=2
 SG_ECS_PUBLIC=sg-0f4e4d99f193cedae
 # leap-ecs-public-sg: allows port 8080 from 0.0.0.0/0 - used to test task definitions
 # directly with run-task in Module 7, kept in place for Module 8
+
+# Module 8 (billed resources - torn down after verification; recreated by
+# Module 11's deployment automation script when needed):
+# NAT_GATEWAY=nat-09d80fa620c22385d (deleted)
+# EIP=eipalloc-0024c2349cd1133d4 (released)
+# PRIVATE_RTB=rtb-07b0bc772a2646a61 (deleted)
+# ALB=leap-mission-alb (deleted)
+# ALB_SG=leap-alb-sg (deleted)
+# TARGET_GROUP=leap-mission-tg, matcher 200,401 - actuator/health requires auth
+# ECS_SERVICE=leap-mission-service (deleted, desired count 2, Fargate, private subnets)
