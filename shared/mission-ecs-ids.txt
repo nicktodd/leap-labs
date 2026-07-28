@@ -4,4 +4,6 @@ LOG_GROUP=/ecs/leap-mission-service
 TASK_DEF_FAMILY=leap-mission-service
 TASK_DEF_REVISION=2
 # revision 2 adds runtimePlatform: {cpuArchitecture: ARM64, operatingSystemFamily: LINUX}
-# leap-app-sg's ingress rule now allows port 8080 (not 8090) from leap-web-sg - corrected in Module 7
+SG_ECS_PUBLIC=sg-0f4e4d99f193cedae
+# leap-ecs-public-sg: allows port 8080 from 0.0.0.0/0 - used to test task definitions
+# directly with run-task in Module 7, kept in place for Module 8

@@ -71,56 +71,61 @@ aws ecs register-task-definition --cli-input-json file://task-def.json
 
 Real output: `revision 1`, `status: ACTIVE` — a template now exists, but nothing is running yet.
 
-## Part 2: A Real Failure — Private Subnet, No Route to ECR (10 min)
+## Part 2: Which CPU Architecture? (8 min)
 
-Run the task definition once, in one of Module 3's *private* subnets, to test it:
-
-```bash
-aws ecs run-task --cluster leap-mission-cluster --task-definition leap-mission-service \
-  --launch-type FARGATE --network-configuration \
-  'awsvpcConfiguration={subnets=[<private-subnet-id>],securityGroups=[<app-sg-id>],assignPublicIp=DISABLED}'
-```
-
-Real, verified failure, after several minutes stuck `PENDING`:
-
-```
-ResourceInitializationError: unable to pull secrets or registry auth: The task cannot pull
-registry auth from Amazon ECR: ... dial tcp 44.213.78.216:443: i/o timeout
-```
-
-This is Module 3's own lesson landing directly: a private subnet has no route to the internet
-at all, and ECR's API is reached over the internet (or a VPC endpoint, neither of which exists
-here yet). The task definition itself is correct — nothing about it was wrong — the network it
-was placed in simply has no way to reach ECR. Module 8 addresses this properly for the real
-deployment; today, re-run the same task definition unchanged in a *public* subnet with a public
-IP, purely to isolate and confirm the task definition itself works:
+Fargate assumes `linux/amd64` unless told otherwise. Before running anything, check what a
+pushed image actually is:
 
 ```bash
-aws ecs run-task ... --network-configuration \
-  'awsvpcConfiguration={subnets=[<public-subnet-id>],securityGroups=[<app-sg-id>],assignPublicIp=ENABLED}'
+docker manifest inspect <account>.dkr.ecr.us-east-1.amazonaws.com/leap-mission-service:latest \
+  | grep architecture
 ```
 
-## Part 3: A Second Real Failure — Platform Mismatch (8 min)
-
-Real output this time, a different failure:
-
 ```
-CannotPullContainerError: pull image manifest has been retried 7 time(s): image Manifest does
-not contain descriptor matching platform 'linux/amd64'
+"architecture": "arm64"
 ```
 
-`docker manifest inspect` on the pushed image confirms it: `architecture: arm64` — built on an
-Apple Silicon Mac in Module 6, with no explicit platform flag, so Docker built for the machine
-it ran on. Fargate defaults to expecting `linux/amd64`. The real fix, without rebuilding: tell
-the task definition what architecture the image actually is —
+Common when an image was built on an Apple Silicon machine with no `--platform` flag — Docker
+builds for the machine it ran on, not necessarily the machine it will run *on later*. Rather
+than rebuilding the image, declare the real architecture in the task definition:
 
 ```json
 "runtimePlatform": {"cpuArchitecture": "ARM64", "operatingSystemFamily": "LINUX"}
 ```
 
-Re-register (revision 2), re-run in the public subnet: `RUNNING` within seconds.
+Fargate supports both `ARM64` and `X86_64` — the task definition just needs to say which one the
+image actually is.
 
-## Part 4: Verified — Real Logs, Real Reachability, and a Third Real Mismatch (10 min)
+## Part 3: Networking a Task — Ports and Security Groups (10 min)
+
+`awsvpc` network mode gives every task its own elastic network interface (ENI) and IP address,
+the same as an EC2 instance would. Two things a task definition needs before it's reachable:
+
+- A subnet to launch into, and whether it gets a public IP
+- A security group that allows the port the container actually listens on — confirmed by the
+  Dockerfile's `EXPOSE` line, not assumed
+
+For today, keep it simple: a public subnet, a public IP, and a security group open on the
+container's real port:
+
+```bash
+aws ec2 create-security-group --group-name leap-ecs-public-sg \
+  --description "Public ingress for ECS tasks tested directly with run-task" \
+  --vpc-id <vpc-id>
+aws ec2 authorize-security-group-ingress --group-id <public-sg-id> \
+  --protocol tcp --port 8080 --cidr 0.0.0.0/0
+```
+
+```bash
+aws ecs run-task --cluster leap-mission-cluster --task-definition leap-mission-service \
+  --launch-type FARGATE --network-configuration \
+  'awsvpcConfiguration={subnets=[<public-subnet-id>],securityGroups=[<public-sg-id>],assignPublicIp=ENABLED}'
+```
+
+Module 8 moves this behind a load balancer in a private subnet — today's goal is just confirming
+the task definition itself runs and is reachable.
+
+## Part 4: Verified — Real Logs, Real Reachability (10 min)
 
 ```bash
 aws logs get-log-events --log-group-name /ecs/leap-mission-service \
@@ -129,37 +134,23 @@ aws logs get-log-events --log-group-name /ecs/leap-mission-service \
 
 Real Spring Boot startup output, exactly as seen locally in Module 6.
 
-Reaching the task from a browser fails at first — a third real, worth-naming mismatch:
-`leap-app-sg` (Module 3) authorised port **8090**, but the container's real listening port,
-confirmed by the Dockerfile's `EXPOSE 8080` and Spring Boot's own default, is **8080**. Port
-8090 was a local development convention from earlier sprints, never the container's actual
-port. Fix the security group to match the real artefact, not the earlier assumption:
-
-```bash
-aws ec2 revoke-security-group-ingress --group-id <app-sg-id> --protocol tcp --port 8090 \
-  --source-group <web-sg-id>
-aws ec2 authorize-security-group-ingress --group-id <app-sg-id> --protocol tcp --port 8080 \
-  --source-group <web-sg-id>
-```
-
-With a temporary rule for the demo machine's own IP, a real request succeeds:
+Find the task's public IP via its ENI and make a real request:
 
 ```bash
 curl http://<task-public-ip>:8080/actuator/health
-# HTTP 401 - identical to Module 6's local verification: Spring Security
-# guarding the endpoint, not a broken deployment.
+# HTTP 401 - Spring Security guarding the endpoint, the same response
+# Module 6 saw locally: genuine reachability, not a broken deployment.
 ```
 
 ## Key Message
 
 A task definition is a real, testable artefact on its own, before any service or load balancer
-exists — and testing it directly, with `run-task`, surfaced three genuine, independent problems
-(no network route, wrong CPU architecture, wrong port) that a rushed jump straight to a full
-service-plus-ALB deployment in Module 8 would have made much harder to isolate and diagnose one
-at a time.
+exists. Two things decide whether it actually runs and is reachable: matching the declared CPU
+architecture to what the image was built for, and matching the security group's allowed port to
+what the container actually listens on.
 
 ## Transition to the Lab
 
-Candidates build their own task definition for the mission-service image, test it the same way
-— in a public subnet first, to isolate task-definition problems from Module 9's networking work
-— and fix whatever real mismatches turn up along the way.
+Candidates build their own task definition for the mission-service image, check its
+architecture, run it with `run-task` in a public subnet behind a security group that allows its
+real port, and confirm a genuine HTTP response.

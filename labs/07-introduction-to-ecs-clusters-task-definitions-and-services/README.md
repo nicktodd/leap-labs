@@ -20,43 +20,33 @@ VPC and Module 6's ECR images already in place.
    `runtimePlatform` block to your task definition now, rather than discovering the mismatch the
    hard way.
 
-### Part 2: Test the task definition directly
+### Part 2: Network it — public subnet, matching security group
 
-5. Run the task definition once with `run-task`, in one of Module 3's **public** subnets, with
-   a public IP assigned — deliberately isolating "does this task definition work at all" from
-   "does it work in a private subnet," which needs infrastructure this module doesn't build.
-6. Confirm it reaches `RUNNING`, and pull its real logs from CloudWatch. Confirm the application
+5. Create a security group that allows inbound traffic on the port your container actually
+   listens on (check the Dockerfile's `EXPOSE` line — don't assume). For today, keep it simple:
+   allow that port from anywhere (`0.0.0.0/0`).
+6. Run the task definition with `run-task`, in one of Module 3's **public** subnets, with a
+   public IP assigned and your new security group attached.
+7. Confirm it reaches `RUNNING`, and pull its real logs from CloudWatch. Confirm the application
    inside actually started, not just that the task's status says `RUNNING`.
-7. Find the task's public IP (via its ENI) and make a real HTTP request to it, from your own
-   machine. If it fails, work through why systematically: is the security group actually
-   allowing the port the container is really listening on (check the Dockerfile's `EXPOSE`
-   line and the application's actual configuration, not an assumption)? Is your own IP allowed
-   through?
-
-### Part 3: What Module 3's security group actually assumed
-
-8. Compare the port your security group allows against the port your container actually
-   listens on. If they don't match, decide which one is wrong and fix it — don't just open the
-   security group to more ports "to be safe."
+8. Find the task's public IP (via its ENI) and make a real HTTP request to it, from your own
+   machine. Even an error response (like a 401 or 403) counts as genuine reachability — a
+   connection timeout means the security group or the architecture is still wrong.
 
 ## Verify
 
-Compare your Part 3 finding against `solutions/07-.../model-answers.md`. Your task should
-reach `RUNNING`, its logs should show a real application startup, and a real HTTP request from
-your own machine should get a genuine HTTP response (even an error response, like a 401 or 403,
-counts as genuine reachability — a connection timeout does not).
+Compare your work against `solutions/07-.../model-answers.md`. Your task should reach
+`RUNNING`, its logs should show a real application startup, and a real HTTP request from your
+own machine should get a genuine HTTP response.
 
 ## Cleanup
 
-Stop any running tasks (`aws ecs stop-task`) and revoke any temporary security group rules you
-added for your own IP. Leave the cluster, task definition, execution role, and log group in
-place — Module 8 builds directly on all four.
+Stop any running tasks (`aws ecs stop-task`). Leave the cluster, task definition, execution
+role, log group, and security group in place — Module 8 builds directly on them.
 
 ## A Question Worth Sitting With
 
-This lab deliberately runs the task in a public subnet, with a public IP, even though the
-mission's real backend (Module 8 onward) belongs in a private subnet behind a load balancer.
-Why is testing in a public subnet first still a reasonable thing to do, given that it's not the
-final architecture? What specifically would have been harder to diagnose if the first-ever test
-of this task definition had happened inside a private subnet with a load balancer already in
-front of it?
+This lab deliberately runs the task in a public subnet with an open security group, even though
+the mission's real backend (Module 8 onward) belongs in a private subnet behind a load balancer.
+Why is testing in a simple, wide-open setup first still a reasonable thing to do, given that
+it's not the final architecture?
