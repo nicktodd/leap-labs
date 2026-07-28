@@ -1,0 +1,7 @@
+CLUSTER_NAME=leap-mission-cluster
+EXECUTION_ROLE_ARN=arn:aws:iam::<account-id>:role/leap-ecs-task-execution-role
+LOG_GROUP=/ecs/leap-mission-service
+TASK_DEF_FAMILY=leap-mission-service
+TASK_DEF_REVISION=2
+# revision 2 adds runtimePlatform: {cpuArchitecture: ARM64, operatingSystemFamily: LINUX}
+# leap-app-sg's ingress rule now allows port 8080 (not 8090) from leap-web-sg - corrected in Module 7

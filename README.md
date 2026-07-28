@@ -56,7 +56,7 @@ used, since the underlying infrastructure is torn down after each module's lab.
 | 4 | S3 Fundamentals & Deploying the Frontend | [labs/04-s3-fundamentals-and-deploying-the-frontend/README.md](labs/04-s3-fundamentals-and-deploying-the-frontend/README.md) |
 | 5 | CloudFront: CDN Fundamentals & Fronting the Frontend | [labs/05-cloudfront-cdn-fundamentals-and-fronting-the-frontend/README.md](labs/05-cloudfront-cdn-fundamentals-and-fronting-the-frontend/README.md) |
 | 6 | Containerising for the Cloud: From Docker to ECR | [labs/06-containerising-for-the-cloud-from-docker-to-ecr/README.md](labs/06-containerising-for-the-cloud-from-docker-to-ecr/README.md) |
-| 7 | Introduction to ECS: Clusters, Task Definitions & Services | _coming soon_ |
+| 7 | Introduction to ECS: Clusters, Task Definitions & Services | [labs/07-introduction-to-ecs-clusters-task-definitions-and-services/README.md](labs/07-introduction-to-ecs-clusters-task-definitions-and-services/README.md) |
 | 8 | Deploying the Backend to ECS | _coming soon_ |
 | 9 | Managed Data & Secrets: RDS & Secrets Manager | _coming soon_ |
 | 10 | Observability & Cost Awareness | _coming soon_ |
