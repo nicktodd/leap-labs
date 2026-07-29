@@ -1,0 +1,7 @@
+# Module 10 (persistent, free): dashboards/alarms/budgets cost nothing at
+# this scale - left in place.
+DASHBOARD=leap-mission-observability
+ALARM=leap-mission-high-cpu
+BUDGET=leap-mission-monthly-budget
+# $10/month, 80% actual-spend email alert. AWS Budgets free tier covers
+# the first two budgets per account.
