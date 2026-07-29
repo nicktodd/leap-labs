@@ -16,23 +16,38 @@ Run against this account's accumulated activity from Modules 6-9:
   states that fits "no data exists yet."
 - `leap-mission-observability` dashboard combining CPU/Memory time series, live task count, and
   the Logs Insights query as a table widget — created with zero validation errors.
-- `aws ce get-cost-and-usage` for the last 14 days, per-service totals extrapolated to a 30-day
-  month:
+- `aws ce get-cost-and-usage` for the last 14 days, actual per-service totals:
 
-  | Service | 14 days (USD) | Monthly (USD) |
-  |---|---|---|
-  | EC2 - Other (NAT Gateway hours, Module 8's first attempt) | 0.0708 | 0.15 |
-  | Elastic Load Balancing (Module 8) | 0.0450 | 0.10 |
-  | Elastic Container Service (Fargate task hours) | 0.0142 | 0.03 |
-  | Virtual Private Cloud (interface endpoints, Module 8's rebuild) | 0.0100 | 0.02 |
-  | RDS (Module 9's db.t3.micro) | 0.0069 | 0.01 |
-  | ECR | 0.0040 | 0.01 |
-  | S3 | 0.0025 | 0.01 |
-  | Secrets Manager | 0.0000 | 0.40 * |
+  | Service | Actual 14-day bill (USD) |
+  |---|---|
+  | NAT Gateway (EC2 - Other, Module 8's first attempt) | 0.0708 |
+  | Elastic Load Balancing (Module 8) | 0.0450 |
+  | Elastic Container Service (Fargate task hours) | 0.0142 |
+  | Virtual Private Cloud (interface endpoints, Module 8's rebuild) | 0.0100 |
+  | RDS (Module 9's db.t3.micro) | 0.0069 |
+  | ECR | 0.0040 |
+  | S3 | 0.0025 |
+  | Secrets Manager | 0.0000 |
 
-  \* Secrets Manager bills a flat monthly rate per secret rather than scaling with usage — Module
-  9's secret existed for a few hours, not 14 days, so its 14-day figure of `0.0000` doesn't scale
-  the way the other rows do.
+- Comparing that to a 30-day continuous-operation estimate, priced from AWS's published
+  `us-east-1` hourly rates rather than scaled from the 14-day sample:
+
+  | Service | If run continuously for 30 days (USD) |
+  |---|---|
+  | NAT Gateway | 32.85 |
+  | Elastic Load Balancing | 16.43 |
+  | Elastic Container Service (2 tasks) | 14.42 |
+  | Virtual Private Cloud (3 interface endpoints) | 21.90 |
+  | RDS (db.t3.micro + 20GB storage) | 14.71 |
+  | ECR | 0.03 |
+  | S3 | 0.01 |
+  | Secrets Manager | 0.40 |
+
+  Naively scaling the 14-day figures by 30/14 would still produce numbers under a dollar for
+  every service — understating the real cost, since these resources existed for a few hours each,
+  not 14 days. The continuous-operation estimate is the number that actually matters for
+  budgeting: it answers "what would this cost if it stayed up," not "what did a few hours of
+  testing cost."
 
 - `leap-mission-monthly-budget` created: $10/month, 80% actual-spend email alert — covered by AWS
   Budgets' free tier for the first two budgets on an account.

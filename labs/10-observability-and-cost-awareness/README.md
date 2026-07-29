@@ -28,9 +28,14 @@ earlier modules — no new infrastructure needs to exist first.
 
 5. Query Cost Explorer for your account's actual spend by service over the last 14 days
    (`aws ce get-cost-and-usage`). Identify which service line corresponds to which earlier
-   module's work, then extrapolate each figure to a 30-day month for a clearer comparison against
-   a monthly budget.
-6. Create a monthly AWS Budget with an alert threshold (e.g. 80% of a $10 limit), notifying an
+   module's work.
+6. These numbers will be small, because the billed resources were torn down shortly after each
+   verification — not because they're actually cheap to run. For each billed service (NAT
+   Gateway, ALB, ECS, VPC endpoints, RDS), look up AWS's published `us-east-1` hourly rate and
+   calculate what running it continuously for 30 days (730 hours) would really cost. Compare that
+   to simply scaling your 14-day figure by 30/14 — which number is more useful for planning a
+   real budget, and why?
+7. Create a monthly AWS Budget with an alert threshold (e.g. 80% of a $10 limit), notifying an
    email address.
 
 ## Verify

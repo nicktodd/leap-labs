@@ -81,7 +81,7 @@ The dashboard combines CPU/Memory time series, live task count, and that Logs In
 a table — one place to check "is it healthy" without switching between the ECS console, the
 CloudWatch console, and CloudWatch Logs separately.
 
-## Part 4: Cost Data — Cost Explorer, Extrapolated to a Month (12 min)
+## Part 4: Cost Data — the Actual Bill vs. What Continuous Running Would Cost (12 min)
 
 Rather than estimate what this sprint's modules have cost, ask AWS directly:
 
@@ -90,27 +90,46 @@ aws ce get-cost-and-usage --time-period Start=<14-days-ago>,End=<today> \
   --granularity MONTHLY --metrics UnblendedCost --group-by Type=DIMENSION,Key=SERVICE
 ```
 
-Output, sorted by cost, for this account's actual last two weeks, with the 14-day figure scaled
-to a 30-day month for an easier comparison against a monthly budget:
+Output, sorted by cost, for this account's actual last two weeks:
 
-| Service | 14 days (USD) | Extrapolated monthly (USD) |
-|---|---|---|
-| EC2 - Other (NAT Gateway hours) | 0.0708 | 0.15 |
-| Elastic Load Balancing | 0.0450 | 0.10 |
-| Elastic Container Service | 0.0142 | 0.03 |
-| Virtual Private Cloud (PrivateLink) | 0.0100 | 0.02 |
-| RDS | 0.0069 | 0.01 |
-| ECR | 0.0040 | 0.01 |
-| S3 | 0.0025 | 0.01 |
-| Secrets Manager | 0.0000 | 0.40 * |
+| Service | Actual 14-day bill (USD) |
+|---|---|
+| NAT Gateway (EC2 - Other) | 0.0708 |
+| Elastic Load Balancing | 0.0450 |
+| Elastic Container Service | 0.0142 |
+| Virtual Private Cloud (PrivateLink) | 0.0100 |
+| RDS | 0.0069 |
+| ECR | 0.0040 |
+| S3 | 0.0025 |
+| Secrets Manager | 0.0000 |
 
-This is the actual bill for exactly what this sprint built, and it confirms two earlier decisions
-with real numbers rather than estimates: the EC2 - Other line (where NAT Gateway hourly charges
-appear) only exists for Module 8's original attempt, and disappears entirely once Module 8
-switched to PrivateLink. * Secrets Manager bills a flat monthly rate per secret rather than
-scaling with usage, so its monthly figure isn't a simple extrapolation of the 14-day sample —
-Module 9's secret existed for a few hours, not 14 days, which is why the 14-day column shows
-`0.0000` even though a full month would show a real, non-zero charge Parameter Store never would.
+These numbers are small because every billed resource this sprint created was torn down again
+straight after verification — a few hours of NAT Gateway, a few hours of RDS, not 14 days of
+either. Naively scaling this sample up to a month (multiplying by 30/14) would still show
+fractions of a cent, which understates the real cost of actually running these resources —
+because most of the 14-day window, they simply didn't exist. A more honest monthly figure comes
+from AWS's own published hourly rates for `us-east-1`, applied to what continuous, 24/7 operation
+for 30 days (730 hours) would actually cost:
+
+| Service | If run continuously for 30 days (USD) |
+|---|---|
+| NAT Gateway | 32.85 |
+| Elastic Load Balancing | 16.43 |
+| Elastic Container Service (2 tasks) | 14.42 |
+| Virtual Private Cloud (3 PrivateLink endpoints) | 21.90 |
+| RDS (db.t3.micro + 20GB storage) | 14.71 |
+| ECR | 0.03 |
+| S3 | 0.01 |
+| Secrets Manager | 0.40 |
+
+Two things worth being precise about: this right-hand column is *calculated* from AWS's published
+rate card, not observed in Cost Explorer — none of these resources actually ran for 30 days, so
+there's no real bill to point at for that figure. And NAT Gateway and the three PrivateLink
+endpoints are shown as alternatives, not costs that add together — Module 8 never ran both at
+once; they're the two competing answers to the same "how does a private subnet reach ECR"
+question, and comparing their monthly figures side by side ($32.85 vs. $21.90, before NAT
+Gateway's own data-processing charges) is a real part of the case for PrivateLink when a
+workload's needs allow it.
 
 ## Part 5: What AWS Budgets Are, and How to Create One (8 min)
 
