@@ -1,0 +1,81 @@
+// Example Jenkins declarative pipeline for the mission-service.
+//
+// This file is illustrative, not wired up in this labs repo - copy it to
+// a Jenkinsfile in the mission-service's own repository (the one containing
+// its Dockerfile) and point a Jenkins pipeline job at it once a Jenkins
+// controller/agent exists. It assumes the Jenkins agent EC2 instance has
+// the leap-jenkins-deploy-profile instance profile attached - no AWS
+// access keys stored in Jenkins credentials at all.
+
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION       = 'us-east-1'
+        ECR_REPOSITORY   = 'leap-mission-service'
+        ACCOUNT_ID       = '<account-id>'
+        ECR_REGISTRY     = "${ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com"
+        ECS_CLUSTER      = 'leap-mission-cluster'
+        ECS_SERVICE      = 'leap-mission-service'
+        TASK_FAMILY      = 'leap-mission-service'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        // No 'aws configure' step and no AWS credentials in the Jenkins
+        // credentials store - the instance profile on this agent vends
+        // temporary, automatically-rotated credentials to every AWS CLI
+        // call below via the EC2 instance metadata service.
+        stage('Build and Push') {
+            steps {
+                sh '''
+                    IMAGE_TAG=$(git rev-parse --short HEAD)
+                    aws ecr get-login-password --region $AWS_REGION \
+                      | docker login --username AWS --password-stdin $ECR_REGISTRY
+                    docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+                    docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+                    echo $IMAGE_TAG > image-tag.txt
+                '''
+            }
+        }
+
+        // Starts from the CURRENT live task definition and only swaps the
+        // image - not a checked-in or previously-registered copy that
+        // might reference something that's since been deleted. See the
+        // demo guide's "A Real Failure" section for exactly what goes
+        // wrong when a pipeline clones an old revision instead.
+        stage('Render Task Definition') {
+            steps {
+                sh '''
+                    IMAGE_TAG=$(cat image-tag.txt)
+                    aws ecs describe-task-definition --task-definition $TASK_FAMILY \
+                      --query 'taskDefinition' > current-taskdef.json
+                    python3 render_taskdef.py current-taskdef.json \
+                      $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG > new-taskdef.json
+                    aws ecs register-task-definition \
+                      --cli-input-json file://new-taskdef.json \
+                      --query 'taskDefinition.taskDefinitionArn' --output text \
+                      > new-taskdef-arn.txt
+                '''
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                sh '''
+                    NEW_TASKDEF_ARN=$(cat new-taskdef-arn.txt)
+                    aws ecs update-service --cluster $ECS_CLUSTER \
+                      --service $ECS_SERVICE --task-definition $NEW_TASKDEF_ARN \
+                      --force-new-deployment
+                    aws ecs wait services-stable --cluster $ECS_CLUSTER \
+                      --services $ECS_SERVICE
+                '''
+            }
+        }
+    }
+}

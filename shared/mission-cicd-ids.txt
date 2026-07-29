@@ -1,16 +1,16 @@
-# Module 11 (persistent, free): OIDC trust for GitHub Actions - no static
-# AWS credentials involved, no hourly charge.
-OIDC_PROVIDER_ARN=arn:aws:iam::<account-id>:oidc-provider/token.actions.githubusercontent.com
-GHA_ROLE=leap-github-actions-deploy-role
-GHA_ROLE_ARN=arn:aws:iam::<account-id>:role/leap-github-actions-deploy-role
-# Trust policy scoped to repo:<github-org>/leap-sprint11:ref:refs/heads/main -
-# update the <github-org> placeholder in the role's trust policy once the
-# repo's actual GitHub org/user is known.
-# Permissions policy: leap-github-actions-deploy-policy (ECRAuth, ECRPush,
+# Module 11 (persistent, free): IAM role + instance profile for Jenkins -
+# no static AWS credentials involved, no hourly charge.
+JENKINS_ROLE=leap-jenkins-deploy-role
+JENKINS_ROLE_ARN=arn:aws:iam::<account-id>:role/leap-jenkins-deploy-role
+JENKINS_INSTANCE_PROFILE=leap-jenkins-deploy-profile
+# Trust policy: ec2.amazonaws.com only. Attach this instance profile to
+# the EC2 instance running the Jenkins agent - no AWS keys stored in
+# Jenkins credentials at all.
+# Permissions policy: leap-jenkins-deploy-policy (ECRAuth, ECRPush,
 # ECSDeploy, PassExecutionRoleOnly)
 
 # Task definition history (leap-mission-service family):
 # revision 4: real failure - cloned rev 3's stale Secrets Manager reference
 #   (secret was deleted with Module 9's RDS teardown) -> AccessDeniedException
-# revision 5: clean, built from the base template, no stale secrets -
-#   verified RUNNING with real startup logs
+# revision 5: clean, built from the current live definition, no stale
+#   secrets - verified RUNNING with real startup logs
