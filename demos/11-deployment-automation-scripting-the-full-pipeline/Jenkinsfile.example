@@ -75,5 +75,20 @@ pipeline {
                 '''
             }
         }
+
+        // 'Deploy' only confirms a task reached RUNNING - it says nothing
+        // about whether the application works for a user. Reuses Sprint
+        // 9 Module 16's Playwright suite (login.spec.ts) unchanged,
+        // against the real deployed frontend instead of localhost.
+        stage('Acceptance Tests') {
+            steps {
+                sh '''
+                    cd mission-ui
+                    npm ci
+                    npx playwright install --with-deps chromium
+                    BASE_URL=$DEPLOYED_URL npx playwright test
+                '''
+            }
+        }
     }
 }

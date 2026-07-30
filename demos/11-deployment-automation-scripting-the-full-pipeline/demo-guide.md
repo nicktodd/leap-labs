@@ -143,6 +143,42 @@ stage('Deploy') {
 Jenkins runs a pipeline's stages in order — `Deploy` only starts once `Build and Push` has
 completed successfully, the same fail-fast behaviour Sprint 1's CI/CD fundamentals covered.
 
+## Part 3b: Acceptance Tests — Checking the Deployment Actually Works (10 min)
+
+`Deploy` confirms a task reached `RUNNING`. It says nothing about whether the application
+actually works for a user — that's a different kind of check, and Sprint 9's Module 16 already
+built exactly the tool for it: a Playwright suite (`login.spec.ts`) testing the mission-ui
+frontend end to end — logging in, an invalid-password error, the redirect to `/login` when
+logged out, and logout itself.
+
+That suite becomes an **Acceptance Tests** stage, running after `Deploy`, unchanged except for
+one thing: Module 16's `playwright.config.ts` hardcodes `baseURL: 'http://localhost:4200'` for
+local development. Before it can run against a deployed environment, that needs to read an
+environment variable instead, with the local default kept as a fallback for anyone still running
+it by hand:
+
+```typescript
+use: { baseURL: process.env.BASE_URL || 'http://localhost:4200' },
+```
+
+The stage itself:
+
+```groovy
+stage('Acceptance Tests') {
+  steps { sh '''
+    cd mission-ui
+    npm ci
+    npx playwright install --with-deps chromium
+    BASE_URL=$DEPLOYED_URL npx playwright test
+  ''' }
+}
+```
+
+The exact same spec file from Sprint 9, now verifying the real deployed frontend and its real
+auth-service instead of a local dev server. A pipeline that stops at "the task is `RUNNING`" is
+checking infrastructure, not the feature a user actually cares about — a merge only counts as a
+successful deployment once the acceptance tests pass too.
+
 ## Part 4: Verified — the Deployed Revision Runs (8 min)
 
 ```bash
