@@ -45,10 +45,8 @@ pipeline {
         }
 
         // Starts from the CURRENT live task definition and only swaps the
-        // image - not a checked-in or previously-registered copy that
-        // might reference something that's since been deleted. See the
-        // demo guide's "A Real Failure" section for exactly what goes
-        // wrong when a pipeline clones an old revision instead.
+        // image - not a checked-in or previously-registered copy, which
+        // could drift out of sync with what's actually running.
         stage('Render Task Definition') {
             steps {
                 sh '''

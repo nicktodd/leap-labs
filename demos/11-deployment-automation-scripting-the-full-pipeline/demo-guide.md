@@ -7,13 +7,41 @@ task definition history, all still in place.
 ## Part 0: What's Being Automated (5 min)
 
 Every module since Module 6 has run the same sequence of commands by hand: build an image, push
-it to ECR, register a task definition, deploy it. A real pipeline runs that same sequence
+it to ECR, register a task definition, deploy it. A pipeline runs that same sequence
 automatically, triggered by a commit landing on the main branch. This module uses **Jenkins**,
 one of the most widely deployed CI/CD tools in real organisations (Fidelity included, per the
 mission brief) — but the sequence itself (build, push, deploy, verify) is the same regardless of
 which tool runs it.
 
-## Part 1: Authenticating Without Stored Credentials — the Instance Profile (15 min)
+## Part 0b: Recap — What a Jenkins Pipeline Actually Is (10 min)
+
+Sprint 1 introduced Jenkins and CI/CD fundamentals — worth a proper recap here, since that was
+close to three months ago:
+
+- A **pipeline** is an automated sequence of **stages** (commonly Build, Test, Archive, and —
+  from here on — Deploy) that runs every time code changes. If an early stage fails, later stages
+  don't run at all: a broken Build stage means Test and Deploy never get a chance to run against
+  broken code.
+- **Continuous Integration** means every change is automatically built and tested. **Continuous
+  Delivery** extends that with an artefact ready to deploy at any time. **Continuous Deployment**
+  goes one step further and deploys automatically with no manual approval step — this module's
+  pipeline is a continuous deployment pipeline: a merge to `main` deploys, with nothing else
+  needed.
+- Jenkins itself distinguishes a **freestyle job** (build steps configured by hand through the
+  Jenkins UI, no code) from a **Pipeline job**, defined by a `Jenkinsfile` checked into the
+  repository alongside the application code — the same file everyone on the team can read,
+  review, and change through a normal pull request, rather than a UI configuration only visible
+  to whoever has Jenkins access. This module uses a Pipeline job throughout.
+- The Jenkins dashboard shows a job's build history (blue/green for passed, red for failed); each
+  build has its own **Console Output**, the real, complete log of everything that build actually
+  ran — the first place to look when a stage fails.
+
+Today's Jenkinsfile follows exactly that shape — `pipeline { agent { ... } stages { stage('Build
+and Push') { ... } stage('Deploy') { ... } } }` — the only things genuinely new since Sprint 1 are
+what happens *inside* those stages: real AWS CLI calls instead of the Maven/JUnit steps from
+Sprint 1's Java-focused examples.
+
+## Part 1: Authenticating Without Stored Credentials — the Instance Profile (12 min)
 
 A pipeline needs AWS credentials, and the worst way to provide them is a long-lived access key
 pasted into Jenkins' own credentials store — it doesn't expire on its own, and if that Jenkins
@@ -23,7 +51,7 @@ CLI pick up temporary, automatically-rotated credentials from the instance's own
 with no configuration at all — nothing is typed into Jenkins, nothing is stored as a Jenkins
 credential.
 
-Two real AWS resources make this work. First, an IAM role trusted by EC2 itself:
+Two AWS resources make this work. First, an IAM role trusted by EC2 itself:
 
 ```bash
 aws iam create-role --role-name leap-jenkins-deploy-role \
@@ -51,11 +79,10 @@ aws iam get-role-policy --role-name leap-jenkins-deploy-role \
 ["ECRAuth", "ECRPush", "ECSDeploy", "PassExecutionRoleOnly"]
 ```
 
-## Part 2: The Pipeline's Steps, Run Directly (15 min)
+## Part 2: The Build and Push Stage (10 min)
 
-Every step the Jenkinsfile (`Jenkinsfile.example`) would run, executed directly to confirm each
-one actually works — exactly what the instance-profile credentials on a Jenkins agent would do,
-with no `aws configure` step anywhere:
+Every step the Jenkinsfile's `Build and Push` stage runs, executed directly to confirm each one
+works — no `aws configure` step anywhere, since the instance profile handles authentication:
 
 ```bash
 aws ecr get-login-password | docker login --username AWS --password-stdin <account>.dkr.ecr.us-east-1.amazonaws.com
@@ -63,56 +90,55 @@ docker build -t <account>.dkr.ecr.us-east-1.amazonaws.com/leap-mission-service:<
 docker push <account>.dkr.ecr.us-east-1.amazonaws.com/leap-mission-service:<sha>
 ```
 
-Real output: a genuine digest from ECR, confirming the push succeeded.
+Output: a digest from ECR, confirming the push succeeded — the same push confirmation Module 6
+first introduced.
 
-## Part 3: A Real Failure — Cloning a Stale Task Definition (10 min)
+## Part 3: The Render and Deploy Stages (12 min)
 
-The first deploy attempt copied the *previous* task definition (Module 9's revision 3) and only
-swapped its image — the same shortcut it's tempting to script directly into a Jenkinsfile's shell
-steps. Running it produced a real failure:
-
-```
-ResourceInitializationError: unable to pull secrets or registry auth ...
-AccessDeniedException: ... is not authorized to perform: secretsmanager:GetSecretValue
-on resource: arn:...secretsmanager:...rds!db-...
-```
-
-Revision 3 referenced Module 9's RDS secret — which was deleted, along with the execution role's
-permission to read it, when Module 9 was torn down. Cloning an old revision cloned that stale
-reference too. This is exactly why the pipeline's "Render Task Definition" stage
-(`render_taskdef.py.example`) starts from `aws ecs describe-task-definition` on the **current
-live** task definition and only swaps the image field — never a checked-in JSON file or a
-previously-registered copy that might be out of date, or worse, reference something that no
-longer exists.
-
-The fix: build a clean task definition from the current live one and register that instead:
+The pipeline's `Deploy` stage does two things: build a new task definition, then point the ECS
+service at it. Building the task definition always starts from the **current live** definition,
+never a checked-in JSON file or a previously-registered copy:
 
 ```bash
-aws ecs register-task-definition --cli-input-json file://taskdef-clean.json
-# revision 5, referencing the newly-pushed image
+aws ecs describe-task-definition --task-definition leap-mission-service \
+  --query taskDefinition > current-taskdef.json
+python3 render_taskdef.py current-taskdef.json <account>.dkr.ecr.us-east-1.amazonaws.com/leap-mission-service:<sha> \
+  > new-taskdef.json
+aws ecs register-task-definition --cli-input-json file://new-taskdef.json
 ```
 
-## Part 4: Verified — the New Revision Actually Runs (8 min)
+`render_taskdef.py` strips the fields `describe-task-definition` returns that
+`register-task-definition` doesn't accept (revision number, ARNs, status), swaps in the new
+image, and leaves everything else — ports, log configuration, execution role — exactly as the
+live definition already has it. Starting from the live definition this way means the pipeline
+never has to keep its own separate copy of the task definition in sync with whatever's actually
+running.
+
+```bash
+aws ecs update-service --cluster leap-mission-cluster --service leap-mission-service \
+  --task-definition <new-taskdef-arn> --force-new-deployment
+aws ecs wait services-stable --cluster leap-mission-cluster --services leap-mission-service
+```
+
+## Part 4: Verified — the Deployed Revision Runs (8 min)
 
 ```bash
 aws ecs run-task --cluster leap-mission-cluster --task-definition leap-mission-service:5 \
   --launch-type FARGATE --network-configuration '...'
 ```
 
-Real CloudWatch logs confirm a genuine Spring Boot startup from the freshly built, freshly pushed
-image — the same verification discipline every earlier module has used, applied to a task
-definition a pipeline produced rather than a human typing commands by hand.
+CloudWatch logs confirm a Spring Boot startup from the freshly built, freshly pushed image — the
+same verification discipline every earlier module has used, applied to a task definition a
+pipeline produced rather than a human typing commands by hand.
 
 ## Key Message
 
-A deployment pipeline isn't a new set of concepts — it's the same build/push/register/verify
-sequence this sprint has run by hand since Module 6, made to run automatically and authenticate
-without ever storing a credential in the tool running it. Jenkins' instance profile and GitHub
-Actions' OIDC solve the same underlying problem (a pipeline needs temporary, non-stored AWS
-credentials) in the way that fits each tool. The one genuinely new risk automation introduces is
-exactly what today's real failure demonstrated: a script that blindly clones the last task
-definition can silently carry forward something that's since been deleted. Building from the
-current live definition avoids it, regardless of which CI/CD tool is doing the building.
+A deployment pipeline isn't a new set of concepts — it's the same pipeline shape Sprint 1
+introduced (stages, triggered automatically, failing fast when something's wrong), running the
+same build/push/register/verify sequence this sprint has run by hand since Module 6, and
+authenticating without ever storing a credential in the tool running it. Jenkins' instance
+profile and other CI/CD tools' equivalent mechanisms all solve the same underlying problem — a
+pipeline needs temporary, non-stored AWS credentials — in whichever way fits that tool.
 
 ## Transition to the Lab
 

@@ -10,15 +10,11 @@ Run for real, building on Module 6's ECR repository and Module 7's cluster and e
   `aws iam get-instance-profile`.
 - A permissions policy scoped to four statements (`ECRAuth`, `ECRPush`, `ECSDeploy`,
   `PassExecutionRoleOnly`), each naming a specific resource ARN where the action supports it.
-- Docker login, build, and push executed directly: a real digest returned from ECR, confirming
-  the push succeeded.
-- The first deploy attempt, cloning Module 9's task definition revision 3 and swapping only the
-  image, failed with a genuine `AccessDeniedException` — revision 3 referenced a Secrets Manager
-  secret that Module 9's own cleanup had already deleted, along with the execution role's
-  permission to read it.
-- A clean task definition, built from the current live one via `describe-task-definition` rather
-  than a checked-in copy, registered as revision 5 and run successfully — real CloudWatch logs
-  confirmed a genuine Spring Boot startup from the newly built image.
+- Docker login, build, and push executed directly: a digest returned from ECR, confirming the
+  push succeeded.
+- A task definition built from the current live one via `describe-task-definition`, image
+  swapped, registered as a new revision and run successfully — CloudWatch logs confirmed a
+  Spring Boot startup from the newly built image.
 
 ## The Reflection Question
 
