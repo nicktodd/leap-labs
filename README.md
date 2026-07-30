@@ -61,7 +61,7 @@ used, since the underlying infrastructure is torn down after each module's lab.
 | 9 | Managed Data & Secrets: RDS & Secrets Manager | [labs/09-managed-data-and-secrets-rds-and-secrets-manager/README.md](labs/09-managed-data-and-secrets-rds-and-secrets-manager/README.md) |
 | 10 | Observability & Cost Awareness | [labs/10-observability-and-cost-awareness/README.md](labs/10-observability-and-cost-awareness/README.md) |
 | 11 | Deployment Automation: Scripting the Full Pipeline | [labs/11-deployment-automation-scripting-the-full-pipeline/README.md](labs/11-deployment-automation-scripting-the-full-pipeline/README.md) |
-| 12 | Final Capstone Preparations & Sprint 11 Wrap-up | _coming soon_ |
+| 12 | Final Capstone Preparations & Sprint 11 Wrap-up | [labs/12-final-capstone-preparations-and-sprint-11-wrap-up/README.md](labs/12-final-capstone-preparations-and-sprint-11-wrap-up/README.md) |
 
 ## Friday: Final Showcase
 
