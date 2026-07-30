@@ -40,10 +40,6 @@ Unlike prior sprints, most of this sprint's "solution" is a set of real AWS reso
 than source code — model answers describe verified CLI/console output and the exact commands
 used, since the underlying infrastructure is torn down after each module's lab.
 
-Instructors: see [`INSTRUCTOR-GUIDE.md`](INSTRUCTOR-GUIDE.md) for the week's schedule, AWS setup
-and cost/teardown discipline, threads that recur across multiple modules, and Friday showcase
-guidance.
-
 ## Getting started
 
 1. Clone this repository.
