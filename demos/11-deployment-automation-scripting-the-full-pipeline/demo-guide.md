@@ -120,6 +120,29 @@ aws ecs update-service --cluster leap-mission-cluster --service leap-mission-ser
 aws ecs wait services-stable --cluster leap-mission-cluster --services leap-mission-service
 ```
 
+Wired into the Jenkinsfile, these are exactly the shell commands inside a `Deploy` stage,
+sitting alongside the `Build and Push` stage from Part 2 in the same pipeline:
+
+```groovy
+stage('Deploy') {
+  steps { sh '''
+    aws ecs describe-task-definition --task-definition leap-mission-service \
+      --query taskDefinition > current-taskdef.json
+    python3 render_taskdef.py current-taskdef.json \
+      $ECR_REGISTRY/$REPO:$TAG > new-taskdef.json
+    aws ecs register-task-definition --cli-input-json file://new-taskdef.json \
+      --query taskDefinition.taskDefinitionArn --output text > new-taskdef-arn.txt
+
+    aws ecs update-service --cluster $ECS_CLUSTER --service $ECS_SERVICE \
+      --task-definition $(cat new-taskdef-arn.txt) --force-new-deployment
+    aws ecs wait services-stable --cluster $ECS_CLUSTER --services $ECS_SERVICE
+  ''' }
+}
+```
+
+Jenkins runs a pipeline's stages in order — `Deploy` only starts once `Build and Push` has
+completed successfully, the same fail-fast behaviour Sprint 1's CI/CD fundamentals covered.
+
 ## Part 4: Verified — the Deployed Revision Runs (8 min)
 
 ```bash
