@@ -16,7 +16,8 @@ By the end of this lab you will have:
 
 ## Setup
 
-- Docker Desktop, Java 21, Maven, and Node.js installed
+- Access to your Linux Docker host — connect in your preferred way (see Sprint 1 Module 3) —
+  with Java 21, Maven, and Node.js installed
 - The Sprint 3 Postgres container running: `docker start sprint6-postgres`
 - Given, don't modify: everything under `src/` (Module 11's assembled service), `Dockerfile`
   (Module 12's), and `shared/auth-stub/Dockerfile` (containerising the auth stub itself, given —
