@@ -2,8 +2,9 @@
 
 ## Setup
 
-Docker installed and running. Local checkouts of the mission service (Sprint 6) and the auth
-service (Sprint 8), each already containing a working `Dockerfile`.
+Access to your Linux Docker host — connect in your preferred way (see Sprint 1 Module 3) — with
+the AWS CLI configured. Checkouts of the mission service (Sprint 6) and the auth service (Sprint
+8) cloned or copied onto that host, each already containing a working `Dockerfile`.
 
 ## Task
 
