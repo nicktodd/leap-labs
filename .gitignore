@@ -9,3 +9,4 @@ node_modules/
 *.jar
 !.mvn/wrapper/*.jar
 .env
+.DS_Store
