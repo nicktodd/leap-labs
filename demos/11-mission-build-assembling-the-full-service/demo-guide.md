@@ -6,7 +6,7 @@ module behind it. Today is entirely about the seam between them.
 ## Start Everything
 
 ```bash
-docker start sprint6-postgres      # Module 7
+# Local mission Postgres database from Module 7 just needs to be running
 cd shared/auth-stub && npm start   # Module 9, http://localhost:4000
 cd demos/11-mission-build-assembling-the-full-service && mvn spring-boot:run
 ```
@@ -25,7 +25,7 @@ curl -s -H "Authorization: Bearer $TOKEN" -X POST http://localhost:8080/accounts
 Then, in a second terminal, prove it actually landed in the database:
 
 ```bash
-docker exec -e PGPASSWORD=mission sprint6-postgres psql -U postgres -d mission -c \
+psql -U postgres -h localhost -d mission -c \
   "SELECT h.account_id, i.ticker, h.quantity FROM holdings h JOIN instruments i ON h.instrument_id=i.instrument_id WHERE h.account_id=1 AND i.ticker='ULVR.L';"
 ```
 

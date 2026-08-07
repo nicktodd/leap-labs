@@ -13,11 +13,8 @@ By the end of this lab you will have:
 ## Setup
 
 - Java 21, Maven, and Node.js installed
-- The Sprint 3 Postgres container running:
-
-  ```bash
-  docker start sprint6-postgres    # started in Module 7; no-op if already running
-  ```
+- Your local `mission` Postgres database from Module 7, seeded with the Sprint 3 enterprise
+  schema (nothing to start — a local Postgres server just needs to be running)
 - The shared auth stub running (leave it running for the whole lab):
 
   ```bash

@@ -39,6 +39,20 @@ docker build -t mission-service:m12 .
 docker images | grep mission-service
 ```
 
+## Postgres, Containerised for the First Time
+
+Every earlier module ran Postgres from the local install. Today it moves into a container too:
+
+```bash
+docker run -d --name sprint6-postgres -e POSTGRES_PASSWORD=mission -e POSTGRES_DB=mission \
+  -p 5433:5432 postgres:16-alpine
+docker cp ../../../leap-sprint3/shared/enterprise-schema.sql sprint6-postgres:/schema.sql
+docker exec -e PGPASSWORD=mission sprint6-postgres psql -U postgres -d mission -f /schema.sql
+```
+
+(If this container already exists from an earlier run of this module, `docker start
+sprint6-postgres` is enough.)
+
 ## Networking: Container-to-Container, Not `localhost`
 
 ```bash
@@ -50,12 +64,14 @@ docker run -d --name mission-service-m12 --network mission-net -p 8081:8080 \
   mission-service:m12
 ```
 
-Point at `SPRING_DATASOURCE_URL`. Every module until now used `localhost:5433` — the **published**
-port on the host. Inside a Docker network, containers reach each other by **container name** and
-the **internal** port (`5432`, not `5433`). This is Spring Boot's standard environment-variable
-override (`spring.datasource.url` → `SPRING_DATASOURCE_URL`) — no code change, no rebuild, just a
-different value at `docker run` time. This is the same 12-factor idea from Sprint 1/2's CI/CD
-modules, applied to a container instead of a Jenkins job.
+Point at `SPRING_DATASOURCE_URL`. Every earlier module pointed straight at `localhost:5432` — the
+local install. The new Postgres container also publishes `localhost:5433` on the host (visible in
+the `docker run` above), but the containerised service never uses that published port. Inside a
+Docker network, containers reach each other by **container name** and the **internal** port
+(`5432`, not `5433`). This is Spring Boot's standard environment-variable override
+(`spring.datasource.url` → `SPRING_DATASOURCE_URL`) — no code change, no rebuild, just a different
+value at `docker run` time. This is the same 12-factor idea from Sprint 1/2's CI/CD modules,
+applied to a container instead of a Jenkins job.
 
 ## Prove the JWT Point From Module 9, Again
 

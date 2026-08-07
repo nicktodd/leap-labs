@@ -5,8 +5,8 @@ Everything before today has run on hardcoded data (`InMemoryPortfolioRepository`
 same `enterprise-schema.sql` learners already know from Sprint 3.
 
 ```bash
-# Confirm the container is up (started earlier in the sprint)
-docker start sprint6-postgres    # no-op if already running
+# Confirm the local mission database exists (created earlier in the sprint, from
+# Sprint 3's enterprise-schema.sql) - see the lab README's Setup section if not
 
 mvn spring-boot:run
 
@@ -75,4 +75,4 @@ this contrast up directly against JPA/Hibernate.
 ## Transition to the Lab
 
 Learners write one of each: an annotation-based `AdvisorMapper.findById` and the XML-based
-`TransactionMapper.xml`, against the same live Postgres container.
+`TransactionMapper.xml`, against the same live local Postgres database.

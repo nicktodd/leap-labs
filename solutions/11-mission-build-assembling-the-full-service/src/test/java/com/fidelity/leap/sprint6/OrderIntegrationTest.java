@@ -21,8 +21,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 // Pre-written - do not modify. Exercises the REAL, assembled service: real
 // Postgres (via AccountMapper), a real JWT from the real running auth stub,
-// real domain logic. Prerequisites (see README): the sprint6-postgres
-// container and the auth stub must both be running before you run this.
+// real domain logic. Prerequisites (see README): the local mission Postgres
+// database and the auth stub must both be running before you run this.
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class OrderIntegrationTest {
 

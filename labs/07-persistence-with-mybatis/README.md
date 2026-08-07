@@ -10,20 +10,21 @@ By the end of this lab you will have:
 
 ## Setup
 
-- Java 21, Maven, and Docker installed
-- A Postgres 16 container seeded with the Sprint 3 enterprise schema, listening on `localhost:5433`:
+- Java 21 and Maven installed
+- Your local Postgres server from Sprint 3 Module 2, with a fresh `mission` database seeded with
+  the enterprise schema:
 
   ```bash
-  docker run -d --name sprint6-postgres -e POSTGRES_PASSWORD=mission -e POSTGRES_DB=mission \
-    -p 5433:5432 postgres:16-alpine
-  docker cp ../../../leap-sprint3/shared/enterprise-schema.sql sprint6-postgres:/schema.sql
-  docker exec -e PGPASSWORD=mission sprint6-postgres psql -U postgres -d mission -f /schema.sql
+  psql -U postgres -h localhost -c "CREATE DATABASE mission;"
+  psql -U postgres -h localhost -d mission -f ../../../leap-sprint3/shared/enterprise-schema.sql
   ```
 
-  (If you already created this container earlier in the sprint, just make sure it's running:
-  `docker start sprint6-postgres`.)
+  (If you already created this database earlier in the sprint, there's nothing to do — it's
+  already seeded.)
 - Given, don't modify: `MissionServiceApplication.java`, `Advisor.java`, `Transaction.java`,
   `TransactionMapper.java` (interface only), `PortfolioController.java`, `application.properties`
+  — but do check `application.properties`' `spring.datasource.username`/`password` match your
+  own local Postgres superuser credentials from Sprint 3, and update them if they don't
 
 ## Task
 
