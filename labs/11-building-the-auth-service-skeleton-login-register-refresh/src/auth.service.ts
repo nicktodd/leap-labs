@@ -46,7 +46,13 @@ export class AuthService {
   // UnauthorizedException("invalid or expired refresh token") - same as
   // refresh() does.
   logout(refreshToken: string): { loggedOut: true } {
-    throw new Error("TODO 1: implement logout");
+    const entry = this.findByRefreshToken(refreshToken);
+    if (!entry) {
+      throw new UnauthorizedException("invalid or expired refresh token");
+    }
+    const [, user] = entry;
+    user.refreshToken = null;
+    return { loggedOut: true };
   }
 
   private findByRefreshToken(refreshToken: string): [string, StoredUser] | undefined {

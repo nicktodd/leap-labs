@@ -11,7 +11,14 @@ const usernames = ["dave", "erin", "mallory"]; // mallory is NOT a known user
 // "Verified: <username>" on success, "Not verified: <username> (<error
 // message>)" on failure.
 async function checkSequentially(usernames) {
-  throw new Error("TODO 1: implement checkSequentially");
+  for (const username of usernames) {
+    try {
+      await verifyCredentials(username);
+      console.log(`Verified: ${username}`);
+    } catch (err) {
+      console.log(`Not verified: ${username} (${err.message})`);
+    }
+  }
 }
 
 // TODO 2: write an async function checkConcurrently(usernames) that starts
@@ -20,7 +27,18 @@ async function checkSequentially(usernames) {
 // want every result, success or not). For each outcome, print the same
 // two message formats as TODO 1.
 async function checkConcurrently(usernames) {
-  throw new Error("TODO 2: implement checkConcurrently");
+  const results = await Promise.allSettled(
+    usernames.map((username) => verifyCredentials(username).then(() => username))
+  );
+  for (let i = 0; i < results.length; i++) {
+    const username = usernames[i];
+    const result = results[i];
+    if (result.status === "fulfilled") {
+      console.log(`Verified: ${username}`);
+    } else {
+      console.log(`Not verified: ${username} (${result.reason.message})`);
+    }
+  }
 }
 
 console.log("--- sequential ---");

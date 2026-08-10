@@ -11,16 +11,18 @@ import { morningAttempts, afternoonAttempts } from "./attempts-data.mjs";
 
 // TODO 1: combine morningAttempts and afternoonAttempts into one array
 // called allAttempts, using the spread operator (no loop, no .concat()).
-const allAttempts = (() => {
-  throw new Error("TODO 1: build allAttempts with spread");
-})();
+const allAttempts = [...morningAttempts, ...afternoonAttempts];
 
 // TODO 2: write describeOutcome as an ARROW FUNCTION that takes a single
 // attempt object, destructures { username, outcome } in its parameter
 // list, and returns "<username> logged in successfully" or
 // "<username> failed to log in" using an if/else (not a ternary).
-const describeOutcome = () => {
-  throw new Error("TODO 2: implement describeOutcome");
+const describeOutcome = ({ username, outcome }) => {
+  if (outcome === "success") {
+    return `${username} logged in successfully`;
+  } else {
+    return `${username} failed to log in`;
+  }
 };
 
 for (const attempt of allAttempts) {
@@ -45,8 +47,18 @@ console.log(`Summary: ${successCount} successful, ${failCount} failed`);
 // checkLockouts(attempts, ...usernames) using a REST parameter, returning
 // the array of usernames that are locked out, and call it below with
 // "dave", "erin", and "frank".
-const isLockedOut = () => {
-  throw new Error("TODO 3: implement isLockedOut");
+const isLockedOut = (attempts, username) => {
+  let consecutive = 0;
+  for (const attempt of attempts) {
+    if (attempt.username !== username) continue;
+    if (attempt.outcome === "fail") {
+      consecutive++;
+      if (consecutive >= 2) return true;
+    } else {
+      consecutive = 0;
+    }
+  }
+  return false;
 };
 const checkLockouts = (attempts, ...usernames) =>
   usernames.filter((username) => isLockedOut(attempts, username));

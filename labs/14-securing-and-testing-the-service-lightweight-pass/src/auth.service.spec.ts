@@ -10,24 +10,22 @@ describe("AuthService", () => {
 
   it("logs in and receives a valid access token and refresh token", async () => {
     await service.register("carol", "mission123", ["MISSION_OPERATOR"]);
-    // TODO 1: log in as carol with the correct password, then assert that
-    // accessToken and refreshToken are both strings, and that they are
-    // NOT equal to each other.
-    throw new Error("TODO 1: not implemented");
+    const { accessToken, refreshToken } = await service.login("carol", "mission123");
+    expect(typeof accessToken).toBe("string");
+    expect(typeof refreshToken).toBe("string");
+    expect(accessToken).not.toEqual(refreshToken);
   });
 
   it("issues an access token that validates and carries the right claims", async () => {
     await service.register("carol", "mission123", ["MISSION_OPERATOR"]);
-    // TODO 2: log in, then verify the accessToken with
-    // jwt.verify(accessToken, JWT_SECRET) and assert the decoded
-    // payload's sub is "carol" and roles is ["MISSION_OPERATOR"].
-    throw new Error("TODO 2: not implemented");
+    const { accessToken } = await service.login("carol", "mission123");
+    const decoded = jwt.verify(accessToken, JWT_SECRET) as { sub: string; roles: string[] };
+    expect(decoded.sub).toBe("carol");
+    expect(decoded.roles).toEqual(["MISSION_OPERATOR"]);
   });
 
   it("rejects login with an incorrect password", async () => {
     await service.register("carol", "mission123", ["MISSION_OPERATOR"]);
-    // TODO 3: assert that service.login("carol", "wrong-password")
-    // rejects (hint: expect(...).rejects.toThrow()).
-    throw new Error("TODO 3: not implemented");
+    await expect(service.login("carol", "wrong-password")).rejects.toThrow();
   });
 });

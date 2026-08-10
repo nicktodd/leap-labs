@@ -25,8 +25,9 @@ export class AuthController {
     return this.authService.refresh(body.refreshToken);
   }
 
-  // TODO 2: add a POST /auth/logout route here, following the exact same
-  // shape as refresh() above - @Post("logout"), @HttpCode(200), a
-  // @Body() body: RefreshDto parameter, calling
-  // this.authService.logout(body.refreshToken).
+  @Post("logout")
+  @HttpCode(200)
+  logout(@Body() body: RefreshDto) {
+    return this.authService.logout(body.refreshToken);
+  }
 }

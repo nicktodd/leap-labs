@@ -13,6 +13,15 @@ export class AttemptsService {
   // counted from the attempts array above - identical logic to Module
   // 2/3's counting.
   getSummary() {
-    throw new Error("TODO 1: implement getSummary");
+    let successCount = 0;
+    let failCount = 0;
+    for (const attempt of attempts) {
+      if (attempt.outcome === "success") {
+        successCount++;
+      } else {
+        failCount++;
+      }
+    }
+    return { successCount, failCount };
   }
 }

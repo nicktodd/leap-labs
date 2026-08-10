@@ -20,8 +20,8 @@ console.log(`${successCount} successful, ${failCount} failed`);
 // Promise.then, then setTimeout. Then uncomment and run it for real to
 // check your prediction.
 
-// console.log("sync A");
-// setTimeout(() => console.log("setTimeout"), 0);
-// Promise.resolve().then(() => console.log("promise.then"));
-// process.nextTick(() => console.log("nextTick"));
-// console.log("sync B");
+console.log("sync A");
+setTimeout(() => console.log("setTimeout"), 0);
+Promise.resolve().then(() => console.log("promise.then"));
+process.nextTick(() => console.log("nextTick"));
+console.log("sync B");

@@ -48,10 +48,7 @@ export class AuthService {
     const accessToken = this.issueAccessToken(username, user.roles);
     const refreshToken = randomBytes(32).toString("hex");
     user.refreshToken = refreshToken;
-    // TODO 4: call logAuthEvent("login_success", username) here - after
-    // the password check has already succeeded, before the return below.
-    // Do NOT log the password or either token: logAuthEvent's signature
-    // doesn't even accept them, on purpose.
+    logAuthEvent("login_success", username);
     return { accessToken, refreshToken };
   }
 

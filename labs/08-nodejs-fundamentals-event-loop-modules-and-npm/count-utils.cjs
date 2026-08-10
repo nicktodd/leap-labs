@@ -4,7 +4,16 @@
 // export keyword).
 
 function countByOutcome(attempts) {
-  throw new Error("TODO 1: implement countByOutcome");
+  let successCount = 0;
+  let failCount = 0;
+  for (const attempt of attempts) {
+    if (attempt.outcome === "success") {
+      successCount++;
+    } else {
+      failCount++;
+    }
+  }
+  return { successCount, failCount };
 }
 
 module.exports = { countByOutcome };

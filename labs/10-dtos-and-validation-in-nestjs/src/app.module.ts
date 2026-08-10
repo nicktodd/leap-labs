@@ -7,7 +7,7 @@ import { RegisterService } from "./register.service";
 // TODO 2: add RegisterController to controllers and RegisterService to
 // providers, alongside the Verification pieces already here.
 @Module({
-  controllers: [VerificationController],
-  providers: [VerificationService],
+  controllers: [VerificationController, RegisterController],
+  providers: [VerificationService, RegisterService],
 })
 export class AppModule {}

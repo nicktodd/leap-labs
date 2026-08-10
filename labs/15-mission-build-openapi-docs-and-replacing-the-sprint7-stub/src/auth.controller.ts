@@ -1,25 +1,25 @@
 import { Body, Controller, Post, HttpCode } from "@nestjs/common";
-// TODO 2: import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger" here.
+import { ApiTags, ApiOperation, ApiResponse } from "@nestjs/swagger";
 import { AuthService } from "./auth.service";
 import { LoginDto } from "./login.dto";
 import { RegisterDto } from "./register.dto";
 
-// TODO 2: add @ApiTags("auth") above the class, so both routes below are
-// grouped together in the generated docs instead of sitting in "default".
+@ApiTags("auth")
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  // TODO 2: add @ApiOperation({ summary: "..." }) and two @ApiResponse(...)
-  // decorators (one per status code this endpoint can actually return -
-  // check auth.service.ts for what register() throws).
+  @ApiOperation({ summary: "Register a new user" })
+  @ApiResponse({ status: 201, description: "User registered successfully" })
+  @ApiResponse({ status: 409, description: "Username already taken" })
   @Post("register")
   register(@Body() body: RegisterDto) {
     return this.authService.register(body.username, body.password);
   }
 
-  // TODO 2: same again for login - one @ApiOperation, and an @ApiResponse
-  // for each status code login() can return.
+  @ApiOperation({ summary: "Log in and receive access and refresh tokens" })
+  @ApiResponse({ status: 200, description: "Login successful, tokens returned" })
+  @ApiResponse({ status: 401, description: "Invalid username or password" })
   @Post("login")
   @HttpCode(200)
   login(@Body() body: LoginDto) {

@@ -1,11 +1,8 @@
 import { Injectable, UnauthorizedException, ConflictException } from "@nestjs/common";
-// TODO 1: import bcrypt here.
+import * as bcrypt from "bcrypt";
 
 interface StoredUser {
-  // TODO 1: this should store a HASH, not the plain-text password -
-  // rename this field to passwordHash once you're storing a hash here
-  // instead (update every reference below to match).
-  password: string;
+  passwordHash: string;
   refreshToken: string | null;
 }
 
@@ -19,23 +16,18 @@ export class AuthService {
     void this.register("dave", "mission123");
   }
 
-  // TODO 1: this method needs to be async, and needs to HASH password
-  // with bcrypt.hash(password, SALT_ROUNDS) before storing it.
   async register(username: string, password: string): Promise<{ username: string; registered: true }> {
     if (this.users.has(username)) {
       throw new ConflictException(`${username} is already registered`);
     }
-    this.users.set(username, { password, refreshToken: null });
+    const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
+    this.users.set(username, { passwordHash, refreshToken: null });
     return { username, registered: true };
   }
 
-  // TODO 2: this method needs to use bcrypt.compare(password,
-  // user.password) instead of a direct === comparison - a hash can
-  // never be compared with === against the plain-text password that
-  // produced it.
   async login(username: string, password: string): Promise<{ accessToken: string; refreshToken: string }> {
     const user = this.users.get(username);
-    if (!user || user.password !== password) {
+    if (!user || !(await bcrypt.compare(password, user.passwordHash))) {
       throw new UnauthorizedException("invalid username or password");
     }
     const accessToken = this.issueStubToken("access", username);
