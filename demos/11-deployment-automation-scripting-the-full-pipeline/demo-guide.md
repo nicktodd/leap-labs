@@ -9,7 +9,7 @@ task definition history, all still in place.
 Every module since Module 6 has run the same sequence of commands by hand: build an image, push
 it to ECR, register a task definition, deploy it. A pipeline runs that same sequence
 automatically, triggered by a commit landing on the main branch. This module uses **Jenkins**,
-one of the most widely deployed CI/CD tools in real organisations (Fidelity included, per the
+one of the most widely deployed CI/CD tools in real organisations (the firm included, per the
 mission brief) — but the sequence itself (build, push, deploy, verify) is the same regardless of
 which tool runs it.
 

@@ -118,7 +118,7 @@ The genuine trade-off: a NAT Gateway is one resource that covers *any* outbound 
 public internet included — simple, but broader than the problem requires, and it does route
 through the internet path, even between two AWS services. PrivateLink is narrower and keeps
 traffic entirely inside AWS's network (a real benefit for a regulated environment like
-Fidelity's), but it only covers the specific services you provision an endpoint for — reaching
+the firm's), but it only covers the specific services you provision an endpoint for — reaching
 some unrelated third-party API from that same private subnet would still need a NAT Gateway (or
 nothing, if no such need exists).
 

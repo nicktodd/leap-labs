@@ -49,14 +49,14 @@ services are containerised and need somewhere to actually run, ECS is a proper h
 (Modules 7-8) in this version, with ECR (Module 6), RDS, and Secrets Manager (Module 9) taught
 as applied deployment steps rather than overview slides.
 
-## A Note on Fidelity's Own AWS Environment
+## A Note on the Firm's Own AWS Environment
 
-This sprint is taught against generic AWS principles, using a training AWS account. Fidelity
+This sprint is taught against generic AWS principles, using a training AWS account. The firm
 operates its own AWS implementation, with its own guardrails, approved service catalogue, and
-security baselines that will differ from what's taught here in real, specific ways. A Fidelity
-platform engineering SME session happens before Module 1 to brief candidates on the
-Fidelity-specific version of everything this sprint covers, ECS included — this sprint's labs
-teach the underlying AWS concepts; the SME session teaches how Fidelity actually does it.
+security baselines that will differ from what's taught here in real, specific ways. A platform
+engineering SME session from the firm happens before Module 1 to brief candidates on the
+firm-specific version of everything this sprint covers, ECS included — this sprint's labs
+teach the underlying AWS concepts; the SME session teaches how the firm actually does it.
 
 ## Non-Goals
 

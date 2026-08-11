@@ -23,9 +23,9 @@ doesn't touch that work directly; it teaches you how to put the mission (and, if
 your own extension) on AWS, reachable by a real URL instead of `localhost`. See
 `shared/mission-brief.md`.
 
-Before Module 1, a Fidelity platform engineering SME runs a session on Fidelity's own AWS
+Before Module 1, a platform engineering SME from the firm runs a session on the firm's own AWS
 environment — its guardrails, approved service catalogue, and security baselines. This sprint
-teaches generic AWS principles; that session teaches how Fidelity actually does it.
+teaches generic AWS principles; that session teaches how the firm actually does it.
 
 ## Structure
 
@@ -66,7 +66,7 @@ used, since the underlying infrastructure is torn down after each module's lab.
 ## Friday: Final Showcase
 
 Friday breaks from the usual weekly cadence — there's no guest speaker or Weekly Knowledge
-Check. The whole day is the Final Showcase: live demos to Fidelity leaders, instructors, and
+Check. The whole day is the Final Showcase: live demos to the firm's leaders, instructors, and
 peers, covering the trading platform, your chosen Sprint 10 extension, your design decisions,
 Copilot usage, and code quality story, followed by panel Q&A. The day closes with a Group Retro
 reflecting on the full 11-sprint programme, not just this week.
