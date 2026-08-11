@@ -12,8 +12,8 @@ By the end of this lab you will have:
 This is a short, written discussion — not a coding kata. Work in pairs. You have two real
 implementations to work from, not just opinions:
 
-- `demos/07-persistence-with-mybatis/src/main/java/com/fidelity/leap/sprint6/InstrumentMapper.java`
-- `demos/08-mybatis-in-context/src/main/java/com/fidelity/leap/sprint6/InstrumentRepository.java`
+- `demos/07-persistence-with-mybatis/src/main/java/com/neueda/leap/sprint6/InstrumentMapper.java`
+- `demos/08-mybatis-in-context/src/main/java/com/neueda/leap/sprint6/InstrumentRepository.java`
 
 Run both (one at a time, both on port 8080) and hit `GET /instruments/AAPL` against each. Also
 open `Instrument.java` in both projects.

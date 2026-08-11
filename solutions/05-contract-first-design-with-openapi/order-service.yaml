@@ -5,7 +5,7 @@ info:
     Retrieves the status of a previously submitted order.
   version: 1.0.0
   license:
-    name: Internal use only - Fidelity
+    name: Internal use only
 
 servers:
   - url: /v1

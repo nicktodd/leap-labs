@@ -6,7 +6,7 @@ info:
     See shared/mission-brief.md for the underlying business rules.
   version: 1.0.0
   license:
-    name: Internal use only - Fidelity
+    name: Internal use only
 
 servers:
   - url: /v1

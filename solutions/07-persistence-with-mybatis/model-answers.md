@@ -13,7 +13,7 @@ Advisor findById(int advisorId);
 ## Kata B — `TransactionMapper.xml`
 
 ```xml
-<select id="findByAccountId" resultType="com.fidelity.leap.sprint6.Transaction">
+<select id="findByAccountId" resultType="com.neueda.leap.sprint6.Transaction">
     SELECT
         t.transaction_id AS transactionId,
         i.ticker          AS ticker,

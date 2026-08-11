@@ -33,8 +33,8 @@ Instrument findByTicker(String ticker);
 signature; the SQL lives in a separate file, `HoldingMapper.xml`, joining three tables:
 
 ```xml
-<mapper namespace="com.fidelity.leap.sprint6.HoldingMapper">
-  <select id="findByClientId" resultType="com.fidelity.leap.sprint6.Holding">
+<mapper namespace="com.neueda.leap.sprint6.HoldingMapper">
+  <select id="findByClientId" resultType="com.neueda.leap.sprint6.Holding">
     SELECT c.client_id AS clientId, c.name AS clientName, i.ticker AS ticker, h.quantity AS quantity
     FROM holdings h
     JOIN accounts a    ON h.account_id = a.account_id

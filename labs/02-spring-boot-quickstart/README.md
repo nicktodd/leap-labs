@@ -18,7 +18,7 @@ By the end of this lab you will have:
 
 ### Step 1 — The application entry point
 
-Create `src/main/java/com/fidelity/leap/sprint6/MissionServiceApplication.java`:
+Create `src/main/java/com/neueda/leap/sprint6/MissionServiceApplication.java`:
 
 - Annotate the class with `@SpringBootApplication`
 - Give it a `public static void main(String[] args)` method that calls
@@ -26,7 +26,7 @@ Create `src/main/java/com/fidelity/leap/sprint6/MissionServiceApplication.java`:
 
 ### Step 2 — A "hello" endpoint
 
-Create `src/main/java/com/fidelity/leap/sprint6/HelloController.java`:
+Create `src/main/java/com/neueda/leap/sprint6/HelloController.java`:
 
 - Annotate the class with `@RestController`
 - Add a method annotated `@GetMapping("/hello")` that returns a `String` greeting of your choice

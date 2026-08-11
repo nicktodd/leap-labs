@@ -28,7 +28,7 @@ requirement wasn't visible from Module 4's REST principles alone — it only bec
 real data entered the picture in Module 7.
 
 **2. Was Sprint 5's logic really unchanged?** Yes — literally, byte-for-byte, other than the
-package declaration (`com.fidelity.leap.sprint5` → `com.fidelity.leap.sprint6.domain`) and one
+package declaration (`com.neueda.leap.sprint5` → `com.neueda.leap.sprint6.domain`) and one
 added comment. `OrderValidator.java`, `HoldingUpdater.java`, and the `Instrument` hierarchy in
 Module 11's `domain/` package are the exact classes from Sprint 5, Module 13. The mission brief's
 claim held up under direct inspection, not just as a stated intention.
