@@ -7,11 +7,11 @@ implementation.
 ## Verified test run
 
 ```
-Running com.fidelity.leap.sprint7.legacy.FeeCalculatorTest
+Running com.neueda.leap.sprint7.legacy.FeeCalculatorTest
 Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
-Running com.fidelity.leap.sprint7.legacy.RecordTradeTest
+Running com.neueda.leap.sprint7.legacy.RecordTradeTest
 Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
-Running com.fidelity.leap.sprint7.legacy.TradeReportGeneratorCharacterisationTest
+Running com.neueda.leap.sprint7.legacy.TradeReportGeneratorCharacterisationTest
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0
 
 Tests run: 6, Failures: 0, Errors: 0, Skipped: 0

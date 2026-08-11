@@ -21,7 +21,7 @@ mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
 ## Run the Order Service
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.OrderService
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.OrderService
 ```
 
 Verified output:
@@ -44,7 +44,7 @@ added at the end. Nothing about how orders are validated or processed changed.
 ## Run the Settlement Consumer
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.SettlementConsumer
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.SettlementConsumer
 ```
 
 Verified output:

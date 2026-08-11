@@ -45,15 +45,15 @@ point of Part B is practicing the cleanup, not leaving a trace in a real shared 
 ```bash
 mkdir secrets-lab && cd secrets-lab
 git init
-mkdir -p src/main/java/com/fidelity/leap/sprint7
+mkdir -p src/main/java/com/neueda/leap/sprint7
 ```
 
-Create `src/main/java/com/fidelity/leap/sprint7/PaymentGateway.java` with this content (the
+Create `src/main/java/com/neueda/leap/sprint7/PaymentGateway.java` with this content (the
 values are fake and non-functional, formatted to look realistic on purpose — that's what makes
 this a fair test of the tool):
 
 ```java
-package com.fidelity.leap.sprint7;
+package com.neueda.leap.sprint7;
 
 public class PaymentGateway {
   private static final String STRIPE_API_KEY = "stripe_key_placeholder_for_training";

@@ -8,7 +8,7 @@ miniature, then fixes it properly.
 
 ```bash
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.SilentDropLoader
+java -cp target/classes com.neueda.leap.sprint7.SilentDropLoader
 ```
 
 Verified output:
@@ -25,7 +25,7 @@ exactly: a catch block with nothing in it destroys the evidence a problem ever e
 ## Run the Quarantine Version
 
 ```bash
-java -cp target/classes com.fidelity.leap.sprint7.QuarantineLoader
+java -cp target/classes com.neueda.leap.sprint7.QuarantineLoader
 ```
 
 Verified output:

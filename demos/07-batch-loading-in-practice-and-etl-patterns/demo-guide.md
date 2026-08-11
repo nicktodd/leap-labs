@@ -19,8 +19,8 @@ mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
 ## Run the Naive Loader Twice
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.NaiveLoader
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.NaiveLoader
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.NaiveLoader
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.NaiveLoader
 ```
 
 Verified output:
@@ -41,8 +41,8 @@ batch-loading bug: plain `INSERT` has no memory of what it already loaded.
 ## Run the Idempotent Loader Twice
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.IdempotentLoader
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.IdempotentLoader
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.IdempotentLoader
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.IdempotentLoader
 ```
 
 Verified output:

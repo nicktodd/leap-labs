@@ -31,7 +31,7 @@ mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
 Run the given `FraudDetectionConsumer`:
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.FraudDetectionConsumer
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.FraudDetectionConsumer
 ```
 
 It crashes. Read the full stack trace before doing anything else — specifically the `Caused by:`

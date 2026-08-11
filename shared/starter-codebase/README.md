@@ -12,7 +12,7 @@ working, and what it would cost to safely change, is the question this sprint as
 ```bash
 cd shared/starter-codebase
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.legacy.TradeReportGenerator
+java -cp target/classes com.neueda.leap.sprint7.legacy.TradeReportGenerator
 ```
 
 Reads `src/main/resources/trades.csv` by default (or pass a path as the first argument), prints a

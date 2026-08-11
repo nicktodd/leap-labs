@@ -61,7 +61,7 @@ mvn dependency:tree
 ```
 
 ```
-com.fidelity.leap:sprint7-m13-dependency-scan-demo:jar:0.1.0
+com.neueda.leap:sprint7-m13-dependency-scan-demo:jar:0.1.0
 \- org.apache.logging.log4j:log4j-core:jar:2.14.1:compile
    \- org.apache.logging.log4j:log4j-api:jar:2.14.1:compile
 ```

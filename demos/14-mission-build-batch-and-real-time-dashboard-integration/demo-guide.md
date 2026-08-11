@@ -69,7 +69,7 @@ batch (settled, end-of-day)        5
 
 ```bash
 cd ../09-mission-build-implementing-kafka-topics-producers-and-consumers
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.OrderService
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.OrderService
 cd ../14-mission-build-batch-and-real-time-dashboard-integration
 python dashboard.py
 ```

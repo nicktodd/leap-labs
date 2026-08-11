@@ -6,7 +6,7 @@ Run both, back to back, and read the timestamps out loud.
 
 ```bash
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.RequestDrivenExample
+java -cp target/classes com.neueda.leap.sprint7.RequestDrivenExample
 ```
 
 Expect one call after another, each ~400ms, totalling roughly 1.2 seconds. **Point at this
@@ -19,7 +19,7 @@ itself has to be changed to call it.
 ## Run the Event-Driven Example
 
 ```bash
-java -cp target/classes com.fidelity.leap.sprint7.EventDrivenExample
+java -cp target/classes com.neueda.leap.sprint7.EventDrivenExample
 ```
 
 Expect `publish()` to return in single-digit milliseconds, while the three listeners finish

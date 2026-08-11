@@ -24,7 +24,7 @@ None of these are opinions. Each one is something you can point at, count, and s
 
 ```bash
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.CodeSmellScanner
+java -cp target/classes com.neueda.leap.sprint7.CodeSmellScanner
 ```
 
 By default it scans `TradeReportGenerator.java` directly — no arguments needed if you're running

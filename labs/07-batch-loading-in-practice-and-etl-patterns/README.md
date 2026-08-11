@@ -28,8 +28,8 @@ mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
 Run `ConfirmationLoader` twice against `confirmations.csv`:
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.ConfirmationLoader
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.ConfirmationLoader
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.ConfirmationLoader
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.ConfirmationLoader
 ```
 
 Confirm what you see: does the row count double on the second run? This is the bug you're

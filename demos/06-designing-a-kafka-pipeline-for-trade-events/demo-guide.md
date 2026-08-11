@@ -7,7 +7,7 @@ work FOR you or AGAINST you: what do you use as the partition key, before any co
 
 ```bash
 mvn compile
-mvn exec:java -Dexec.mainClass=com.fidelity.leap.sprint7.PartitionKeyChoice
+mvn exec:java -Dexec.mainClass=com.neueda.leap.sprint7.PartitionKeyChoice
 ```
 
 Six trade events, three for `ACC-001` (BUY, SELL, BUY, in that order), produced twice with two

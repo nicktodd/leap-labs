@@ -12,7 +12,7 @@ By the end of this lab you will have:
 
 ```bash
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.CodeSmellScanner
+java -cp target/classes com.neueda.leap.sprint7.CodeSmellScanner
 ```
 
 Confirm the "Duplicated literals" section currently prints nothing — that's the gap you're

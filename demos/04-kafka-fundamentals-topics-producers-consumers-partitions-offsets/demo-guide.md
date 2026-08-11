@@ -8,7 +8,7 @@ picture.
 
 ```bash
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.PartitionedTopicSimulator
+java -cp target/classes com.neueda.leap.sprint7.PartitionedTopicSimulator
 ```
 
 ## Walk Through Each Term, Against Real Output

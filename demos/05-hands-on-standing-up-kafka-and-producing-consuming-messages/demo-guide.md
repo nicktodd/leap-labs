@@ -33,7 +33,7 @@ Point at the `--describe` output: three partitions, each with a leader — this 
 ```bash
 mvn compile
 mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.SimpleProducer
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.SimpleProducer
 ```
 
 Point at the output: `partition=0 offset=0`, `partition=1 offset=0`, and so on — **the broker
@@ -45,7 +45,7 @@ consequential setting in a production producer).
 ## Run the Consumer
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.SimpleConsumer
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.SimpleConsumer
 ```
 
 **Compare the output directly against Module 4's prediction**: AAPL's events (partition 0,

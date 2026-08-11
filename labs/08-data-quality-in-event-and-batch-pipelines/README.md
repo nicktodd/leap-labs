@@ -19,7 +19,7 @@ mvn compile
 Run `ConfirmationQualityCheck` as-is:
 
 ```bash
-java -cp target/classes com.fidelity.leap.sprint7.ConfirmationQualityCheck
+java -cp target/classes com.neueda.leap.sprint7.ConfirmationQualityCheck
 ```
 
 It reports **10 valid rows, 0 quarantined** — but `confirmations.csv` has four genuinely bad

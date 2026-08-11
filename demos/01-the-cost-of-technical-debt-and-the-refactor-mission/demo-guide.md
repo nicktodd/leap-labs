@@ -9,7 +9,7 @@ principle.
 ```bash
 cd shared/starter-codebase
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.legacy.TradeReportGenerator
+java -cp target/classes com.neueda.leap.sprint7.legacy.TradeReportGenerator
 ```
 
 Expect: `Processed 10 trades`, a per-ticker summary, a `report.csv` written to disk. Looks fine.

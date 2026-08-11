@@ -21,7 +21,7 @@ This is a **review, not a coding kata**. Work in pairs. Do not change any code i
   ```bash
   cd shared/starter-codebase
   mvn compile
-  java -cp target/classes com.fidelity.leap.sprint7.legacy.TradeReportGenerator
+  java -cp target/classes com.neueda.leap.sprint7.legacy.TradeReportGenerator
   ```
 - Read `shared/mission-brief.md`
 

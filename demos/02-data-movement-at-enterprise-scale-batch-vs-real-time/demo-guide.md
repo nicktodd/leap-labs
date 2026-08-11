@@ -6,7 +6,7 @@ Run both, back to back, and watch the timestamps. That's the entire demo.
 
 ```bash
 mvn compile
-java -cp target/classes com.fidelity.leap.sprint7.BatchSettlementJob
+java -cp target/classes com.neueda.leap.sprint7.BatchSettlementJob
 ```
 
 Expect two timestamps roughly **milliseconds** apart — "started" and "finished" — because the
@@ -16,7 +16,7 @@ between the first trade and the last; they were all "available" at the same inst
 ## Run the Live Feed Simulator
 
 ```bash
-java -cp target/classes com.fidelity.leap.sprint7.LivePriceFeedSimulator
+java -cp target/classes com.neueda.leap.sprint7.LivePriceFeedSimulator
 ```
 
 Expect six timestamps roughly **800ms apart**, printed as they happen, one at a time. **Point at

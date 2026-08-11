@@ -42,7 +42,7 @@ were produced, per account — same requirement Module 4's worksheet reasoned ab
 
 ### Part A — `SimpleProducer`
 
-Open `src/main/java/com/fidelity/leap/sprint7/SimpleProducer.java` and complete the three TODOs:
+Open `src/main/java/com/neueda/leap/sprint7/SimpleProducer.java` and complete the three TODOs:
 
 1. Build a `Properties` object with `bootstrap.servers`, `key.serializer`, and `value.serializer`.
 2. Build a `ProducerRecord` for topic `settlement-events`, keyed by `accountId`, with the given
@@ -55,7 +55,7 @@ Run it:
 ```bash
 mvn compile
 mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.SimpleProducer
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.SimpleProducer
 ```
 
 Until you implement it, running the producer throws immediately — that's expected. It's
@@ -74,7 +74,7 @@ Open `SimpleConsumer.java` and complete the three TODOs:
 Run it:
 
 ```bash
-java -cp "target/classes;$(cat cp.txt)" com.fidelity.leap.sprint7.SimpleConsumer
+java -cp "target/classes;$(cat cp.txt)" com.neueda.leap.sprint7.SimpleConsumer
 ```
 
 ## Deliverable
