@@ -3,7 +3,7 @@
 from pathlib import Path
 import pandas as pd
 
-DATA_PATH = Path(r"C:\Users\zackt\Documents\fidelity-leap-sprint4\shared\messy-trades-raw.csv")
+DATA_PATH = Path(r"C:\Users\zackt\Documents\leap-sprint4\shared\messy-trades-raw.csv")
 
 df = pd.read_csv(DATA_PATH)
 print(f"Starting row count: {len(df)}")

@@ -3,7 +3,7 @@
 import csv
 from pathlib import Path
 
-DATA_PATH = Path(r"C:\Users\zackt\Documents\fidelity-leap-sprint4\shared\trades.csv")
+DATA_PATH = Path(r"C:\Users\zackt\Documents\leap-sprint4\shared\trades.csv")
 OUTPUT_PATH = Path(__file__).parent / "client_summary.txt"
 
 # 1. Read all rows into a list of dicts using csv.DictReader

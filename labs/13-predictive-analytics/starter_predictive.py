@@ -8,7 +8,7 @@ from sklearn.linear_model import LinearRegression
 from sklearn.dummy import DummyRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error
 
-DATA_PATH = Path(r"C:\Users\zackt\Documents\fidelity-leap-sprint4\shared\trades.csv")
+DATA_PATH = Path(r"C:\Users\zackt\Documents\leap-sprint4\shared\trades.csv")
 df = pd.read_csv(DATA_PATH)
 
 # Features and target

@@ -3,7 +3,7 @@
 from pathlib import Path
 import pandas as pd
 
-BASE = Path(r"C:\Users\zackt\Documents\fidelity-leap-sprint4\shared")
+BASE = Path(r"C:\Users\zackt\Documents\leap-sprint4\shared")
 trades = pd.read_csv(BASE / "trades.csv", parse_dates=["trade_date"])
 advisors = pd.read_csv(BASE / "advisors.csv")
 

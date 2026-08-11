@@ -3,7 +3,7 @@
 from pathlib import Path
 import pandas as pd
 
-BASE = Path(r"C:\Users\zackt\Documents\fidelity-leap-sprint4\shared")
+BASE = Path(r"C:\Users\zackt\Documents\leap-sprint4\shared")
 
 ASSET_CLASS_MAP = {
     "equity": "Equity",

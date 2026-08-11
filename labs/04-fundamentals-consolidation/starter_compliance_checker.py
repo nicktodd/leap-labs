@@ -114,7 +114,7 @@ def write_report(
 def main() -> None:
     """Parse arguments and run the compliance check."""
     parser = argparse.ArgumentParser(description="Trade compliance checker")
-    parser.add_argument("--input", default=r"C:\Users\zackt\Documents\fidelity-leap-sprint4\shared\trades.csv")
+    parser.add_argument("--input", default=r"C:\Users\zackt\Documents\leap-sprint4\shared\trades.csv")
     parser.add_argument("--report", default="report.txt")
     parser.add_argument("--large-threshold", type=float, default=20000)
     parser.add_argument("--high-volume-threshold", type=float, default=150)
