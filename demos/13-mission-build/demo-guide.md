@@ -5,7 +5,7 @@ being reused.
 
 ```bash
 mvn package
-java -cp target/classes com.fidelity.leap.sprint5.MissionEngineDemo
+java -cp target/classes com.neueda.leap.sprint5.MissionEngineDemo
 ```
 
 ## What's Reused, Unchanged, From Earlier Modules

@@ -5,7 +5,7 @@ section is a direct payoff of earlier modules — make that link explicit as you
 
 ```bash
 mvn package
-java -cp target/classes com.fidelity.leap.sprint5.SolidDemo
+java -cp target/classes com.neueda.leap.sprint5.SolidDemo
 ```
 
 ## S — Single Responsibility Principle

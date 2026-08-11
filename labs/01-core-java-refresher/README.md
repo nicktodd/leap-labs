@@ -15,7 +15,7 @@ By the end of this lab you will have:
 
 ## Task
 
-Three small katas, each in its own class under `src/main/java/com/fidelity/leap/sprint5/`. Every
+Three small katas, each in its own class under `src/main/java/com/neueda/leap/sprint5/`. Every
 class currently throws `UnsupportedOperationException("TODO: ...")` — replace each with a real
 implementation. Do not modify the test files; they define what "correct" means for each kata.
 

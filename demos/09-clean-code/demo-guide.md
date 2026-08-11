@@ -4,7 +4,7 @@ Run `CleanCodeDemo.java` first, then walk through the two classes side by side.
 
 ```bash
 mvn package
-java -cp target/classes com.fidelity.leap.sprint5.CleanCodeDemo
+java -cp target/classes com.neueda.leap.sprint5.CleanCodeDemo
 ```
 
 ## The Point: Identical Output, Very Different Readability

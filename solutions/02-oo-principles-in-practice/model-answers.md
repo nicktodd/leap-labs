@@ -1,6 +1,6 @@
 # Module 2 Lab — Model Answer Notes
 
-See `src/main/java/com/fidelity/leap/sprint5/`. Verified: `mvn test` passes all 16 tests.
+See `src/main/java/com/neueda/leap/sprint5/`. Verified: `mvn test` passes all 16 tests.
 
 Key points to check in a delegate's solution:
 

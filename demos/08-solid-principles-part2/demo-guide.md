@@ -4,7 +4,7 @@ Run `SolidDemoPart2.java` end to end first, then walk back through it section by
 
 ```bash
 mvn package
-java -cp target/classes com.fidelity.leap.sprint5.SolidDemoPart2
+java -cp target/classes com.neueda.leap.sprint5.SolidDemoPart2
 ```
 
 ## I — Interface Segregation Principle
