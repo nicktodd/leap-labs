@@ -1,6 +1,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.fidelity.leap</groupId>
+    <groupId>com.neueda.leap</groupId>
     <artifactId>sprint5-m09-solution</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
