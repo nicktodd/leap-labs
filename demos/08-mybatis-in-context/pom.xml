@@ -8,7 +8,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.fidelity.leap</groupId>
+    <groupId>com.neueda.leap</groupId>
     <artifactId>sprint6-m08-demo</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>

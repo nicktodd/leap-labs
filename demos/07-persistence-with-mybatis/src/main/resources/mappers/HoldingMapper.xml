@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fidelity.leap.sprint6.HoldingMapper">
+<mapper namespace="com.neueda.leap.sprint6.HoldingMapper">
 
     <!-- namespace above must exactly match the Java interface's fully
          qualified name - that's how MyBatis wires this XML to that
          interface. id below must match the method name. -->
-    <select id="findByClientId" resultType="com.fidelity.leap.sprint6.Holding">
+    <select id="findByClientId" resultType="com.neueda.leap.sprint6.Holding">
         SELECT
             c.client_id   AS clientId,
             c.name        AS clientName,

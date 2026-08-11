@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.fidelity.leap.sprint6.AccountMapper">
+<mapper namespace="com.neueda.leap.sprint6.AccountMapper">
 
-    <select id="findInstrument" resultType="com.fidelity.leap.sprint6.InstrumentRow">
+    <select id="findInstrument" resultType="com.neueda.leap.sprint6.InstrumentRow">
         SELECT instrument_id AS instrumentId, ticker, asset_class AS assetClass
         FROM instruments
         WHERE ticker = #{ticker}
     </select>
 
-    <select id="findHolding" resultType="com.fidelity.leap.sprint6.HoldingRow">
+    <select id="findHolding" resultType="com.neueda.leap.sprint6.HoldingRow">
         SELECT h.holding_id AS holdingId, h.quantity AS quantity
         FROM holdings h
         JOIN instruments i ON h.instrument_id = i.instrument_id
