@@ -1,7 +1,9 @@
 package com.fidelity.leap.sprint6;
 
 import com.fidelity.leap.sprint6.domain.*;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.jwt.Jwt;
@@ -19,6 +21,7 @@ import java.util.NoSuchElementException;
 // Module 13, completely unchanged - see shared/mission-brief.md.
 @RestController
 @RequestMapping("/accounts/{accountId}/orders")
+@SecurityRequirement(name = "bearerAuth")
 public class OrderController {
 
     // A real risk limit would come from the client's own record - hardcoded
@@ -35,7 +38,7 @@ public class OrderController {
         this.accountMapper = accountMapper;
     }
 
-    @PostMapping
+    @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OrderResponseDto> submitOrder(@PathVariable int accountId,
                                                           @Valid @RequestBody OrderRequestDto dto,
                                                           @AuthenticationPrincipal Jwt jwt) {
