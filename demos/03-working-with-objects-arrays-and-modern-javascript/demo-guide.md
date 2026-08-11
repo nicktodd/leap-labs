@@ -314,7 +314,7 @@ import { morningAttempts, afternoonAttempts } from "./attempts-data.mjs";
 
 **Compare to Java:** `export` is JavaScript's `public`, applied per-declaration rather
 than per-class; `import { x } from "./file.mjs"` is doing the same job as Java's
-`import com.fidelity.attempts.Data;`, except the "package" here is just a relative file
+`import com.neueda.attempts.Data;`, except the "package" here is just a relative file
 path, not a directory structure mapped to a namespace. There's no `package` declaration
 to keep in sync with the folder layout — the file path *is* the reference.
 

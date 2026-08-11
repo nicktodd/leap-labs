@@ -5,7 +5,7 @@ set -euo pipefail
 # checkout - the one whose SecurityConfig this script proves needs zero
 # changes. Override it if your copy lives somewhere else:
 #   MISSION_SERVICE_DIR=/path/to/it ./integration-test.sh
-MISSION_SERVICE_DIR="${MISSION_SERVICE_DIR:-../../../fidelity-leap-sprint6/solutions/13-mission-build-containerise-integration-test-wrap-up}"
+MISSION_SERVICE_DIR="${MISSION_SERVICE_DIR:-../../../leap-sprint6/solutions/13-mission-build-containerise-integration-test-wrap-up}"
 
 NETWORK=mission-net
 POSTGRES=sprint6-postgres
