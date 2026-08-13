@@ -12,8 +12,9 @@ By the end of this lab you will have:
 
 - Your team's hardened DDL from Module 08 (including `client_holdings`)
 - Access to a Postgres instance
-- The `instruments` table from `shared/enterprise-schema.sql` (reuse the same instrument
-  universe rather than inventing new ones)
+- `shared/enterprise-schema.sql`, as the source instrument universe: populate your own
+  `instruments` table with the same tickers, names, asset classes, and currencies rather than
+  inventing new ones
 
 ## Task sheet
 
@@ -28,11 +29,9 @@ By the end of this lab you will have:
 3. Insert at least three model portfolios (e.g. "Balanced Growth", "Income Focus",
    "Adventurous Growth").
 4. For each model portfolio, insert 2-4 `model_portfolio_holdings` rows, referencing real
-   instruments from the enterprise schema, with target weights that add up to 100 for each
-   portfolio.
-5. Insert at least five clients into your mission model's `clients` table (or reuse the
-   enterprise schema's clients if your team decided to share that table, reference Module 06's
-   design decision).
+   instruments (the same ticker universe as the enterprise schema), with target weights that
+   add up to 100 for each portfolio.
+5. Insert at least five clients into your mission model's `clients` table.
 6. Subscribe each client to a model portfolio via `client_subscriptions`.
 7. Insert `client_holdings` rows for at least three clients, showing their actual current
    holdings (which may differ from their subscribed model portfolio's target weights).

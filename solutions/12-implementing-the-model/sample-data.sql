@@ -1,12 +1,25 @@
 -- Module 12 Lab — Sample Data (Instructor Reference)
 -- Assumes Module 08's create-tables-final.sql has already been run, and that
--- shared/enterprise-schema.sql (advisors, instruments) is loaded in the same
--- database, or that instrument_id/advisor_id values below are adjusted to
--- match wherever your team's enterprise schema instruments table lives.
+-- shared/enterprise-schema.sql (advisors) is loaded in the same database, or
+-- that advisor_id values below are adjusted to match wherever your team's
+-- enterprise schema advisors table lives.
 --
--- Instrument IDs referenced here follow shared/enterprise-schema.sql's
--- insertion order: 5=GILT10, 6=CORPB1, 7=GLBEQ1, 8=CASHGBP.
+-- The mission model has its own `instruments` table (created in Module 07/08,
+-- separate from the enterprise schema's). We populate it with the same
+-- instrument universe, in the same order as shared/enterprise-schema.sql's
+-- own INSERT, so the resulting SERIAL ids line up the same way:
+-- 1=VOD.L, 2=BARC.L, 3=ULVR.L, 4=AAPL, 5=GILT10, 6=CORPB1, 7=GLBEQ1, 8=CASHGBP.
 -- Advisor IDs: 1=Priya Shah, 2=Daniel Osei, 3=Wei Zhang, 4=Fatima Al-Rashid.
+
+INSERT INTO instruments (ticker, name, asset_class, currency) VALUES
+    ('VOD.L',  'Vodafone Group PLC',          'Equity', 'GBP'),
+    ('BARC.L', 'Barclays PLC',                'Equity', 'GBP'),
+    ('ULVR.L', 'Unilever PLC',                'Equity', 'GBP'),
+    ('AAPL',   'Apple Inc',                   'Equity', 'USD'),
+    ('GILT10', 'UK 10-Year Gilt',             'Bond',   'GBP'),
+    ('CORPB1', 'Sterling Corporate Bond Fund','Fund',   'GBP'),
+    ('GLBEQ1', 'Global Equity Index Fund',    'Fund',   'GBP'),
+    ('CASHGBP','Cash (GBP)',                  'Cash',   'GBP');
 
 -- Model portfolios (same three from shared/messy-flat-file.csv, for continuity)
 INSERT INTO model_portfolios (name) VALUES
