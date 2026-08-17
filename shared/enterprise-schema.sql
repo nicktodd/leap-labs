@@ -1,6 +1,6 @@
 -- PaySprint Wealth Platform — Enterprise Schema
 -- Pre-loaded, read-heavy schema used for exploration and query practice
--- across Modules 02-05 (and referenced again in Module 09).
+-- across Modules 02-05 (and referenced again in Module 10).
 -- Domain: a wealth management platform. Advisors manage clients; clients
 -- hold one or more accounts; accounts hold instruments via transactions
 -- and current holdings.

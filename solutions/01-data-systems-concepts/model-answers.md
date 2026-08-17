@@ -17,7 +17,7 @@
   fact), even though in this course you'll mostly *read* from it rather than write to it. Its
   *design* is OLTP; how you happen to use it in class (read-only exploration) doesn't change
   that.
-- **Mission model (Modules 06-13)**: also OLTP, you're modelling current state (subscriptions,
+- **Mission model (Modules 07-14)**: also OLTP, you're modelling current state (subscriptions,
   holdings) that needs to support fast, correct updates as clients change portfolios or trade.
 
 ## What to check as an instructor

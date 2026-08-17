@@ -22,7 +22,7 @@ By the end of this lab you will have:
 3. For any system you classify as "both," explain which parts are OLTP and which are OLAP,
    systems rarely split cleanly, and noticing that is part of the skill.
 4. Place this week's own work on the same map: is the enterprise schema you'll query in Modules
-   02-05 OLTP or OLAP? Is the mission data model you'll build from Module 06 onward the same or
+   02-05 OLTP or OLAP? Is the mission data model you'll build from Module 07 onward the same or
    different?
 
 ## Acceptance criteria

@@ -53,4 +53,4 @@ By the end of this lab you will have:
 - You've named one concrete advantage of psql and one of pgAdmin, based on using both today.
 
 If you finish early, sketch your own rough diagram of how the six tables relate, on paper or in
-a text file, you'll compare this against a proper ER diagram in Module 07.
+a text file, you'll compare this against a proper ER diagram in Module 08.

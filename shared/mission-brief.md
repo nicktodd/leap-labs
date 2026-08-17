@@ -1,7 +1,7 @@
 # The Mission: PaySprint Wealth — Model Portfolio Service
 
-This is the business brief your team will design a data model against from Module 06 onward,
-implement in Postgres in Module 12, and extend for historical trade data in the Module 13
+This is the business brief your team will design a data model against from Module 07 onward,
+implement in Postgres in Module 13, and extend for historical trade data in the Module 14
 capstone. It's deliberately separate from the enterprise schema you've been querying in
 Modules 02-05, that schema is for practising queries against something already built; this
 brief is for practising building something yourself.
@@ -45,10 +45,10 @@ brief is for practising building something yourself.
 - Some way of recording a client's **actual current holdings**
 
 You will work through exactly how these relate to each other, and what normal form the result
-should be in, across Modules 06-08.
+should be in, across Modules 07-09.
 
 ## What happens later (context, not yet part of the task)
 
-Module 13's capstone extends this same schema to add historical trade data, once the current-
+Module 14's capstone extends this same schema to add historical trade data, once the current-
 state model is built and working. You don't need to design for that yet, but it's worth knowing
 it's coming: a data model that's needlessly hard to extend later is itself worth avoiding now.

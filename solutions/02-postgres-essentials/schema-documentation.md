@@ -39,7 +39,7 @@
 ## What to check as an instructor
 
 - Delegates correctly distinguish `holdings` (a snapshot) from `transactions` (an event
-  history), this distinction becomes directly relevant again in Module 13's capstone.
+  history), this distinction becomes directly relevant again in Module 14's capstone.
 - The documentation was genuinely produced by exploration (`\d`, pgAdmin), not by reading
   `enterprise-schema.sql` directly, ask a delegate to explain a relationship without looking at
   either.
