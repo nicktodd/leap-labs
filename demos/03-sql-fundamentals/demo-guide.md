@@ -40,15 +40,16 @@ WHERE date_of_birth BETWEEN '1960-01-01' AND '1980-12-31';
 ## Part 3: NULL, the beginner trap (4 min)
 
 ```sql
-SELECT * FROM transactions WHERE price = NULL;   -- returns NOTHING, always
-SELECT * FROM transactions WHERE price IS NULL;  -- the correct way
+SELECT * FROM transactions WHERE quantity = NULL;   -- returns NOTHING, always
+SELECT * FROM transactions WHERE quantity IS NULL;  -- the correct way
 ```
 
 Narration: `NULL` means "unknown," not "empty" or "zero." Comparing anything to `NULL` with `=`
 doesn't return true or false, it returns *unknown*, which is treated as not-matching in a
 `WHERE` clause. This is such a common beginner mistake it's worth demonstrating live: run the
 `= NULL` version first, watch it silently return zero rows (no error, which is the dangerous
-part), then show `IS NULL` returning the deposit/withdrawal rows correctly.
+part), then show `IS NULL` returning the DIVIDEND/DEPOSIT rows correctly, transaction types
+where a quantity was never recorded.
 
 ## Key message
 
