@@ -1,34 +1,12 @@
 package com.neueda.leap.sprint5;
 
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 
+// Add your tests here, ONE AT A TIME, in the order given in
+// labs/10-tdd-fundamentals/README.md. Do not write the next test until the
+// current one is green. Do not write any implementation code that isn't required
+// by a test you've already written.
 class FeeBandClassifierTest {
 
-    private final FeeBandClassifier classifier = new FeeBandClassifier();
-
-    @Test
-    void classifiesLowValueTradeAsStandard() {
-        assertEquals("STANDARD", classifier.classify(1000));
-    }
-
-    @Test
-    void classifiesHighValueTradeAsInstitutional() {
-        assertEquals("INSTITUTIONAL", classifier.classify(60000));
-    }
-
-    @Test
-    void classifiesMidValueTradeAsPremium() {
-        assertEquals("PREMIUM", classifier.classify(10000));
-    }
-
-    @Test
-    void classifiesLowerPremiumBoundaryAsPremium() {
-        assertEquals("PREMIUM", classifier.classify(5000));
-    }
-
-    @Test
-    void classifiesLowerInstitutionalBoundaryAsInstitutional() {
-        assertEquals("INSTITUTIONAL", classifier.classify(50000));
-    }
+    // Test 1 goes here.
 }

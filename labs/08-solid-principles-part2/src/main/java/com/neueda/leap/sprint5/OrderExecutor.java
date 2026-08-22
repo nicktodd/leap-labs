@@ -5,15 +5,11 @@ package com.neueda.leap.sprint5;
 // writer) inside this class.
 public class OrderExecutor {
 
-    private final ReportWriter writer;
-
     public OrderExecutor(ReportWriter writer) {
-        this.writer = writer;
+        throw new UnsupportedOperationException("TODO: implement constructor");
     }
 
     public double execute(Order order) {
-        double fee = order.calculateFee();
-        writer.write(order.getClientId() + ": $" + fee);
-        return fee;
+        throw new UnsupportedOperationException("TODO: implement execute");
     }
 }
