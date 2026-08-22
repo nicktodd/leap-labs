@@ -10,14 +10,9 @@
 // (string). Then define LoginAttempt extending BaseRecord, with username
 // (string), outcome (string), and an OPTIONAL notes (string).
 interface BaseRecord {
-  readonly id: number;
-  createdAt: string;
 }
 
-interface LoginAttempt extends BaseRecord {
-  username: string;
-  outcome: string;
-  notes?: string;
+interface LoginAttempt {
 }
 
 const attempt: LoginAttempt = {
@@ -31,10 +26,7 @@ console.log(attempt);
 // TODO 2: define a generic interface Result<T> with a boolean success, an
 // optional value of type T, and an optional string error - same shape as
 // the demo's Result<T>.
-interface Result<T> {
-  success: boolean;
-  value?: T;
-  error?: string;
+interface Result {
 }
 
 function verifyCredentials(username: string): Result<{ username: string }> {
@@ -62,8 +54,8 @@ if (failedOutcome.success) {
 // TODO 3: write describeByUsername as a generic function, constrained so
 // T must have at least a username: string field. Return
 // `Record for ${record.username}`.
-function describeByUsername<T extends { username: string }>(record: T): string {
-  return `Record for ${record.username}`;
+function describeByUsername(record) {
+  throw new Error("TODO 3: implement describeByUsername");
 }
 
 console.log(describeByUsername({ username: "dave", outcome: "success" }));
