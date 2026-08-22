@@ -4,11 +4,13 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
+// Kata B: implement submitOrder and getOrder below. An in-memory `orders` map
+// is given so getOrder has something to look up - Module 7 replaces this with
+// real persistence.
 @RestController
 @RequestMapping("/orders")
 public class OrderController {
@@ -21,25 +23,20 @@ public class OrderController {
         this.service = service;
     }
 
-    @PostMapping
+    // TODO: POST /orders (this method's mapping annotation is missing).
+    // Take a @Valid @RequestBody OrderRequestDto. Calculate the fee via
+    // service.calculateFee(ticker, quantity * price). Generate a new id from
+    // idSequence, build an OrderResponseDto with status "ACCEPTED", put it in
+    // the `orders` map keyed by id, and return 201 Created with a Location
+    // header of "/orders/{id}".
     public ResponseEntity<OrderResponseDto> submitOrder(@Valid @RequestBody OrderRequestDto request) {
-        double tradeValue = request.quantity() * request.price();
-        double fee = service.calculateFee(request.ticker(), tradeValue);
-
-        String id = String.valueOf(idSequence.getAndIncrement());
-        OrderResponseDto response = new OrderResponseDto(id, "ACCEPTED", fee, null);
-        orders.put(id, response);
-
-        URI location = URI.create("/orders/" + id);
-        return ResponseEntity.created(location).body(response);
+        throw new UnsupportedOperationException("TODO: implement submitOrder");
     }
 
-    @GetMapping("/{id}")
+    // TODO: GET /orders/{id} (this method's mapping annotation is missing).
+    // Look up the id in the `orders` map. Return 200 with the found
+    // OrderResponseDto, or 404 if there's no order with that id.
     public ResponseEntity<OrderResponseDto> getOrder(@PathVariable String id) {
-        OrderResponseDto order = orders.get(id);
-        if (order == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok(order);
+        throw new UnsupportedOperationException("TODO: implement getOrder");
     }
 }
