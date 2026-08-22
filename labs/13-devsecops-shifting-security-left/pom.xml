@@ -22,12 +22,10 @@
             <version>5.10.2</version>
             <scope>test</scope>
         </dependency>
-        <!-- CVE-2015-6420: commons-collections 3.2.1 allows remote code execution
-             via Java deserialization (InvokerTransformer). Fixed in 3.2.2. -->
         <dependency>
             <groupId>commons-collections</groupId>
             <artifactId>commons-collections</artifactId>
-            <version>3.2.2</version>
+            <version>3.2.1</version>
         </dependency>
     </dependencies>
 </project>
