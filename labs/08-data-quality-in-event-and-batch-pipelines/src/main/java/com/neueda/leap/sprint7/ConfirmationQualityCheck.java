@@ -42,41 +42,21 @@ public class ConfirmationQualityCheck {
     }
 
     // Columns: account_id, ticker, side, quantity, price
+    //
+    // TODO 1: return "missing account_id" if account_id is blank.
+    // TODO 2: return "side must be BUY or SELL" if side is anything else.
+    // TODO 3: return "quantity must be positive, was <value>" if quantity
+    //         parses but is <= 0.
+    // TODO 4: return "price is not a number: '<value>'" if price does not
+    //         parse as a number (catch NumberFormatException).
+    //
+    // Return null if the row passes every rule.
     static String validate(String[] cols) {
         String accountId = cols[0];
         String ticker = cols[1];
         String side = cols[2];
         String quantityStr = cols[3];
         String priceStr = cols[4];
-
-        // TODO 1: return "missing account_id" if account_id is blank.
-        if (accountId == null || accountId.isBlank()) {
-            return "missing account_id";
-        }
-
-        // TODO 2: return "side must be BUY or SELL" if side is anything else.
-        if (!"BUY".equals(side) && !"SELL".equals(side)) {
-            return "side must be BUY or SELL";
-        }
-
-        // TODO 3: return "quantity must be positive, was <value>" if quantity
-        //         parses but is <= 0.
-        try {
-            double quantity = Double.parseDouble(quantityStr);
-            if (quantity <= 0) {
-                return "quantity must be positive, was " + quantityStr;
-            }
-        } catch (NumberFormatException e) {
-            return "quantity is not a number: '" + quantityStr + "'";
-        }
-
-        // TODO 4: return "price is not a number: '<value>'" if price does not
-        //         parse as a number (catch NumberFormatException).
-        try {
-            Double.parseDouble(priceStr);
-        } catch (NumberFormatException e) {
-            return "price is not a number: '" + priceStr + "'";
-        }
 
         return null;
     }

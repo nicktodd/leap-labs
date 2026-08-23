@@ -27,7 +27,14 @@ public class TradeReportGenerator {
                 double pr = Double.parseDouble(x[3]);
                 double val = q * pr;
                 double fee = FeeCalculator.calculateFee(typ, val);
-                recordTrade(tkr, val, fee);
+                if (tot.containsKey(tkr)) {
+                    tot.put(tkr, tot.get(tkr) + val);
+                    f.put(tkr, f.get(tkr) + fee);
+                } else {
+                    tot.put(tkr, val);
+                    f.put(tkr, fee);
+                }
+                c++;
                 out = out + tkr + "," + q + "," + val + "," + fee + "\n";
             } catch (Exception e) {
                 // skip bad row
@@ -43,19 +50,5 @@ public class TradeReportGenerator {
         FileWriter fw = new FileWriter("report.csv");
         fw.write(out);
         fw.close();
-    }
-
-    // Extracted from the inline accumulation block in doIt() - Lab 11 Extract Method.
-    // Reads and writes the static fields tot, f, and c - these are still global state,
-    // which means recordTrade() cannot be tested in full isolation (Part C answer).
-    static void recordTrade(String ticker, double value, double fee) {
-        if (tot.containsKey(ticker)) {
-            tot.put(ticker, tot.get(ticker) + value);
-            f.put(ticker, f.get(ticker) + fee);
-        } else {
-            tot.put(ticker, value);
-            f.put(ticker, fee);
-        }
-        c++;
     }
 }

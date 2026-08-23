@@ -107,28 +107,7 @@ public class CodeSmellScanner {
     // .find() / .group(); a Map<String, Integer> is enough to track counts.
     private static void scanDuplicatedLiterals(List<String> lines) {
         System.out.println("-- Duplicated literals --");
-        // TODO 1: count how many times each distinct decimal literal appears
-        Map<String, Integer> counts = new LinkedHashMap<>();
-        for (String line : lines) {
-            Matcher m = DECIMAL_LITERAL.matcher(line);
-            while (m.find()) {
-                String literal = m.group();
-                counts.merge(literal, 1, Integer::sum);
-            }
-        }
-        // TODO 2: print every literal that appears more than once
-        boolean found = false;
-        for (Map.Entry<String, Integer> entry : counts.entrySet()) {
-            if (entry.getValue() > 1) {
-                System.out.printf("  \"%s\" appears %d times -> extract to a named constant%n",
-                        entry.getKey(), entry.getValue());
-                found = true;
-            }
-        }
-        // TODO 3: if nothing is duplicated, print "  none found"
-        if (!found) {
-            System.out.println("  none found");
-        }
+        // (implement here)
         System.out.println();
     }
 

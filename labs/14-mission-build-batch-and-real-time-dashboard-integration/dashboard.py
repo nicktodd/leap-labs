@@ -98,21 +98,7 @@ def compute_insights(df: pd.DataFrame) -> dict:
 # gives you a table with accounts as rows and sources as columns - similar
 # to what compute_insights() already does for tickers.
 def compute_pending_settlement(df: pd.DataFrame) -> pd.Series:
-    by_account_source = (
-        df.groupby(["account_id", "source"])["quantity"]
-        .sum()
-        .unstack(fill_value=0)
-    )
-    # Identify the stream and batch columns by prefix
-    stream_cols = [c for c in by_account_source.columns if c.startswith("stream")]
-    batch_cols = [c for c in by_account_source.columns if c.startswith("batch")]
-
-    stream_qty = by_account_source[stream_cols].sum(axis=1) if stream_cols else 0
-    batch_qty = by_account_source[batch_cols].sum(axis=1) if batch_cols else 0
-
-    pending = (stream_qty - batch_qty).sort_values(ascending=False)
-    pending.name = "pending_quantity"
-    return pending
+    raise NotImplementedError("TODO: implement compute_pending_settlement")
 
 
 def print_dashboard(insights: dict, pending: pd.Series) -> None:
