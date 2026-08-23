@@ -12,35 +12,44 @@ function showMessage(text, kind) {
   message.classList.add(kind);
 }
 
-form.addEventListener("submit", async (event) => {
+/*
+  TODO 1: Mark the submit handler async and prevent the page reload.
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    ...
+  });
+*/
+form.addEventListener("submit", (event) => {
   event.preventDefault();
 
-  submitBtn.disabled = true;
-  showMessage("Logging in...", "info");
+  /*
+    TODO 2: Call fetch() with await.
+    POST to AUTH_URL with headers: { "Content-Type": "application/json" }
+    and body: JSON.stringify({ username: usernameInput.value.trim(),
+    password: passwordInput.value }). Store the result in a variable
+    called response.
+  */
 
-  try {
-    const response = await fetch(AUTH_URL, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        username: usernameInput.value.trim(),
-        password: passwordInput.value
-      })
-    });
+  /*
+    TODO 3: Check response.ok.
+    fetch() does NOT reject on a 401 or 500 - only on a network
+    failure. If !response.ok, await response.json() for the error
+    body and call showMessage(`Login failed: ${body.message}`,
+    "error"), then return.
+  */
 
-    if (!response.ok) {
-      const body = await response.json();
-      showMessage(`Login failed: ${body.message}`, "error");
-      return;
-    }
+  /*
+    TODO 4: Read the successful body and show it.
+    await response.json(), then showMessage() with the accessToken
+    (data.accessToken.slice(0, 20) + "...") and kind "success".
+  */
 
-    const data = await response.json();
-    showMessage(data.accessToken.slice(0, 20) + "...", "success");
-
-  } catch (err) {
-    console.error("fetch() rejected:", err);
-    showMessage("Network error — could not reach the login service.", "error");
-  } finally {
-    submitBtn.disabled = false;
-  }
+  /*
+    TODO 5: Wrap TODOs 2-4 in try/catch/finally.
+    catch (err) handles a NETWORK failure (service down, CORS
+    blocked) - console.error it and showMessage() with kind "error".
+    finally re-enables submitBtn regardless of outcome. Disable
+    submitBtn and show a "Logging in..." message before the try
+    block starts.
+  */
 });

@@ -1,7 +1,13 @@
-const form = document.getElementById("login-form");
-const usernameInput = document.querySelector("#username");
-const passwordInput = document.querySelector("#password");
-const message = document.querySelector(".message");
+/*
+  TODO 1: Select the elements.
+  Use document.getElementById to grab the form (id="login-form").
+  Use document.querySelector to grab the username input (#username),
+  the password input (#password), and the message element (.message).
+*/
+const form = null; // replace with document.getElementById("login-form")
+const usernameInput = null; // replace with document.querySelector("#username")
+const passwordInput = null; // replace with document.querySelector("#password")
+const message = null; // replace with document.querySelector(".message")
 
 function showMessage(text, kind) {
   message.textContent = text;
@@ -13,26 +19,23 @@ function markInvalid(input, isInvalid) {
   input.classList.toggle("invalid", isInvalid);
 }
 
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
-  const username = usernameInput.value;
-  const password = passwordInput.value;
-  const usernameOk = username.length >= 3;
-  const passwordOk = password.length >= 8;
-  markInvalid(usernameInput, !usernameOk);
-  markInvalid(passwordInput, !passwordOk);
-  if (!usernameOk || !passwordOk) {
-    showMessage("Please fix the errors above.", "error");
-    return;
-  }
-  showMessage("Logged in successfully!", "success");
-  form.reset();
-  markInvalid(usernameInput, false);
-  markInvalid(passwordInput, false);
-});
+/*
+  TODO 2: Handle the submit event.
+  Add a "submit" listener to form. Inside it:
+    - call event.preventDefault() so the page doesn't reload
+    - read usernameInput.value and passwordInput.value
+    - decide usernameOk (length >= 3) and passwordOk (length >= 8)
+    - call markInvalid() on each input with the opposite of *Ok
+    - if either is invalid, call showMessage() with kind "error" and
+      return
+    - otherwise call showMessage() with kind "success", then
+      form.reset() and clear both invalid classes
+*/
 
-usernameInput.addEventListener("input", function() {
-  if (usernameInput.value.length >= 3) {
-    markInvalid(usernameInput, false);
-  }
-});
+
+/*
+  TODO 3: React as the user types.
+  Add an "input" listener to usernameInput that removes the invalid
+  class as soon as the value reaches 3+ characters, so the error
+  clears itself without waiting for another submit.
+*/

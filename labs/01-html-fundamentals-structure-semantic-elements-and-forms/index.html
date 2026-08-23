@@ -7,29 +7,34 @@
 </head>
 <body>
 
-  <header>
-    <h1>Mission Control</h1>
-  </header>
+  <!--
+    TODO 1: Page header.
+    Add a <header> containing an <h1> with the text "Mission Control".
+  -->
 
-  <main>
-    <form id="login-form" novalidate>
-      <h2>Log In</h2>
-      <div class="field">
-        <label for="username">Username</label>
-        <input type="text" id="username" name="username" required minlength="3" />
-      </div>
-      <div class="field">
-        <label for="password">Password</label>
-        <input type="password" id="password" name="password" required minlength="8" />
-      </div>
-      <button type="submit">Log In</button>
-      <p class="message hidden"></p>
-    </form>
-  </main>
 
-  <footer>
-    <p>LEAP Mission Control</p>
-  </footer>
+  <!--
+    TODO 2: Login form, wrapped in <main>.
+    Inside <main>, add:
+      - a <form id="login-form">
+      - an <h2>Log In</h2>
+      - a username field: a <label for="username"> followed by an
+        <input type="text" id="username" name="username">, with
+        required and minlength="3" attributes
+      - a password field: a <label for="password"> followed by an
+        <input type="password" id="password" name="password">, with
+        required and minlength="8" attributes
+      - a submit button: <button type="submit">Log In</button>
+    Every <label> must use for="..." matching its input's id - not
+    just sit next to it in the markup.
+  -->
+
+
+  <!--
+    TODO 3: Page footer.
+    Add a <footer> containing a <p> with the text
+    "LEAP Mission Control".
+  -->
 
 </body>
 </html>
