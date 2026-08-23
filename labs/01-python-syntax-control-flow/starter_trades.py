@@ -12,21 +12,4 @@ trades = [
     {"trade_id": "T0008", "side": "BUY", "quantity": 0.5, "price": 42000.00},
 ]
 
-total_value = 0
-buy_count = 0
-sell_count = 0
-
-for trade in trades:
-    value = trade["quantity"] * trade["price"]
-    total_value += value
-    if trade["side"] == "BUY":
-        buy_count += 1
-    else:
-        sell_count += 1
-    if value > 20000:
-        print(trade["trade_id"], "LARGE TRADE", value)
-
-print("Total trades:", len(trades))
-print("Total value:", total_value)
-print("BUY:", buy_count)
-print("SELL:", sell_count)
+# Your code here
