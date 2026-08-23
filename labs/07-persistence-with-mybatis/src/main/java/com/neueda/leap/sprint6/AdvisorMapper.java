@@ -1,11 +1,11 @@
 package com.neueda.leap.sprint6;
 
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-
-@Mapper
+// KATA A - annotation-based mapper.
+//
+// Add a single method, findById(int advisorId), that returns an Advisor.
+// Annotate it with @Select so it queries the advisors table
+// (advisor_id, name, region) for the row matching #{advisorId}.
+//
+// TODO: add the @Select annotation and the findById method.
 public interface AdvisorMapper {
-
-    @Select("SELECT advisor_id AS advisorId, name, region FROM advisors WHERE advisor_id = #{advisorId}")
-    Advisor findById(int advisorId);
 }

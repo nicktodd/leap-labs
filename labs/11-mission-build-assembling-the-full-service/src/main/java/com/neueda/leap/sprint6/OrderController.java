@@ -9,6 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
+// KATA: assemble everything the last five modules built into one endpoint.
+// Every piece you need already exists and already works:
+//   - domain.OrderValidator, domain.HoldingUpdater, domain.InstrumentFactory (Sprint 5, unchanged)
+//   - AccountMapper (Module 7's MyBatis, against the real Sprint 3 schema)
+//   - SecurityConfig (Module 9) already protects this controller - you don't touch it
+//   - GlobalExceptionHandler (Module 10) already handles everything you throw
+//
+// Your job is ONLY the orchestration in submitOrder below.
 @RestController
 @RequestMapping("/accounts/{accountId}/orders")
 public class OrderController {
@@ -28,42 +36,31 @@ public class OrderController {
     public ResponseEntity<OrderResponseDto> submitOrder(@PathVariable int accountId,
                                                           @Valid @RequestBody OrderRequestDto dto,
                                                           @AuthenticationPrincipal Jwt jwt) {
-        // TODO 1: look up instrument by ticker
-        InstrumentRow instrumentRow = accountMapper.findInstrument(dto.ticker());
-        if (instrumentRow == null) {
-            throw new NoSuchElementException("unknown ticker: " + dto.ticker());
-        }
+        // TODO 1: look up the instrument by dto.ticker() via accountMapper.findInstrument(...).
+        //         If it's null, throw new NoSuchElementException(...) - the ticker doesn't exist.
 
-        // TODO 2: look up existing holding (may be null)
-        HoldingRow holdingRow = accountMapper.findHolding(accountId, dto.ticker());
-        double currentQuantity = (holdingRow != null) ? holdingRow.getQuantity() : 0.0;
+        // TODO 2: look up the account's existing holding for this ticker via
+        //         accountMapper.findHolding(accountId, dto.ticker()). It may be null (no
+        //         holding yet) - treat that as a current quantity of 0.0.
 
-        // TODO 3: compute current portfolio value (simplified)
-        double currentPortfolioValue = currentQuantity * dto.price();
+        // TODO 3: compute currentPortfolioValue as currentQuantity * dto.price() (a
+        //         deliberate simplification - see the demo guide for why).
 
-        // TODO 4: validate the order
-        OrderRequest request = new OrderRequest(dto.quantity(), dto.price(), dto.isBuy());
-        ValidationResult result = orderValidator.validate(request, currentQuantity, currentPortfolioValue, RISK_LIMIT);
-        if (!result.isValid()) {
-            throw new OrderRejectedException(result.getReason());
-        }
+        // TODO 4: build a domain.OrderRequest from the DTO, and call
+        //         orderValidator.validate(request, currentQuantity, currentPortfolioValue,
+        //         RISK_LIMIT). If the result isn't valid, throw
+        //         new OrderRejectedException(result.getReason()).
 
-        // TODO 5: apply the order and persist the updated holding
-        Holding holding = new Holding(currentQuantity);
-        holdingUpdater.applyOrder(holding, dto.isBuy(), dto.quantity());
-        double newQuantity = holding.getQuantity();
+        // TODO 5: build a domain.Holding from the current quantity, call
+        //         holdingUpdater.applyOrder(holding, dto.isBuy(), dto.quantity()), then
+        //         persist the new quantity - insertHolding(...) if there was no existing
+        //         holding, updateHoldingQuantity(...) if there was.
 
-        if (holdingRow == null) {
-            accountMapper.insertHolding(accountId, instrumentRow.getInstrumentId(), newQuantity);
-        } else {
-            accountMapper.updateHoldingQuantity(holdingRow.getHoldingId(), newQuantity);
-        }
+        // TODO 6: use instrumentFactory.create(...) (assetClass, uppercased) to get a
+        //         domain.Instrument, and call calculateFee(request.tradeValue()) for the fee.
 
-        // TODO 6: calculate fee
-        Instrument instrument = instrumentFactory.create(instrumentRow.getAssetClass().toUpperCase(), dto.ticker());
-        double fee = instrument.calculateFee(request.tradeValue());
+        // TODO 7: return ResponseEntity.ok(new OrderResponseDto("ACCEPTED", fee, newQuantity)).
 
-        // TODO 7: return 200 OK
-        return ResponseEntity.ok(new OrderResponseDto("ACCEPTED", fee, newQuantity));
+        throw new UnsupportedOperationException("TODO: implement submitOrder");
     }
 }

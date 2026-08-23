@@ -13,35 +13,24 @@ servers:
 paths:
   /orders/{id}:
     get:
-      summary: Retrieve the status of a previously submitted order by its unique identifier
+      summary: TODO - one sentence describing what this operation does
       operationId: getOrder
       security:
         - bearerAuth: []
       parameters:
-        - name: id
-          in: path
-          required: true
-          schema:
-            type: string
+        # TODO: add a path parameter definition for `id` - name, in, required,
+        # and a schema (type: string is fine)
+        []
       responses:
         '200':
-          description: The order was found and its current status is returned
+          description: TODO
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/OrderResponse'
-        '401':
-          description: Missing or invalid JWT bearer token
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-        '404':
-          description: No order exists with the given id
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+        # TODO: add a 404 response for an id that doesn't exist, and a 401
+        # response for a missing/invalid JWT. Both should reference
+        # ErrorResponse (already defined below).
 
 components:
   schemas:

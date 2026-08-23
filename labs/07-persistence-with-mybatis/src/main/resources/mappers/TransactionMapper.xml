@@ -2,17 +2,14 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.neueda.leap.sprint6.TransactionMapper">
 
-    <select id="findByAccountId" resultType="com.neueda.leap.sprint6.Transaction">
-        SELECT t.transaction_id AS transactionId,
-               i.ticker        AS ticker,
-               t.txn_type      AS txnType,
-               t.quantity      AS quantity,
-               t.price         AS price,
-               t.txn_date      AS txnDate
-        FROM transactions t
-        JOIN instruments i ON t.instrument_id = i.instrument_id
-        WHERE t.account_id = #{accountId}
-        ORDER BY t.txn_date
-    </select>
+    <!-- KATA B - XML-based mapper.
+         Write the <select> for findByAccountId(int accountId).
+         Join transactions -> instruments (on instrument_id) so you can
+         return the instrument's ticker alongside each transaction.
+         Select: transaction_id, i.ticker AS ticker, txn_type, quantity,
+         price, txn_date - filtered WHERE t.account_id = #{accountId},
+         ordered by txn_date.
+
+         TODO: replace this stub with a real <select id="findByAccountId">. -->
 
 </mapper>
