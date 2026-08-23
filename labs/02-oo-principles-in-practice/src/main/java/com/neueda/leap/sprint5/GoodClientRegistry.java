@@ -1,24 +1,27 @@
 package com.neueda.leap.sprint5;
 
-import java.util.ArrayList;
-import java.util.List;
-
+// Kata C: the fix - composition, not inheritance. This class must NOT extend
+// ArrayList (or any other collection type). It should HAVE a list internally,
+// fully private, exposed only through the small, deliberate interface below.
+// TODO:
+// - addClient(String clientId): add the client ID; throw IllegalArgumentException
+//   if that ID is already present (no duplicates allowed - the rule
+//   BadClientRegistry couldn't enforce).
+// - contains(String clientId): return true if the ID is present.
+// - size(): return the number of registered clients.
 public class GoodClientRegistry {
 
-    private final List<String> clients = new ArrayList<>();
+    // TODO: declare a private field here to hold the client IDs
 
     public void addClient(String clientId) {
-        if (clients.contains(clientId)) {
-            throw new IllegalArgumentException("Client already registered: " + clientId);
-        }
-        clients.add(clientId);
+        throw new UnsupportedOperationException("TODO: implement addClient");
     }
 
     public boolean contains(String clientId) {
-        return clients.contains(clientId);
+        throw new UnsupportedOperationException("TODO: implement contains");
     }
 
     public int size() {
-        return clients.size();
+        throw new UnsupportedOperationException("TODO: implement size");
     }
 }

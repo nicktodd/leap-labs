@@ -2,15 +2,16 @@ package com.neueda.leap.sprint5;
 
 import java.util.List;
 
+// Kata A.2 (SRP): one job only - turn orders plus a pre-calculated total into a
+// report string. Format exactly:
+//   Settlement Report
+//   <clientId>: $<fee>
+//   ... one line per order ...
+//   Total fees: $<total>
+// (no trailing newline after the total line)
 public class FeeReportFormatter {
 
     public String format(List<Order> orders, double total) {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Settlement Report\n");
-        for (Order order : orders) {
-            sb.append(order.getClientId()).append(": $").append(order.calculateFee()).append("\n");
-        }
-        sb.append("Total fees: $").append(total);
-        return sb.toString();
+        throw new UnsupportedOperationException("TODO: implement format");
     }
 }
