@@ -16,3 +16,4 @@ clean_trades_loaded.csv
 dashboard_data_loaded.csv
 .pytest_cache/
 .DS_Store
+.vscode/
