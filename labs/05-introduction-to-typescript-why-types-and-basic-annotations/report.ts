@@ -11,23 +11,19 @@ const isLockedOut = false;
 
 // TODO 1: add a type annotation to the outcome parameter (string) and
 // the function's return type (string).
-function describeOutcome(outcome: string): string {
+function describeOutcome(outcome) {
   return outcome === "success" ? "logged in successfully" : "failed to log in";
 }
 console.log(describeOutcome("success"));
 
 // TODO 2: define an interface named Attempt with two string properties,
 // username and outcome. Then add : Attempt to the attempt constant below.
-interface Attempt {
-  username: string;
-  outcome: string;
-}
-const attempt: Attempt = { username: "dave", outcome: "success" };
+const attempt = { username: "dave", outcome: "success" };
 console.log(attempt);
 
 // TODO 3: add a type annotation to the attempt parameter (Attempt) and
 // the function's return type (string).
-function describeAttempt(attempt: Attempt): string {
+function describeAttempt(attempt) {
   return `${attempt.username} ${describeOutcome(attempt.outcome)}`;
 }
 console.log(describeAttempt(attempt));

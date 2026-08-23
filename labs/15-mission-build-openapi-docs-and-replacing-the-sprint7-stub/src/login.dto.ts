@@ -1,13 +1,14 @@
 import { IsString, IsNotEmpty } from "class-validator";
-import { ApiProperty } from "@nestjs/swagger";
+// TODO 1: import { ApiProperty } from "@nestjs/swagger" here.
 
 export class LoginDto {
-  @ApiProperty({ example: "alice", description: "The user's username" })
+  // TODO 1: add @ApiProperty({ example: "alice", description: "..." })
+  // above each field below, so they show up correctly in the OpenAPI
+  // document Module 10's DTOs never needed to worry about.
   @IsString()
   @IsNotEmpty()
   username!: string;
 
-  @ApiProperty({ example: "mission123", description: "The user's password" })
   @IsString()
   @IsNotEmpty()
   password!: string;

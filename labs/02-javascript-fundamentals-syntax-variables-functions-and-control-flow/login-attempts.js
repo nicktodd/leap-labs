@@ -16,18 +16,13 @@ const rawAttempts = [
 // Example: parseAttempt("dave,success") should behave like
 //          { username: "dave", outcome: "success" }
 function parseAttempt(rawLine) {
-  const parts = rawLine.split(",");
-  return { username: parts[0], outcome: parts[1] };
+  throw new Error("TODO 1: implement parseAttempt");
 }
 
 // TODO 2: return "logged in successfully" if outcome === "success",
 // otherwise return "failed to log in". Use if/else, not a shortcut.
 const describeOutcome = function (outcome) {
-  if (outcome === "success") {
-    return "logged in successfully";
-  } else {
-    return "failed to log in";
-  }
+  throw new Error("TODO 2: implement describeOutcome");
 };
 
 // TODO 3: using a `for` loop over rawAttempts (by index), call
@@ -37,16 +32,7 @@ const describeOutcome = function (outcome) {
 let successCount = 0;
 let failCount = 0;
 
-for (let i = 0; i < rawAttempts.length; i++) {
-  const attempt = parseAttempt(rawAttempts[i]);
-  const description = describeOutcome(attempt.outcome);
-  console.log(attempt.username + " " + description);
-  if (attempt.outcome === "success") {
-    successCount = successCount + 1;
-  } else {
-    failCount = failCount + 1;
-  }
-}
+// (your for loop here)
 
 console.log("");
 console.log("Summary: " + successCount + " successful, " + failCount + " failed");

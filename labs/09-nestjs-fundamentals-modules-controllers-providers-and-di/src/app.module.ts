@@ -10,7 +10,7 @@ import { AttemptsService } from "./attempts.service";
 // AttemptsController fails, even though both classes are written
 // correctly.
 @Module({
-  controllers: [VerificationController, AttemptsController],
-  providers: [VerificationService, AttemptsService],
+  controllers: [VerificationController],
+  providers: [VerificationService],
 })
 export class AppModule {}
