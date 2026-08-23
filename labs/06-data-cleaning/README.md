@@ -45,7 +45,8 @@ reasoning — the reasoning is graded as part of this lab, not just the resultin
 ## Acceptance criteria
 
 - The script runs with `python starter_clean_trades.py` and produces no errors.
-- The final cleaned DataFrame has 20 rows (21 in the file, minus 1 dropped for missing quantity).
+- The final cleaned DataFrame has 20 rows (22 in the file, minus 1 dropped for missing
+  quantity and 1 exact duplicate removed).
 - Every one of the seven issues above is handled, each with a one-line comment explaining the
   reasoning, not just the code.
 - `asset_class` has exactly four distinct values after cleaning: `Equity`, `Bond`, `ETF`, `Crypto`

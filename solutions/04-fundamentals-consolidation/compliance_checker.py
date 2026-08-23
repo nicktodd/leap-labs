@@ -1,5 +1,8 @@
 import argparse
 import csv
+from pathlib import Path
+
+DEFAULT_INPUT = Path(__file__).resolve().parents[2] / "shared" / "trades.csv"
 
 
 def read_trades(path):
@@ -91,7 +94,7 @@ def write_report(path, trades, skipped_count, flags_by_trade, frequent_clients):
 
 def main():
     parser = argparse.ArgumentParser(description="Trade compliance checker")
-    parser.add_argument("--input", default="shared/trades.csv")
+    parser.add_argument("--input", default=DEFAULT_INPUT)
     parser.add_argument("--report", default="report.txt")
     parser.add_argument("--large-threshold", type=float, default=20000)
     parser.add_argument("--high-volume-threshold", type=float, default=150)
