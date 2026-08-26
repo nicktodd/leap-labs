@@ -9,6 +9,12 @@ public class WebhookController {
 
     private PayoutStatusUpdater payoutStatusUpdater;
 
+    // VULNERABILITY (A08): the original endpoint received payment-status
+    // updates from an external payment provider and applied them directly,
+    // with no verification that the request actually came from that provider
+    // (no HMAC signature check, no shared secret, nothing). Anyone who could
+    // reach this URL could mark any payout as "settled".
+    //
     // FIX (A08): verify an HMAC signature (computed with a shared secret,
     // provided by the payment provider) over the raw request body before
     // trusting anything in the payload. Reject the request entirely if the

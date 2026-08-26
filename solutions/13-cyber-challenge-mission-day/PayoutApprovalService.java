@@ -8,6 +8,12 @@ public class PayoutApprovalService {
         this.payoutRepository = payoutRepository;
     }
 
+    // VULNERABILITY (A06): the original design had no concept of segregation
+    // of duties, whoever requested a payout was also allowed to approve it
+    // themselves. This is a design flaw: no amount of careful coding of
+    // *this* method fixes it, the approval workflow itself needs a rule
+    // that the approver cannot be the requester.
+    //
     // FIX (A06): this is a design fix, not just a code fix, enforce
     // segregation of duties: the approver can never be the same person who
     // requested the payout. No implementation detail elsewhere can patch
