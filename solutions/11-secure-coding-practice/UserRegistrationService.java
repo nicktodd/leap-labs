@@ -11,6 +11,10 @@ public class UserRegistrationService {
         this.userRepository = userRepository;
     }
 
+    // VULNERABILITY (A04): the original version hashed passwords with MD5, a
+    // fast, unsalted, general-purpose hash, not a password hash. Trivially
+    // brute-forced if the database leaks.
+    //
     // FIX (A04): bcrypt is slow and salted by design, appropriate for password
     // storage. Note: SHA-256 alone would NOT be an adequate fix here, it is
     // still a fast, general-purpose hash with the same underlying weakness as

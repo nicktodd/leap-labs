@@ -25,16 +25,11 @@ public class LoginController {
             return new LoginResponse(token);
         }
 
-        // VULNERABILITY (A07): no rate limiting, delay, or lockout after
-        // repeated failed attempts against the same account.
         return new LoginResponse(null, "Invalid email or password");
     }
 
     @ExceptionHandler(AuthenticationFailedException.class)
     public LoginResponse handleAuthFailure(AuthenticationFailedException ex) {
-        // VULNERABILITY (A09): failed logins are caught and discarded here
-        // with nothing written to any log, metric, or alert. A brute-force
-        // attempt would be invisible to the team.
         return new LoginResponse(null, "Invalid email or password");
     }
 

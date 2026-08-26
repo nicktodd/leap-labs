@@ -15,7 +15,6 @@ public class TransactionSearchDao {
         this.connection = connection;
     }
 
-    // VULNERABILITY: builds SQL by string concatenation with user input.
     public List<Transaction> searchByMerchant(String merchantName) throws SQLException {
         String sql = "SELECT id, merchant_name, amount FROM transactions "
                 + "WHERE merchant_name = '" + merchantName + "'";

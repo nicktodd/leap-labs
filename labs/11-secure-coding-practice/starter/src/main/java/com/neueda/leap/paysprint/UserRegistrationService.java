@@ -13,8 +13,6 @@ public class UserRegistrationService {
     }
 
     public User registerUser(String email, String rawPassword) {
-        // VULNERABILITY: MD5 is a fast, unsalted, general-purpose hash,
-        // not a password hash. Trivially brute-forced if the database leaks.
         String hashed = md5(rawPassword);
         return userRepository.save(new User(null, email, hashed));
     }

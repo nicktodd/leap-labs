@@ -27,6 +27,10 @@ public class LoginController {
         String email = request.getEmail();
         AtomicInteger attempts = failedAttempts.computeIfAbsent(email, e -> new AtomicInteger(0));
 
+        // VULNERABILITY (A07): the original version had no rate limiting,
+        // delay, or lockout after repeated failed attempts against the same
+        // account.
+        //
         // FIX (A07): lock out further attempts once a threshold is reached.
         if (attempts.get() >= MAX_ATTEMPTS) {
             log.warn("Login blocked for {}: too many failed attempts", email);
@@ -42,6 +46,10 @@ public class LoginController {
             return new LoginResponse(token);
         }
 
+        // VULNERABILITY (A09): the original version caught and discarded
+        // failed logins here with nothing written to any log, metric, or
+        // alert, a brute-force attempt would have been invisible to the team.
+        //
         // FIX (A09): every failed attempt is logged with enough context to
         // investigate later, and the count feeds the lockout check above.
         attempts.incrementAndGet();

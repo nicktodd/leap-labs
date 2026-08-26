@@ -12,6 +12,10 @@ public class AccountController {
     @Autowired
     private CurrentUserProvider currentUserProvider;
 
+    // VULNERABILITY (A01): the original version fetched whatever account ID
+    // was in the URL, with no check that it belonged to the currently
+    // authenticated user, an IDOR letting any user view any account.
+    //
     // FIX (A01): verify the account belongs to the authenticated caller
     // before returning it.
     @GetMapping("/api/accounts/{accountId}")

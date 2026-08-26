@@ -15,6 +15,9 @@ public class TransactionSearchDao {
         this.connection = connection;
     }
 
+    // VULNERABILITY (A05): the original version built SQL by string
+    // concatenation with user input, a classic SQL injection.
+    //
     // FIX (A05): a parameterised query with a bind parameter, not string
     // concatenation or escaping. Note: a Copilot suggestion that merely
     // escapes quotes in merchantName should be rejected, escaping is fragile;
