@@ -21,12 +21,23 @@ something coherent to look at rather than work in flight.
 | **TP3** | After Sprint 9 | Authentication and security, the trading UI, the order lifecycle working end to end through the real UI against real services | 26 | 84 |
 | **TP4** | End of Sprint 11 | Deployment, the finished quality and test picture, the gap-closing work and any BR-18 capability, the showcase | 16 | 100 |
 
-### The score is additive
+### The score is additive, and the touchpoints are not deadlines
 
 Each touchpoint releases its own marks. It does not re-score everything from the
-start. TP1 is marked out of 18, TP2 adds up to 40 more, and so on. A weak TP1
-is not fatal, and a strong TP1 is not banked against later slippage in the same
-area.
+start: TP1 is marked out of 18, TP2 adds up to 40 more, and so on, up to 100.
+
+Marks you do not earn at their touchpoint are not lost. If an area is still thin
+at TP2 but solid by TP3, those marks are picked up at TP3, at full value. The
+touchpoint is when the work is first looked for, and when feedback on it is most
+useful to you, not a gate that closes. Marks already earned are not taken back
+either; the continuity checks below are their own small line items, not a
+re-marking of what came before.
+
+We will still encourage you to meet each touchpoint on time. Scoping work to
+land by a fixed review date is a large part of what this project is teaching,
+and a team that consistently turns up ready is building a real delivery skill.
+Treat the dates as an external constraint the way you would on a real
+engagement. But arriving late costs nothing in the score itself.
 
 Every touchpoint after the first also carries a small **continuity check** on
 the areas already assessed. By TP2 the Sprint 3 schema has three more sprints
