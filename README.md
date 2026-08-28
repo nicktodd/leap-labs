@@ -1,5 +1,6 @@
 # LEAP Project
 
+
 An 11-week group project run alongside the LEAP training programme. Teams design and build a
 trading platform themselves, using whatever technology each sprint has just taught them, and
 manage it as a real agile project: their own architecture, their own backlog, their own customer.
