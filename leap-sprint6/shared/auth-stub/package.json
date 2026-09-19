@@ -1,0 +1,13 @@
+{
+  "name": "mission-auth-stub",
+  "version": "1.0.0",
+  "description": "Minimal Node.js auth service for Sprint 6 - issues JWTs the mission service validates.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "jsonwebtoken": "^9.0.2"
+  }
+}

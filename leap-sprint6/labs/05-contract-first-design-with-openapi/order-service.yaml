@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Order Processing & Settlement Service
+  description: >
+    Retrieves the status of a previously submitted order.
+  version: 1.0.0
+  license:
+    name: Internal use only
+
+servers:
+  - url: /v1
+
+paths:
+  /orders/{id}:
+    get:
+      summary: TODO - one sentence describing what this operation does
+      operationId: getOrder
+      security:
+        - bearerAuth: []
+      parameters:
+        # TODO: add a path parameter definition for `id` - name, in, required,
+        # and a schema (type: string is fine)
+        []
+      responses:
+        '200':
+          description: TODO
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OrderResponse'
+        # TODO: add a 404 response for an id that doesn't exist, and a 401
+        # response for a missing/invalid JWT. Both should reference
+        # ErrorResponse (already defined below).
+
+components:
+  schemas:
+    OrderResponse:
+      type: object
+      required: [id, status]
+      properties:
+        id:
+          type: string
+        status:
+          type: string
+          enum: [ACCEPTED, REJECTED]
+        fee:
+          type: number
+          format: double
+          nullable: true
+          description: Present only when status is ACCEPTED
+        reason:
+          type: string
+          nullable: true
+          description: Present only when status is REJECTED
+
+    ErrorResponse:
+      type: object
+      required: [message]
+      properties:
+        message:
+          type: string
+
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
