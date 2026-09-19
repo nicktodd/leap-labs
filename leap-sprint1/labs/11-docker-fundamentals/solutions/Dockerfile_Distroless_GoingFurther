@@ -1,0 +1,21 @@
+# Variant for goingfurther.md option 2 (shrink the image further with a distroless base).
+# Compare `docker images` size against Dockerfile_GoingFurther, and try
+# `docker exec -it <name> sh` against a container from this image - it will fail, because
+# distroless images ship no shell (and the "nonroot" tag below already runs as non-root, no
+# USER instruction needed).
+#
+# Build context must be starter/, e.g. from the lab root:
+#   docker build -f solutions/Dockerfile_Distroless_GoingFurther -t sprint1-greeter-app:distroless starter/
+
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /src
+COPY pom.xml .
+COPY src ./src
+RUN mvn -B clean package -DskipTests
+
+FROM gcr.io/distroless/java21-debian12:nonroot
+WORKDIR /app
+COPY --from=build /src/target/sprint1-greeter-app.jar app.jar
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

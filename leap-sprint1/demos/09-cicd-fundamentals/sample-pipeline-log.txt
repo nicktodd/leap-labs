@@ -1,0 +1,47 @@
+Started by user trainee01
+Obtained Jenkinsfile from git https://github.com/org/sprint1-demo-app.git
+Running in Durability level: MAX_SURVIVABILITY
+
+[Pipeline] Start of Pipeline
+[Pipeline] node
+Running on jenkins-agent-01 in /var/jenkins_home/workspace/sprint1-demo-app
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Checkout)
+09:14:02  Checking out git https://github.com/org/sprint1-demo-app.git
+09:14:03  Commit: a7e9c31 "Add farewell method to Greeter"
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Build)
+09:14:04  + mvn -B clean package
+09:14:04  [INFO] Scanning for projects...
+09:14:05  [INFO] Building sprint1-demo-app 0.1.0
+09:14:11  [INFO] Compiling 4 source files
+09:14:18  [INFO] BUILD SUCCESS
+09:14:18  [INFO] Total time: 14.201 s
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Test)
+09:14:19  + mvn -B test
+09:14:20  [INFO] Running com.neueda.leap.GreeterTest
+09:14:23  Tests run: 6, Failures: 0, Errors: 0, Skipped: 0
+09:14:23  [INFO] BUILD SUCCESS
+[Pipeline] junit
+09:14:24  Recording test results
+09:14:24  6 tests, 6 passed
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (Archive)
+09:14:25  Archiving artifacts
+09:14:25  target/sprint1-demo-app-0.1.0.jar
+09:14:26  Fingerprinting 1 artifact
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
+Total time: 24 s

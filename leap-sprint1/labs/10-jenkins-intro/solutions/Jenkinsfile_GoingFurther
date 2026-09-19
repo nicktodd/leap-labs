@@ -1,0 +1,70 @@
+// Example solution for goingfurther.md, options 3, 4 and 5 (parallel stages, manual approval
+// gate, parameterized/conditional build). Options 1 and 2 (coverage, static analysis) also
+// need the corresponding Maven plugin adding to pom.xml - jacoco-maven-plugin is assumed
+// below for the Coverage stage. Option 6 (shared library) isn't shown here as it lives in a
+// separate repository.
+
+pipeline {
+    agent any
+    tools {
+        maven 'Maven3'
+    }
+    parameters {
+        booleanParam(name: 'SKIP_TESTS', defaultValue: false, description: 'Skip the Test and Coverage stages')
+        choice(name: 'RELEASE_TYPE', choices: ['snapshot', 'release'], description: 'A "release" build asks for manual approval before archiving')
+    }
+    stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+        stage('Build') {
+            steps {
+                sh 'mvn -B clean package -DskipTests'
+            }
+        }
+        stage('Test & Coverage') {
+            when {
+                expression { return !params.SKIP_TESTS }
+            }
+            parallel {
+                stage('Test') {
+                    steps {
+                        sh 'mvn -B test'
+                    }
+                    post {
+                        always {
+                            junit 'target/surefire-reports/*.xml'
+                        }
+                    }
+                }
+                stage('Coverage') {
+                    steps {
+                        sh 'mvn -B jacoco:report'
+                    }
+                    post {
+                        always {
+                            archiveArtifacts artifacts: 'target/site/jacoco/**', allowEmptyArchive: true
+                        }
+                    }
+                }
+            }
+        }
+        stage('Approve Release') {
+            when {
+                expression { return params.RELEASE_TYPE == 'release' }
+            }
+            steps {
+                timeout(time: 15, unit: 'MINUTES') {
+                    input message: "Promote build ${env.BUILD_NUMBER} to release?", ok: 'Promote'
+                }
+            }
+        }
+        stage('Archive') {
+            steps {
+                archiveArtifacts artifacts: 'target/*.jar', fingerprint: true
+            }
+        }
+    }
+}

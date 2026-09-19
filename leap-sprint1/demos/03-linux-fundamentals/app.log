@@ -1,0 +1,12 @@
+2026-08-18 09:01:02 INFO  [main] Starting sprint1-demo-app v0.1.0
+2026-08-18 09:01:02 INFO  [main] Loading configuration from application.properties
+2026-08-18 09:01:03 INFO  [main] Connected to database: sprint1-db
+2026-08-18 09:01:03 INFO  [http-nio-8080] Tomcat started on port 8080
+2026-08-18 09:02:15 INFO  [http-nio-8080] GET /health 200
+2026-08-18 09:03:41 WARN  [http-nio-8080] Slow response for GET /accounts (842ms)
+2026-08-18 09:04:10 INFO  [http-nio-8080] GET /health 200
+2026-08-18 09:05:55 ERROR [http-nio-8080] Unhandled exception in AccountController
+java.lang.NullPointerException: Cannot invoke "Account.getBalance()" because "account" is null
+	at com.neueda.leap.AccountController.getBalance(AccountController.java:42)
+2026-08-18 09:06:02 INFO  [http-nio-8080] GET /health 200
+2026-08-18 09:07:30 INFO  [http-nio-8080] GET /health 200

@@ -1,0 +1,21 @@
+# Stretch solution for goingfurther.md - wraps the going-further image in Compose instead of a
+# hand-typed `docker run` command. Build the image first:
+#   docker build -f solutions/Dockerfile_GoingFurther -t sprint1-greeter-app:going-further starter/
+# Then, from this solutions/ directory:
+#   docker compose -f docker-compose_GoingFurther.yml up -d
+#   docker compose -f docker-compose_GoingFurther.yml logs
+
+services:
+  greeter:
+    image: sprint1-greeter-app:going-further
+    container_name: sprint1-greeter-compose
+    environment:
+      GREETING_NAME: "Compose"
+    volumes:
+      - greeter-logs:/app/logs
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+volumes:
+  greeter-logs:

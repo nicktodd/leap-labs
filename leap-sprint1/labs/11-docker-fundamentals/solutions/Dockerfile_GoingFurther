@@ -1,0 +1,34 @@
+# Solution for goingfurther.md options 1 (multi-stage build), 3 (HEALTHCHECK), 5 (volume for
+# persisted logs) and 6 (non-root user). Options 4's env var is wired up here too, but it only
+# takes effect once Main.java reads it - see Main_GoingFurther.java for that half of the
+# solution. Option 2 (distroless) is a separate variant, see Dockerfile_Distroless_GoingFurther.
+# The stretch option (Compose) is in docker-compose_GoingFurther.yml.
+#
+# Build context must be starter/, e.g. from the lab root:
+#   docker build -f solutions/Dockerfile_GoingFurther -t sprint1-greeter-app:going-further starter/
+
+FROM maven:3.9-eclipse-temurin-21 AS build
+WORKDIR /src
+COPY pom.xml .
+COPY src ./src
+RUN mvn -B clean package -DskipTests
+
+FROM eclipse-temurin:21-jre-alpine
+WORKDIR /app
+
+RUN addgroup -S app && adduser -S app -G app \
+    && mkdir -p /app/logs \
+    && chown -R app:app /app
+
+COPY --from=build /src/target/sprint1-greeter-app.jar app.jar
+
+ENV GREETING_NAME="Sprint 1"
+VOLUME /app/logs
+
+USER app
+
+HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+    CMD pidof java || exit 1
+
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]

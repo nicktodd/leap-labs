@@ -1,0 +1,2 @@
+PostgreSQL service status: Running (service name: postgresql)
+ERROR in app.log: Unhandled exception in AccountController at com.neueda.leap.AccountController.getBalance(AccountController.java:42) - NullPointerException because "account" is null
