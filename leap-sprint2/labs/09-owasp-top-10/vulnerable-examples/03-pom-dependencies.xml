@@ -1,0 +1,22 @@
+<!-- PaySprint Mobile - pom.xml (excerpt) -->
+<!-- No version pinning strategy, no automated dependency update checks, and no
+     verification of where these artifacts are actually pulled from at build time. -->
+<dependencies>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.9.8</version>
+    </dependency>
+    <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-web</artifactId>
+        <version>5.2.0.RELEASE</version>
+    </dependency>
+</dependencies>
+
+<!-- Last dependency review: over 3 years ago, per git blame on this file. -->

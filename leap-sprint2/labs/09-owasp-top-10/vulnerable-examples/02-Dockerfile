@@ -1,0 +1,16 @@
+# PaySprint Mobile - production Dockerfile (excerpt)
+
+FROM eclipse-temurin:21-jdk
+
+WORKDIR /app
+COPY target/paysprint-mobile-1.0.0.jar app.jar
+
+# Debug port left open for "just in case we need to attach a debugger in prod"
+EXPOSE 8080
+EXPOSE 5005
+
+ENV SPRING_PROFILES_ACTIVE=production
+ENV DB_PASSWORD=Winter2024!
+
+ENTRYPOINT ["java", "-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005", \
+            "-jar", "app.jar"]

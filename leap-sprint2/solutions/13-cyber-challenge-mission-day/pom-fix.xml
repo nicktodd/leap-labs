@@ -1,0 +1,10 @@
+<!-- VULNERABILITY (A03): the starter pinned log4j-core to 2.14.1, vulnerable
+     to Log4Shell (CVE-2021-44228), a critical, unauthenticated RCE triggered
+     by logging a specially-crafted string. -->
+<!-- FIX (A03): upgrade log4j-core past every version affected by Log4Shell
+     (CVE-2021-44228) and its follow-up CVEs. 2.17.1+ is the safe baseline. -->
+<dependency>
+    <groupId>org.apache.logging.log4j</groupId>
+    <artifactId>log4j-core</artifactId>
+    <version>2.23.1</version>
+</dependency>
