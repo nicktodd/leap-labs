@@ -1,0 +1,19 @@
+<h2>Login</h2>
+@if (error()) {
+  <p style="color: red">{{ error() }}</p>
+}
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label>Username <input formControlName="username" /></label>
+    @if (form.controls.username.invalid && form.controls.username.touched) {
+      <span style="color: red">Username is required</span>
+    }
+  </div>
+  <div>
+    <label>Password <input type="password" formControlName="password" /></label>
+    @if (form.controls.password.invalid && form.controls.password.touched) {
+      <span style="color: red">Password is required</span>
+    }
+  </div>
+  <button type="submit">Login</button>
+</form>

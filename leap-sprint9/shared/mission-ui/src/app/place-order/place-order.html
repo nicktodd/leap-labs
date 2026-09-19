@@ -1,0 +1,48 @@
+<h2>Place Order</h2>
+
+@if (svc.error()) {
+  <p class="field-error">{{ svc.error() }}</p>
+}
+@if (svc.lastOrder()) {
+  <p>Order {{ svc.lastOrder()!.status }} — fee: {{ svc.lastOrder()!.fee | number:'1.2-2' }}, new qty: {{ svc.lastOrder()!.newHoldingQuantity }}</p>
+}
+
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <div>
+    <label>Ticker <input formControlName="ticker" /></label>
+    @if (form.controls.ticker.invalid && form.controls.ticker.touched) {
+      <span class="field-error">Ticker is required</span>
+    }
+  </div>
+  <div>
+    <label>Instrument Type <input formControlName="instrumentType" /></label>
+    @if (form.controls.instrumentType.invalid && form.controls.instrumentType.touched) {
+      <span class="field-error">Instrument type is required</span>
+    }
+  </div>
+  <div>
+    <label>Quantity <input type="number" formControlName="quantity" /></label>
+    @if (form.controls.quantity.invalid && form.controls.quantity.touched) {
+      <span class="field-error">Quantity must be at least 0.01</span>
+    }
+  </div>
+  <div>
+    <label>Price <input type="number" formControlName="price" /></label>
+    @if (form.controls.price.invalid && form.controls.price.touched) {
+      <span class="field-error">Price must be at least 0.01</span>
+    }
+  </div>
+  <div>
+    <label>Side
+      <select formControlName="side">
+        <option value="">-- select --</option>
+        <option value="BUY">BUY</option>
+        <option value="SELL">SELL</option>
+      </select>
+    </label>
+    @if (form.controls.side.invalid && form.controls.side.touched) {
+      <span class="field-error">Side is required</span>
+    }
+  </div>
+  <button type="submit" [disabled]="svc.pending()">{{ svc.pending() ? 'Submitting…' : 'Submit Order' }}</button>
+</form>

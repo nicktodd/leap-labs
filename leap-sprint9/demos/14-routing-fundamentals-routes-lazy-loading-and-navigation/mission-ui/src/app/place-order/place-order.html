@@ -1,0 +1,55 @@
+<section class="place-order">
+  <h2>Place an Order</h2>
+
+  <form [formGroup]="orderForm" (ngSubmit)="submit()">
+    <div class="field">
+      <label for="ticker">Ticker</label>
+      <input id="ticker" formControlName="ticker" />
+      @if (orderForm.controls.ticker.invalid && orderForm.controls.ticker.touched) {
+        <p class="field-error">Ticker is required.</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="instrumentType">Instrument Type</label>
+      <input id="instrumentType" formControlName="instrumentType" />
+    </div>
+
+    <div class="field">
+      <label for="quantity">Quantity</label>
+      <input id="quantity" type="number" formControlName="quantity" />
+      @if (orderForm.controls.quantity.invalid && orderForm.controls.quantity.touched) {
+        <p class="field-error">Quantity must be greater than 0.</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="price">Price</label>
+      <input id="price" type="number" formControlName="price" />
+      @if (orderForm.controls.price.invalid && orderForm.controls.price.touched) {
+        <p class="field-error">Price must be greater than 0.</p>
+      }
+    </div>
+
+    <div class="field">
+      <label for="side">Side</label>
+      <select id="side" formControlName="side">
+        <option value="BUY">BUY</option>
+        <option value="SELL">SELL</option>
+      </select>
+    </div>
+
+    <button type="submit">Submit Order</button>
+  </form>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (lastOrder(); as order) {
+    <p class="result">
+      <strong>{{ order.status }}</strong> - fee {{ order.fee }},
+      new holding quantity {{ order.newHoldingQuantity }}
+    </p>
+  }
+</section>

@@ -1,0 +1,18 @@
+<header>
+  <h1>Mission Control</h1>
+  <app-portfolio-badge />
+  @if (tokenStore.isAuthenticated()) {
+    <nav>
+      <a routerLink="/holdings" routerLinkActive="active">Holdings</a>
+      <a routerLink="/orders" routerLinkActive="active">Place Order</a>
+    </nav>
+    <p class="session">
+      Logged in as {{ tokenStore.currentUsername() }}
+      <button (click)="logout()">Log Out</button>
+    </p>
+  }
+</header>
+
+<main>
+  <router-outlet />
+</main>

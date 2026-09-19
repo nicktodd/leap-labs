@@ -1,0 +1,9 @@
+.error {
+  color: #c0392b;
+  font-weight: 600;
+}
+
+.result {
+  color: #1e7d32;
+  font-weight: 600;
+}

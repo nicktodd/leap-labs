@@ -1,0 +1,17 @@
+<section class="place-order">
+  <h2>Place a Test Order</h2>
+  <p>BUY 1 ULVR.L @ 40.0 - real call, real Spring Boot backend</p>
+
+  <button (click)="submitTestOrder()">Submit Test Order</button>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  @if (lastOrder(); as order) {
+    <p class="result">
+      <strong>{{ order.status }}</strong> - fee {{ order.fee }},
+      new holding quantity {{ order.newHoldingQuantity }}
+    </p>
+  }
+</section>

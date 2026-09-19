@@ -1,0 +1,17 @@
+.claude/
+target/
+*.class
+.idea/
+*.iml
+node_modules/
+dist/
+.angular/
+coverage/
+playwright-report/
+test-results/
+.mermaid-cache/
+*.log
+*.jar
+!.mvn/wrapper/*.jar
+.env
+.DS_Store

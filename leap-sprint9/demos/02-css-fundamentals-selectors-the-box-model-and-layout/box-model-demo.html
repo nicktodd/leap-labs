@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Box Model Demo</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 40px;
+    }
+    .margin-layer {
+      background: #fde2c8;
+      padding: 30px;
+      display: inline-block;
+    }
+    .border-layer {
+      background: #f4b183;
+      border: 4px dashed #c55a11;
+      padding: 0;
+    }
+    .padding-layer {
+      background: #ffe699;
+      padding: 30px;
+    }
+    .content-layer {
+      background: #9dc3e6;
+      width: 200px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      color: #1a1a2e;
+    }
+    .label {
+      font-size: 12px;
+      font-weight: bold;
+      color: #1a1a2e;
+      margin-bottom: 4px;
+    }
+  </style>
+</head>
+<body>
+  <div class="margin-layer">
+    <span class="label">MARGIN (orange)</span>
+    <div class="border-layer">
+      <div class="padding-layer">
+        <span class="label">PADDING (yellow)</span>
+        <div class="content-layer">CONTENT (blue)</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

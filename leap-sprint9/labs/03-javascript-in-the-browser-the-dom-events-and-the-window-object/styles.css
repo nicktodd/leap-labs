@@ -1,0 +1,130 @@
+/* box-sizing: border-box makes padding and border count INSIDE an
+   element's declared width, instead of adding on top of it - without
+   this, the box model math in Part 2 gets confusing fast. */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f4f4f5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  background: #0a2c24;
+  color: white;
+  padding: 16px 24px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+/* Flexbox centres the form both horizontally and vertically inside
+   whatever space is left between the header and footer. */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+form {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 32px;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+form h2 {
+  margin: 0 0 8px 0;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.field label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.field input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 12px;
+  background: #1e6fa8;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 16px;
+  color: #666;
+  font-size: 0.875rem;
+}
+
+.field input.invalid {
+  border-color: #c0392b;
+}
+
+/* JS toggles these - no rule shows a message by default. */
+.message {
+  margin: 0;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 0.875rem;
+}
+
+.message.hidden {
+  display: none;
+}
+
+.message.error {
+  background: #fdecea;
+  color: #c0392b;
+}
+
+.message.success {
+  background: #e8f5e9;
+  color: #1e7d32;
+}
+
+/* Responsive breakpoint: on a narrow screen there's no room to spare,
+   so the card loses its border/corners and goes edge-to-edge instead
+   of floating in the middle of the viewport. */
+@media (max-width: 480px) {
+  main {
+    padding: 0;
+  }
+
+  form {
+    max-width: none;
+    border: none;
+    border-radius: 0;
+    flex: 1;
+  }
+}

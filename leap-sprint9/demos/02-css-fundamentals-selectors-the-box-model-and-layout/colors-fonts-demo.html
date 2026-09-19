@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Colour and Font Demo</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      padding: 30px;
+    }
+    .row {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .swatch {
+      width: 120px;
+      height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 6px;
+    }
+    .named { background: steelblue; }
+    .hex { background: #1e6fa8; }
+    .rgb { background: rgb(30, 111, 168); }
+    .rgba-demo {
+      background-image: repeating-linear-gradient(45deg, #ccc 0 10px, #eee 10px 20px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rgba-demo span {
+      background: rgba(30, 111, 168, 0.5);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .font-row p {
+      margin: 4px 0;
+    }
+    .f-system { font-family: system-ui, sans-serif; }
+    .f-serif { font-family: Georgia, serif; }
+    .f-mono { font-family: "Courier New", monospace; }
+    .f-light { font-weight: 300; }
+    .f-normal { font-weight: 400; }
+    .f-bold { font-weight: 700; }
+  </style>
+</head>
+<body>
+  <div class="row">
+    <div class="swatch named">named: steelblue</div>
+    <div class="swatch hex">hex: #1e6fa8</div>
+    <div class="swatch rgb">rgb(30,111,168)</div>
+    <div class="swatch rgba-demo"><span>rgba, 50% alpha</span></div>
+  </div>
+
+  <div class="font-row">
+    <p class="f-system">system-ui, sans-serif</p>
+    <p class="f-serif">Georgia, serif</p>
+    <p class="f-mono">Courier New, monospace</p>
+    <p class="f-light">font-weight: 300 (light)</p>
+    <p class="f-normal">font-weight: 400 (normal)</p>
+    <p class="f-bold">font-weight: 700 (bold)</p>
+  </div>
+</body>
+</html>

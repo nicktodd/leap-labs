@@ -1,0 +1,22 @@
+<h2>Holdings Summary</h2>
+
+@if (svc.loadError()) {
+  <p style="color: red">{{ svc.loadError() }}</p>
+}
+
+<ul>
+  @for (holding of svc.all(); track holding.ticker) {
+    <li>
+      {{ holding.ticker }}: {{ holding.quantity }} @ {{ holding.price }}
+      <button (click)="svc.remove(holding.ticker)">Remove</button>
+    </li>
+  } @empty {
+    <li>No holdings.</li>
+  }
+</ul>
+
+<p>Total value: {{ svc.totalValue() | number: '1.2-2' }}</p>
+
+<button (click)="svc.add()">Add GOOGL</button>
+<button (click)="svc.loadFromApi('http://localhost:3500/api/holdings')">Load from API</button>
+<button (click)="svc.loadFromApi('http://localhost:3500/api/holdings/error')">Trigger Error</button>

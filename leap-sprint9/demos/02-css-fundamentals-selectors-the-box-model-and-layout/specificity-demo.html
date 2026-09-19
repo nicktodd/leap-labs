@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Specificity Demo</title>
+  <style>
+    body { font-family: system-ui, sans-serif; padding: 40px; }
+    input { border: 2px solid black; padding: 8px; display: block; margin-bottom: 12px; }
+
+    /* Three rules, all targeting the SAME input, each more specific
+       than the last. Only one border colour can win. */
+    input { border-color: black; }
+    .field input { border-color: blue; }
+    #username { border-color: red; }
+  </style>
+</head>
+<body>
+  <div class="field">
+    <input id="username" value="Which colour wins?" />
+  </div>
+</body>
+</html>

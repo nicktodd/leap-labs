@@ -1,0 +1,9 @@
+<header><app-portfolio-badge /></header>
+@if (tokenStore.isAuthenticated()) {
+  <nav>
+    <a routerLink="/holdings" routerLinkActive="active">Holdings</a>
+    <a routerLink="/orders" routerLinkActive="active">Place Order</a>
+    <button (click)="logout()">Logout</button>
+  </nav>
+}
+<router-outlet />
