@@ -1,0 +1,71 @@
+classDiagram
+    class Client {
+        -clientId String
+        -riskLimit double
+        +getPortfolio() Portfolio
+    }
+
+    class Portfolio {
+        -holdings List~Holding~
+        +totalValue() double
+    }
+
+    class Holding {
+        -instrument Instrument
+        -quantity double
+        +adjust(delta double)
+    }
+
+    class Instrument {
+        <<abstract>>
+        -ticker String
+        +calculateFee(tradeValue double)* double
+    }
+
+    class EquityInstrument
+    class BondInstrument
+    class CryptoInstrument
+    class FundInstrument
+
+    class Feeable {
+        <<interface>>
+        +calculateFee(tradeValue double) double
+    }
+
+    class Order {
+        -client Client
+        -instrument Instrument
+        -quantity double
+        -price double
+        -direction String
+        -status String
+    }
+
+    class OrderValidator {
+        +validate(order Order) boolean
+    }
+
+    class OrderExecutor {
+        +execute(order Order)
+    }
+
+    class SettlementReport {
+        +addEntry(order Order)
+        +print()
+    }
+
+    Client "1" --> "1" Portfolio : has
+    Portfolio "1" *-- "*" Holding : composition - a Holding is meaningless without its Portfolio
+    Holding "*" o-- "1" Instrument : aggregation - an Instrument exists in the market regardless
+    Order "*" --> "1" Client : refers to
+    Order "*" --> "1" Instrument : refers to
+    Instrument ..|> Feeable : implements
+    EquityInstrument --|> Instrument
+    BondInstrument --|> Instrument
+    CryptoInstrument --|> Instrument
+    FundInstrument --|> Instrument
+    OrderValidator ..> Order : validates
+    OrderExecutor ..> OrderValidator : uses
+    OrderExecutor ..> Order : executes
+    OrderExecutor ..> Portfolio : updates
+    SettlementReport ..> Order : reports on

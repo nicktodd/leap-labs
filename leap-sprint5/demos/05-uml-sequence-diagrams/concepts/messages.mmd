@@ -1,0 +1,7 @@
+%%{init: {'sequence': {'mirrorActors': false}}}%%
+sequenceDiagram
+    participant O as OrderExecutor
+    participant I as BondInstrument
+
+    O->>I: calculateFee(tradeValue)
+    I-->>O: 5.00

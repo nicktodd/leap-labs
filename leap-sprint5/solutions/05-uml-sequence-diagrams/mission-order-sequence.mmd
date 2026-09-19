@@ -1,0 +1,30 @@
+%%{init: {'sequence': {'mirrorActors': false}}}%%
+sequenceDiagram
+    actor C as Client
+    participant O as Order
+    participant V as OrderValidator
+    participant E as OrderExecutor
+    participant P as Portfolio
+    participant I as Instrument
+    participant R as SettlementReport
+
+    C->>+O: submit(order)
+    O->>+V: validate(order)
+    V->>P: currentHoldings(client)
+    P-->>V: holdings
+    alt order is valid
+        V-->>-O: valid
+        O->>+E: execute(order)
+        E->>I: calculateFee(tradeValue)
+        I-->>E: fee
+        E->>P: adjust(holding, delta)
+        P-->>E: updated
+        E->>+R: addEntry(order, fee, accepted)
+        R-->>-E: recorded
+        E-->>O: executed
+    else order is invalid
+        V-->>O: rejected(reason)
+        O->>R: addEntry(order, rejected, reason)
+        R-->>O: recorded
+    end
+    O-->>-C: confirmation

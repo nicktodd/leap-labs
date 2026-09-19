@@ -1,0 +1,12 @@
+classDiagram
+    direction LR
+    class Order {
+        -instrument Instrument
+        -quantity double
+        -price double
+    }
+    class Client {
+        -clientId String
+        -riskLimit double
+    }
+    Order "*" --> "1" Client : references

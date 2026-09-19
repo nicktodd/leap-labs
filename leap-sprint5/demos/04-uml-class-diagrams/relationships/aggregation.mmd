@@ -1,0 +1,9 @@
+classDiagram
+    direction LR
+    class Portfolio {
+        -holdings List~Holding~
+    }
+    class Instrument {
+        -ticker String
+    }
+    Portfolio "1" o-- "*" Instrument : aggregation

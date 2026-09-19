@@ -1,0 +1,10 @@
+%%{init: {'sequence': {'mirrorActors': false}}}%%
+sequenceDiagram
+    participant C as Client
+    participant O as OrderExecutor
+    participant P as Portfolio
+
+    C->>+O: execute(order)
+    O->>+P: adjust(holding, delta)
+    P-->>-O: updated
+    O-->>-C: confirmation

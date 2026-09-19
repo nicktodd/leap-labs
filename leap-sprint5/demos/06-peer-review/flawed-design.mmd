@@ -1,0 +1,20 @@
+classDiagram
+    class OrderManager {
+        +List~Order~ orders
+        +Map~String, Double~ clientBalances
+        +processOrder(order)
+        +validateOrder(order)
+        +calculateFee(order)
+        +updateHolding(order)
+        +printReport()
+        +sendEmail(client)
+    }
+
+    class Order {
+        +String clientId
+        +String instrumentTicker
+        +double quantity
+        +double price
+    }
+
+    OrderManager --> Order : processes

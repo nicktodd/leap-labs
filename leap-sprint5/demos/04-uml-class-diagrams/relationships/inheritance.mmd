@@ -1,0 +1,11 @@
+classDiagram
+    direction LR
+    class Instrument {
+        <<abstract>>
+        -ticker String
+        +calculateFee(tradeValue double)* double
+    }
+    class BondInstrument {
+        +calculateFee(tradeValue double) double
+    }
+    BondInstrument --|> Instrument : inheritance

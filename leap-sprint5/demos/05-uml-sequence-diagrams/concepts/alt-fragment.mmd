@@ -1,0 +1,13 @@
+%%{init: {'sequence': {'mirrorActors': false}}}%%
+sequenceDiagram
+    participant O as Order
+    participant V as OrderValidator
+    participant E as OrderExecutor
+
+    O->>V: validate(order)
+    alt order is valid
+        V-->>O: valid
+        O->>E: execute(order)
+    else order is invalid
+        V-->>O: rejected(reason)
+    end

@@ -1,0 +1,30 @@
+classDiagram
+    direction LR
+    class Member {
+        -memberId String
+        -unpaidFees double
+        +canBorrow() boolean
+        +payFees(amount double)
+    }
+
+    class Loan {
+        -dueDate Date
+        -returnDate Date
+        +isOverdue() boolean
+        +calculateLateFee() double
+    }
+
+    class Book {
+        -isbn String
+        -title String
+    }
+
+    class Library {
+        +lendBook(member, book)
+        +returnBook(loan)
+    }
+
+    Member "1" --> "*" Loan : has
+    Loan "*" --> "1" Book : refers to
+    Library ..> Member : coordinates
+    Library ..> Loan : creates

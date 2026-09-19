@@ -1,0 +1,8 @@
+.claude/
+target/
+*.class
+.idea/
+*.iml
+node_modules/
+.mermaid-cache/
+.DS_Store

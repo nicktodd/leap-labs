@@ -1,0 +1,11 @@
+classDiagram
+    direction LR
+    class Feeable {
+        <<interface>>
+        +calculateFee(tradeValue double) double
+    }
+    class Instrument {
+        <<abstract>>
+        -ticker String
+    }
+    Instrument ..|> Feeable : implements

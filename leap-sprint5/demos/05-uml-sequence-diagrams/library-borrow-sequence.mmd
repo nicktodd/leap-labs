@@ -1,0 +1,15 @@
+%%{init: {'sequence': {'mirrorActors': false}}}%%
+sequenceDiagram
+    actor M as Member
+    participant L as Library
+    participant B as Book
+    participant Loan as Loan
+
+    M->>+L: borrowBook(member, book)
+    L->>B: checkAvailable()
+    B-->>L: true
+    L->>M: canBorrow()
+    M-->>L: true
+    L->>+Loan: new Loan(member, book, dueDate)
+    Loan-->>-L: loan
+    L-->>-M: confirmation

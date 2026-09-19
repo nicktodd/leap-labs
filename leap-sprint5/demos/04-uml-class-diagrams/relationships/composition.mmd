@@ -1,0 +1,9 @@
+classDiagram
+    direction LR
+    class Portfolio {
+        -holdings List~Holding~
+    }
+    class Holding {
+        -quantity double
+    }
+    Portfolio "1" *-- "*" Holding : composition
