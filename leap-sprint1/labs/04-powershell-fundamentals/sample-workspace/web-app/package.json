@@ -1,7 +1,0 @@
-{
-  "name": "sprint1-web-app",
-  "version": "0.1.0",
-  "scripts": {
-    "start": "node server.js"
-  }
-}

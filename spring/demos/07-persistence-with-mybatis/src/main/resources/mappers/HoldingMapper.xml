@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neueda.leap.mission.service.HoldingMapper">
+
+    <!-- namespace above must exactly match the Java interface's fully
+         qualified name - that's how MyBatis wires this XML to that
+         interface. id below must match the method name. -->
+    <select id="findByClientId" resultType="com.neueda.leap.mission.service.Holding">
+        SELECT
+            c.client_id   AS clientId,
+            c.name        AS clientName,
+            i.ticker      AS ticker,
+            h.quantity    AS quantity
+        FROM holdings h
+        JOIN accounts a    ON h.account_id = a.account_id
+        JOIN clients c     ON a.client_id = c.client_id
+        JOIN instruments i ON h.instrument_id = i.instrument_id
+        WHERE c.client_id = #{clientId}
+        ORDER BY i.ticker
+    </select>
+
+</mapper>

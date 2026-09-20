@@ -1,0 +1,53 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.iml
+*.iws
+.claude/
+.mermaid-cache/
+
+# Java / Spring / Maven / Gradle
+target/
+*.class
+*.jar
+!.mvn/wrapper/*.jar
+build/
+.gradle/
+out/
+
+# Node / JS / TypeScript / Angular
+node_modules/
+dist/
+.angular/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+npm-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+.pytest_cache/
+
+# AWS
+.aws-sam/
+cdk.out/
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Env / secrets
+.env
+.env.local
+
+# Logs
+*.log

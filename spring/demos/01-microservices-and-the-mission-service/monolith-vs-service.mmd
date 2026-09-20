@@ -1,0 +1,23 @@
+flowchart LR
+    subgraph Monolith["The Java Week: Everything in One Process"]
+        direction TB
+        M1["main() reads orders.csv"]
+        M2["OrderValidator"]
+        M3["OrderProcessingEngine"]
+        M4["HoldingUpdater"]
+        M5["In-memory Map&lt;String, Client&gt;"]
+        M6["SettlementReport, printed to console"]
+        M1 --> M2 --> M3 --> M4 --> M5
+        M3 --> M6
+    end
+
+    subgraph Service["This Week: A Deployable Service"]
+        direction TB
+        C["HTTP client"] -->|"POST /orders + JWT"| A["Order Processing Service (Spring Boot)"]
+        A -->|"validate token"| N["Node.js Auth Service"]
+        A --> V["OrderValidator"]
+        A --> E["OrderProcessingEngine"]
+        E --> H["HoldingUpdater"]
+        A -->|"MyBatis"| P["Postgres (Sprint 3 schema)"]
+        A -->|"JSON response"| C
+    end

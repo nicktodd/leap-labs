@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.neueda.leap.mission.service.AccountMapper">
+
+    <select id="findInstrument" resultType="com.neueda.leap.mission.service.InstrumentRow">
+        SELECT instrument_id AS instrumentId, ticker, asset_class AS assetClass
+        FROM instruments
+        WHERE ticker = #{ticker}
+    </select>
+
+    <select id="findHolding" resultType="com.neueda.leap.mission.service.HoldingRow">
+        SELECT h.holding_id AS holdingId, h.quantity AS quantity
+        FROM holdings h
+        JOIN instruments i ON h.instrument_id = i.instrument_id
+        WHERE h.account_id = #{accountId} AND i.ticker = #{ticker}
+    </select>
+
+</mapper>

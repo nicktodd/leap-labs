@@ -1,0 +1,63 @@
+# LEAP Program - Sprint 8 Lab Exercises
+
+This repository contains the hands-on lab exercises accompanying **Sprint 8: Node.js / NestJS
+Authentication Service**, week 8 of the LEAP graduate programme.
+
+## Prerequisites
+
+- Node.js (LTS) and npm
+- No prior JavaScript or TypeScript experience assumed beyond what the Angular week already
+  covered - Module 1 is a conceptual lead-in, Module 2 (Asynchronous JavaScript) builds on the
+  JavaScript fundamentals from the Angular week, and Module 4 (TypeScript Build Process)
+  builds on the full TypeScript grounding (basic types through interfaces and generics) from
+  that same week
+- Postgres (the Sprint 3 enterprise schema, extended with a `users` table - see `shared/`)
+- Java 21 (JDK) and Maven, and Docker - to run Sprint 6/7's mission service, which the new auth
+  service integrates with from Module 11 onward
+- GitHub Copilot Chat (continuing as a learning aid)
+
+## Coming from Sprint 7
+
+Sprint 6 built a Spring Boot mission service that trusts JWTs from `shared/auth-stub` - a
+minimal, hardcoded-credentials Node service, good enough to build and test `SecurityConfig`
+against, never intended to be real. Sprint 8 builds the real thing: a NestJS auth service with
+genuine user registration, password hashing, and database-backed login, issuing tokens the
+mission service already knows how to validate without any changes on its side. See
+`shared/mission-brief.md`.
+
+## Structure
+
+Each module has its own folder under `demos/`, `labs/`, and `solutions/`. From Module 3 onward,
+modules are self-contained Node/npm projects; Module 2 is a smaller, dependency-free JavaScript
+exercise runnable directly with `node`.
+
+- `demos/<module>/` - instructor-led demo assets and guides
+- `labs/<module>/` - your starter files and the task README for that module
+- `solutions/<module>/` - reference solutions (try the lab first!)
+
+## Getting started
+
+1. Clone this repository.
+2. `cd` into a module's `labs/<module>/` folder and check that module's README for setup.
+3. Work through the modules in order, starting with `labs/01-.../README.md`.
+
+## Modules
+
+| # | Module | Lab |
+|---|---|---|
+| 1 | Identity, Access Management & Zero-Trust: Why This Service Matters | [labs/01-identity-access-management-and-zero-trust-why-this-service-matters/README.md](labs/01-identity-access-management-and-zero-trust-why-this-service-matters/README.md) |
+| 2 | Asynchronous JavaScript: Callbacks, Promises & Async/Await | [labs/02-asynchronous-javascript-callbacks-promises-and-async-await/README.md](labs/02-asynchronous-javascript-callbacks-promises-and-async-await/README.md) |
+| 3 | Node.js Fundamentals: Event Loop, Modules & npm | [labs/03-nodejs-fundamentals-event-loop-modules-and-npm/README.md](labs/03-nodejs-fundamentals-event-loop-modules-and-npm/README.md) |
+| 4 | The TypeScript Build Process: tsconfig, Compiling & Tooling | [labs/04-the-typescript-build-process-tsconfig-compiling-and-tooling/README.md](labs/04-the-typescript-build-process-tsconfig-compiling-and-tooling/README.md) |
+| 5 | NestJS Fundamentals: Modules, Controllers, Providers & DI | [labs/05-nestjs-fundamentals-modules-controllers-providers-and-di/README.md](labs/05-nestjs-fundamentals-modules-controllers-providers-and-di/README.md) |
+| 6 | DTOs & Validation in NestJS | [labs/06-dtos-and-validation-in-nestjs/README.md](labs/06-dtos-and-validation-in-nestjs/README.md) |
+| 7 | Building the Auth Service Skeleton: Login, Register, Refresh | [labs/07-building-the-auth-service-skeleton-login-register-refresh/README.md](labs/07-building-the-auth-service-skeleton-login-register-refresh/README.md) |
+| 8 | Secure DB Access & Password Hashing | [labs/08-secure-db-access-and-password-hashing/README.md](labs/08-secure-db-access-and-password-hashing/README.md) |
+| 9 | JWT Essentials: Issuing & Validating Tokens | [labs/09-jwt-essentials-issuing-and-validating-tokens/README.md](labs/09-jwt-essentials-issuing-and-validating-tokens/README.md) |
+| 10 | Securing & Testing the Service - Lightweight Pass | [labs/10-securing-and-testing-the-service-lightweight-pass/README.md](labs/10-securing-and-testing-the-service-lightweight-pass/README.md) |
+| 11 | Mission Build: OpenAPI Docs & Replacing the Sprint 7 Stub | [labs/11-mission-build-openapi-docs-and-replacing-the-sprint7-stub/README.md](labs/11-mission-build-openapi-docs-and-replacing-the-sprint7-stub/README.md) |
+
+## Support
+
+Ask your trainer or Scrum team lead during class, or raise a question in the cohort's usual
+support channel.
