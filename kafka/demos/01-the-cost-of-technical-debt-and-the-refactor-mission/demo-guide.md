@@ -45,7 +45,7 @@ moral judgment about the person who wrote it.
 ## Introduce the Mission
 
 Point at `shared/mission-brief.md`. This exact codebase is what Modules 10-13 spend the rest of
-the sprint on: Module 10 hunts for more smells like the ones just found (without fixing them yet);
+the week on: Module 10 hunts for more smells like the ones just found (without fixing them yet);
 Module 11 writes characterisation tests as a safety net *before* refactoring; Module 12 wires
 automated quality gates into CI so this kind of debt doesn't quietly return; Module 13 adds
 security scanning on top. Today is only the honest look - no fixing yet.

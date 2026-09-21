@@ -60,7 +60,7 @@ SettlementConsumer finished - received 4 events.
 
 ACC-001's BUY then SELL: partition 1, offsets 0 then 1 - production order, exactly what Module
 6's design promised. `SettlementConsumer` never talks to `OrderService` directly - it doesn't
-even run in the same process. That's the decoupling this sprint's mission is built around.
+even run in the same process. That's the decoupling this week's mission is built around.
 
 ## Point at the Decoupling, Explicitly
 

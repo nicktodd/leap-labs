@@ -1,4 +1,4 @@
-# Sprint 5 - Project Friday Guidance
+# Java Week - Project Friday Guidance
 
 ## Context
 
@@ -6,9 +6,9 @@ This week's teaching covers core Java, OO principles, OOAD, UML class and sequen
 SOLID, clean code, TDD and JUnit.
 
 This week's deliverable is the trading domain in Java: the entities, rules and lifecycle that
-decide whether an order is accepted. You modelled this same domain as tables in Sprint 3. This
-week it's objects, and the two aren't quite the same exercise, a table stores state, an object
-owns the behaviour that changes it.
+decide whether an order is accepted. You already modelled this same domain as tables. This
+week it's objects, and the two aren't quite the same exercise, a table stores
+state, an object owns the behaviour that changes it.
 
 ## The trap to avoid
 
@@ -17,7 +17,7 @@ whiteboard, then move on. Before you do, put it under some pressure from what yo
 about this platform, not a hint about what's coming, just what you've already committed to:
 
 - One of the programme's own objectives is that the firm can extend this platform later without
-  rebuilding what came before. Other parts of your own system, over the coming sprints, are
+  rebuilding what came before. Other parts of your own system, later in the programme, are
   going to need to ask "is this order allowed?" How does your design hold up if something other
   than what you're building this week needs to ask that same question? Does answering it require
   a database, a framework, or a specific way of being called, or could it, in principle, be

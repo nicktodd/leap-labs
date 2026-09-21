@@ -1,6 +1,6 @@
 # Module 14 Demo Guide - Mission Build: Batch + Real-Time Dashboard Integration
 
-Everything this sprint built lands here. Module 6 designed the trade-events topic. Module 9
+Everything this week built lands here. Module 6 designed the trade-events topic. Module 9
 implemented a producer publishing to it. Module 7 built an idempotent batch loader into a
 Postgres warehouse table. Today: one dashboard, reading from both, at once - exactly what the
 mission brief promised in Week 1.
@@ -42,7 +42,7 @@ def extract_stream() -> pd.DataFrame:
 UNCHANGED from what a single-source version would look like. Neither function knows or cares
 whether a row came from Postgres or Kafka - only that every row has the same shape. This is the
 same "only the extract layer changes" principle the Python week's own dashboard docstring predicted,
-now proven true a full sprint later.
+now proven true a full week later.
 
 ## Run It Once
 
@@ -88,7 +88,7 @@ stream (live, last few minutes)    12
 batch (settled, end-of-day)         5
 ```
 
-**This is the entire sprint's argument, made visible in two numbers**: the batch total is
+**This is the entire week's argument, made visible in two numbers**: the batch total is
 IDENTICAL across both runs - `3650.0`, unchanged - because nothing new was loaded into the
 warehouse. The stream total genuinely CHANGED - `5280.0` → `7920.0`, `8` → `12` events - because
 new trades were actually produced between the two runs. Neither behavior is a bug. This is
@@ -115,7 +115,7 @@ kind of question the lab asks you to reason through.
 ## The Concept, Named
 
 - **Only the extract layer changes**: the Python week's own dashboard predicted this in its docstring.
-  A whole sprint of Kafka and batch-loading content later, the prediction held.
+  A whole week of Kafka and batch-loading content later, the prediction held.
 - **Batch = a settled position. Stream = what's happening right now.** Neither is more "correct"
   - they answer genuinely different questions, and a real dashboard often needs both, side by
   side, exactly as built today.

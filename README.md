@@ -1,25 +1,30 @@
 # LEAP Labs
 
-Monorepo for the LEAP training programme: the group project guidance and all per-sprint labs,
-combined from their original standalone repositories.
+Monorepo for the LEAP training programme: the group project guidance and all per-week technical
+labs.
 
-Each folder below was merged in with `git subtree`, so its full commit history is preserved.
-The original repositories continue to exist independently and are unaffected by this monorepo.
+Some folders below were originally merged in with `git subtree`, preserving their original
+commit history - check `git log --follow` on a given folder if you need that history.
 
 ## Structure
 
-| Folder | Contents |
-|---|---|
-| [`leap-project/`](leap-project) | The 11-week group project: kickoff spec and Friday-by-Friday instructor guidance |
-| [`leap-sprint1/`](leap-sprint1) | Sprint 1 labs: DevOps fundamentals, Linux, Git, CI/CD, Jenkins, Docker |
-| [`leap-sprint2/`](leap-sprint2) | Sprint 2 labs: Agile/Scrum, PR workflow, CI/CD deep dive, IaC, OWASP, SRE |
-| [`leap-sprint3/`](leap-sprint3) | Sprint 3 labs: Data systems, Postgres, SQL, modelling, NoSQL |
-| [`leap-sprint4/`](leap-sprint4) | Sprint 4 labs |
-| [`leap-sprint5/`](leap-sprint5) | Sprint 5 labs |
-| [`leap-sprint6/`](leap-sprint6) | Sprint 6 labs |
-| [`leap-sprint7/`](leap-sprint7) | Sprint 7 labs |
-| [`leap-sprint8/`](leap-sprint8) | Sprint 8 labs |
-| [`leap-sprint9/`](leap-sprint9) | Sprint 9 labs |
-| [`leap-sprint11/`](leap-sprint11) | Sprint 11 labs |
+| # | Folder | Week |
+|---|---|---|
+| 1 | [`foundations/`](foundations) | Foundations - Git, ways of working & GenAI |
+| 2 | [`pipelines/`](pipelines) | Pipelines - CI/CD, containers, infrastructure & security |
+| 2 | [`data/`](data) | Data Systems - Postgres, SQL, modelling |
+| 3 | [`java/`](java) | Java |
+| 4 | [`spring/`](spring) | Spring Boot |
+| 5 | [`angular/`](angular) | Angular |
+| 6 | [`node/`](node) | Node.js / NestJS |
+| 7 | [`python/`](python) | Python & data analytics |
+| 8 | [`kafka/`](kafka) | Kafka & enterprise data engineering |
+| 10 | [`cloud/`](cloud) | AWS cloud deployment |
+| - | [`project/`](project) | The group project: kickoff spec and Friday-by-Friday instructor guidance, run alongside the weeks above |
 
-Each subfolder has its own `README.md` describing that sprint's labs and demos in detail.
+Pipelines and Data run in the same week (2), split across two parallel tracks. Week 9 is
+deliberately unscheduled as technical content - candidates spend it on the group project
+instead.
+
+Each subfolder has its own `README.md` describing that week's modules, labs, and demos in
+detail, generally split into `demos/`, `labs/`, and `solutions/`.

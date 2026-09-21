@@ -1,4 +1,4 @@
-# Sprint 3 - Project Friday Guidance
+# Data Week - Project Friday Guidance
 
 ## Context
 
@@ -31,7 +31,7 @@ PaySprint's scenarios, by actual access pattern, not by instinct. The answer mig
 "one store, well designed, is enough", that's a legitimate outcome if you can defend it against
 the requirements above. What isn't legitimate is not asking the question, and documenting the decision.
 
-This is also a good moment to hold your Sprint 1 candidate architecture up against what you now
+This is also a good moment to hold your original candidate architecture up against what you now
 know. If it said "a database" without saying which kind or how many, does it still hold up?
 
 ## Suggested Friday session
@@ -44,7 +44,7 @@ know. If it said "a database" without saying which kind or how many, does it sti
 - Design and review the schema for whatever you've decided is your transactional store, as a
   full team, every member should be able to defend it, not just whoever drew it.
 - If you've decided any capability needs a different kind of store, don't build it this week,
-  just capture the decision and what it implies for later sprints.
+  just capture the decision and what it implies for later weeks.
 - If modelling this has left your team assuming something the spec doesn't actually say, how
   long history really needs to be kept, what "reporting" means to the business, anything like
   that, that's a fast question for your customer instructor rather than a guess baked into the
@@ -54,6 +54,6 @@ know. If it said "a database" without saying which kind or how many, does it sti
 
 - Your capabilities-to-storage breakdown, and the requirement behind each decision.
 - A walkthrough of your current thinking around any potential schemas or NoSQL database structures.
-- Anywhere your Sprint 1 architecture pitch has changed now that you've actually modelled the
+- Anywhere your original architecture pitch has changed now that you've actually modelled the
   data, and why.
 - An updated backlog and risk list.

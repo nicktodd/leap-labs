@@ -24,7 +24,7 @@ react to trades without polling the mission service directly:
   doesn't care about ordering across different accounts.
 - **The compliance audit log** - needs every trade, doesn't care about ordering at all, just a
   complete record.
-- **A new fraud-detection service** (added this sprint) - needs every trade for a given account,
+- **A new fraud-detection service** (added this week) - needs every trade for a given account,
   in order, within a few seconds of it happening, to catch suspicious patterns (e.g. rapid
   buy-sell-buy cycles on the same ticker).
 

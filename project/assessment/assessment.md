@@ -1,5 +1,27 @@
 # Assessment
 
+**Note on this file - the touchpoint schedule needs a real decision, not just relabeling:**
+the four touchpoints below are pinned to "After Sprint N" content milestones from the old
+curriculum order. Mapped to what each touchpoint actually needs *ready*, not just to the old
+number, the picture is:
+
+- **TP1** needs the data model done → that's still the Data week (week 2), unchanged.
+- **TP2** needs the domain engine, REST API, and event backbone done → that's still after the
+  Kafka week (week 8), unchanged.
+- **TP3** needs *both* authentication and the trading UI working together → this is the one
+  that breaks. Old order had Node (auth, then Sprint 8) finish before Angular (UI, then Sprint
+  9), so "after Sprint 9" had both ready. New order has Angular at week 5 and Node at week 6 -
+  the UI now finishes *before* auth does. "After Angular week" alone would mean assessing UI +
+  auth integration before auth exists. The natural new trigger is **after Node week (week 6)**,
+  not after Angular week - but that's a scheduling decision for whoever owns this rubric, not
+  something I've changed below.
+- **TP4** needs everything done, at the end → still the Cloud week (week 10), unchanged.
+
+The table, area breakdowns, and "Bring to TPn" headers below still say "After Sprint 3/7/9" and
+"End of Sprint 11" - I've left the *timing* exactly as it was pending that decision, and only
+fixed content references elsewhere in the document (e.g. "the Sprint 4 ETL pipeline" → "the
+Python week ETL pipeline") where they don't affect scheduling.
+
 Your team's project work is assessed as a team, at four points across the
 programme, for a single running score out of 100. There is no pass mark. The
 score is a measure of how far the platform and the way you are building it have
@@ -40,7 +62,7 @@ Treat the dates as an external constraint the way you would on a real
 engagement. But arriving late costs nothing in the score itself.
 
 Every touchpoint after the first also carries a small **continuity check** on
-the areas already assessed. By TP2 the Sprint 3 schema has three more sprints
+the areas already assessed. By TP2 the schema has more weeks
 built on it, and the question is whether the design still hangs together as a
 whole, whether the changes made along the way were deliberate and recorded, and
 whether anything regressed in correctness. Adjusting the earlier design is
@@ -63,8 +85,8 @@ first API shape and the first backlog.
 What is assessed is not whether the design held still, but whether it evolved
 well: each significant change was a decision the team made on purpose, recorded
 with its reason, and reconciled with the rest of the design and the
-documentation. A team that spotted a Sprint 3 modelling mistake, changed it
-deliberately in Sprint 6 and can explain why scores better here than a team
+documentation. A team that spotted a modelling mistake early on, changed it
+deliberately later and can explain why scores better here than a team
 whose schema never changed because it was never tested. The faults are
 unrecorded drift, where the running system and the design record have quietly
 diverged and nobody chose it, and a correctness regression that later work
@@ -75,7 +97,7 @@ introduced and no one caught.
 The score is a team score. It is not split between members.
 
 Alongside it, keep a `contributions.md` in your repository with one short block
-per sprint: for each member, what they led, what they paired on, and what they
+per week: for each member, what they led, what they paired on, and what they
 reviewed, plus a line on anything that slipped and where it went. At each
 touchpoint the instructor checks it against your commit history and your board.
 
@@ -134,7 +156,7 @@ touchpoint rather than in one block.
 | Integrity is enforced by the database rather than hoped for in code: keys, constraints, and a way to reject a duplicated order | 2 | – | – | – |
 | The historical and reporting design for BR-16 is described: how it is populated, how it is queried, how it behaves as it grows | 1 | – | – | – |
 | The data model still hangs together after the domain, the API and the executor have been built on it; changes since TP1 were deliberate and are recorded, and the design record matches what is running (`R`) | – | 2 | – | – |
-| The Sprint 4 ETL pipeline is separated into extract, transform and load, is repeatable, and handles a malformed input rather than wrapping the run in a bare `try` | – | 1 | – | – |
+| The ETL pipeline is separated into extract, transform and load, is repeatable, and handles a malformed input rather than wrapping the run in a bare `try` | – | 1 | – | – |
 | Three business insights are each stated as a claim a non-technical reader can act on, and the reporting path does not compete with live trading | – | 1 | – | – |
 | **Subtotal** | **9** | **4** | **–** | **–** |
 
@@ -179,7 +201,7 @@ touchpoint rather than in one block.
 
 | What is assessed | TP1 | TP2 | TP3 | TP4 |
 |---|---:|---:|---:|---:|
-| Registration and secure sign-in work end to end (BR-01), and whatever stood in for authentication in Sprint 6 has been replaced or revisited deliberately | – | – | 2 | – |
+| Registration and secure sign-in work end to end (BR-01), and whatever stood in for authentication earlier has been replaced or revisited deliberately | – | – | 2 | – |
 | A client can reach only their own positions, cash and history (BR-02, section 9.3), and the check lives somewhere a caller cannot bypass | – | – | 2 | – |
 | The session is time-limited and revocable (BR-03); if it is only time-limited, that gap is recorded as a risk rather than left silent | – | – | 1 | – |
 | Passwords are hashed with argon2 or bcrypt at a deliberate cost, never logged, and no secret is in the repository | – | – | 2 | – |
@@ -267,7 +289,7 @@ error shape. A missing and a tampered token on a protected route. Several
 concurrent orders against one account, with the cash reconciled against the
 order history afterwards. The duplicate message replayed live, moving no money
 the second time. Your `git log` showing tests arriving before implementation.
-The three Sprint 4 insights and the numbers behind one of them traced to the
+The three business insights and the numbers behind one of them traced to the
 rows they came from. Your answer to what happens when two customers spend the
 same money at the same moment.
 
@@ -289,7 +311,7 @@ The deployed application reached over HTTPS at its real URL. Both of the
 origin bucket's own endpoints refusing a direct request. The deploy script run
 twice. The JavaScript the deployed page serves, searched for secrets. The
 scoped deployment policy. Your decision log for the deployment. The risk list
-from every earlier sprint with an honest status on each open item. And the
+from every earlier week with an honest status on each open item. And the
 showcase itself: the platform end to end, the architecture's journey from the
 kickoff pitch, the decisions you would defend, the BR-18 capability if you built
 it, and where AI earned its place across the programme and where it did not.

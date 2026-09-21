@@ -57,4 +57,4 @@ told to check - which is itself the point: a bug this quiet doesn't announce its
 None of these findings make this "bad code" in a judgmental sense - they make it **expensive**:
 expensive to extend safely (Concern 2), expensive to trust (Concern 1), expensive to reason about
 correctly (Concern 3). That reframing - cost, not blame - is what Modules 10-13 build on for the
-rest of the sprint.
+rest of the week.

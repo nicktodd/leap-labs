@@ -1,4 +1,4 @@
-# Sprint 7 - Project Friday Guidance
+# Kafka Week - Project Friday Guidance
 
 ## Context
 
@@ -17,20 +17,20 @@ Kafka's fundamental guarantee, which this week's teaching covers, is at-least-on
 message can arrive more than once, on a rebalance, a crash between a commit and an offset
 acknowledgement, or a replay. That's a fact about the tool, not a design decision. The design
 decision is what your team does about it, and it's worth treating as the actual point of this
-sprint, not a detail to handle if there's time left:
+week, not a detail to handle if there's time left:
 
 - What happens the second time whatever consumes these events sees the same message? Not what
   should happen, what does your code actually do, and can you demonstrate it rather than just
   describe it?
 - BR-09 required the order status, the cash movement and the position update to succeed or fail
-  together back in Sprint 6. The same requirement applies here, now from the execution side. What
+  together back in an earlier week. The same requirement applies here, now from the execution side. What
   makes that true when it's a different part of your system doing the update?
 - BR-08 needs a current market quote at the point of execution. Where does that quote come from
   in your design, and what happens when it can't be obtained? You have two options for a market
   data source: a real one online, such as Yahoo Finance, or a fake API your instructors will
   provide, details to follow. Either is fine, but check what its request limits are before you
   design around it, not after you've hit them.
-- If your Sprint 3 design already has a way of recognising a duplicate or repeated order, this is
+- If your existing data design already has a way of recognising a duplicate or repeated order, this is
   where it gets tested for real. If it doesn't, this is where you'll find out you need one.
 
 ## Suggested Friday session
@@ -41,7 +41,7 @@ sprint, not a detail to handle if there's time left:
 - Walk through the duplicate-delivery question above and agree, concretely, what your consumer
   does the second time, then write a test or a demonstration that proves it.
 - This week's characterisation-testing lesson works best applied to code that already has some
-  age on it: is there something from Sprint 4 or Sprint 6 worth pinning down with tests before
+  age on it: is there something from earlier worth pinning down with tests before
   you touch it again, now this new pressure is on it?
 - Add quality gates to your CI pipeline if you haven't already, and agree what "shifting security
   left" means for this specific service.

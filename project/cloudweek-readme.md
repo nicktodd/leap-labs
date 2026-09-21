@@ -1,4 +1,4 @@
-# Sprint 11 - Project Friday Guidance
+# Cloud Week - Project Friday Guidance
 
 ## Context
 
@@ -43,7 +43,7 @@ programme showcase, not an internal update.
   script, and actually rehearse running it twice.
 - Walk through what changes once your API is called from a different origin than it's used to,
   and decide what you're doing about it.
-- Do a final pass on the risk list from every earlier sprint, anything still open needs an
+- Do a final pass on the risk list from every earlier week, anything still open needs an
   honest answer in the showcase, not a hope that nobody asks.
 - Rehearse the showcase itself: walk the whole platform end to end, and know who's presenting
   which part, so nobody is caught explaining something they didn't build.
@@ -52,14 +52,14 @@ programme showcase, not an internal update.
 ## What to present: the final showcase
 
 This week's presentation is the programme showcase to stakeholders, the same audience and
-stakes as the kickoff day in Sprint 1. Cover:
+stakes as the original kickoff day. Cover:
 
 - The platform end to end: architecture, the decisions that shaped it, and how it's changed
-  since the candidate architecture you pitched in Sprint 1.
+  since the candidate architecture you pitched at kickoff.
 - A live demo, deployed, not running on someone's laptop.
-- If your team built the additional capability from BR-18 in Sprint 10, what it is, why that
+- If your team built the additional capability from BR-18 in the Project week, what it is, why that
   one, and what you deliberately left out.
 - Two or three design decisions you'd genuinely defend, and what you rejected along the way.
 - Where AI tools helped you across the programme, where they didn't, and how you knew the
   difference.
-- What you'd do next if this were a real six-month programme rather than an eleven-week one.
+- What you'd do next if this were a real six-month programme rather than a ten-week one.

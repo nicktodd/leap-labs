@@ -1,6 +1,11 @@
-# Sprint 8 - Project Friday Guidance
+# Node Week - Project Friday Guidance
 
 ## Context
+
+**Note on this file:** in the current order this week runs right after Angular week, not
+after Kafka as originally written. Whatever stub or workaround the team built for sign-in
+during Angular week (see that file's own note) is the other thing "wherever you left it" below
+should account for, alongside the original backend-week decision.
 
 This week's teaching covers identity, access management and zero trust, JavaScript and
 TypeScript fundamentals, Node.js, NestJS, DTOs and validation in NestJS, secure DB access and
@@ -8,7 +13,7 @@ password hashing, and JWT issuing and validation.
 
 This week's deliverable is real authentication: BR-01 needs registration and secure sign-in,
 BR-02 needs a client restricted to their own data, and BR-03 needs a session that's time-limited
-and revocable. Whatever your team did about authentication in Sprint 6, left it open, stubbed
+and revocable. Whatever your team already did about authentication, left it open, stubbed
 something, or built it for real, this is the week it either arrives properly or gets revisited
 with what you now know.
 
@@ -36,7 +41,7 @@ with what you now know.
 - Design the auth flow as a team before anyone writes a controller: what's issued at login, what
   a refresh looks like, what a token actually needs to carry to answer BR-02.
 - Work through the zero trust and revocation questions above and agree your answers.
-- Plan the move from wherever you left authentication in Sprint 6 to where it needs to be now,
+- Plan the move from wherever you left authentication to where it needs to be now,
   and what has to change elsewhere in your platform for that to be clean rather than messy.
 - Decide and document your password hashing choice and its parameters.
 - Refine the backlog against anything this week's work has surfaced about account state or
@@ -45,7 +50,7 @@ with what you now know.
 ## What to present to the class
 
 - A walkthrough of your auth flow and the identity decisions behind it.
-- How you moved from wherever authentication stood after Sprint 6 to where it is now, and any
+- How you moved from wherever authentication stood to where it is now, and any
   risk in that move.
 - How you're guaranteeing BR-02, that a client can only ever reach their own data.
 - An updated backlog.

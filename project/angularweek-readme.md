@@ -1,6 +1,17 @@
-# Sprint 9 - Project Friday Guidance
+# Angular Week - Project Friday Guidance
 
 ## Context
+
+**Note on this file - significant sequencing break:** this file was written assuming the
+auth service (Node) was already built by the time this week runs. In the current curriculum
+order, that's no longer true - Node now comes after this week. The "wired up to your own real
+backend" premise below, and the API-contract guidance under Suggested Friday session, need a
+real decision: connect only to the backend REST service and stub sign-in for now (revisited
+once the auth service exists), or something else. Left as-is pending that decision - this is
+more than a wording fix.
+
+The "last sprint before the applied project week" framing near the end is also no longer
+accurate - several more weeks now follow before the project week.
 
 This week's teaching covers HTML, CSS, JavaScript in the browser, fetch/HTTP, Angular
 fundamentals, project structure and tooling, components, services and dependency injection, HTTP
@@ -8,7 +19,8 @@ communication, connecting to the Spring Boot backend, OpenAPI-generated clients,
 routing, authenticated flows and testing with Playwright.
 
 This week's deliverable is the trading UI: sign-in, a dashboard, an order ticket and an order
-history, wired up to your own real backend from Sprints 6 and 8, not a mock. BR-10, BR-11 and
+history, wired up to your own real backend (and, pending the note above, the auth service), not
+a mock. BR-10, BR-11 and
 BR-13 are what it has to show, and section 6's Joanna persona, not a trading professional, is
 who it has to work for.
 
@@ -19,7 +31,7 @@ who it has to work for.
   interface do with an order that's been accepted but not yet resolved, render it as if
   something's broken, or as genuinely still working? Section 9.2 needs a client who never
   wonders whether their action registered, how does your design deliver that?
-- Client-side validation isn't enforcement. The rules you built into your Sprint 5 and Sprint 6
+- Client-side validation isn't enforcement. The rules you already built into your backend
   services still have to hold regardless of what this form does. Treat validation here as
   helping Joanna avoid an easy mistake, per section 9.5, not as a second place the business
   rules live.
@@ -35,21 +47,21 @@ who it has to work for.
 
 ## Suggested Friday session
 
-- Walk your screens as a team against the requirements spec and the customer meeting from
-  Sprint 2, does what you're building actually show what the customer said they needed, and
+- Walk your screens as a team against the requirements spec and your earlier customer meeting
+  notes, does what you're building actually show what the customer said they needed, and
   would Joanna manage it without help?
 - Agree the component and state boundaries before building spreads across the team, so the
   login, dashboard, order ticket and blotter don't each reinvent how they talk to the backend.
-- Decide how you're generating or writing your API calls against your own Sprint 6 and Sprint 8
-  contracts, and keep it consistent across the team.
+- Decide how you're generating or writing your API calls against your own backend (and,
+  pending the note above, auth) contracts, and keep it consistent across the team.
 - Work through the questions above and agree your answers.
 - Plan your test coverage: what's a unit test, what needs Playwright, and who owns which.
-- This is the first sprint with something a non-technical person can actually use rather than
+- This is the first week with something a non-technical person can actually use rather than
   read about. Show it to your customer instructor before Friday's over, place an order in front
   of them if you can, and bring back what they made of it, not just whether it worked.
-- This is the last sprint before the applied project week, refine the backlog with that in
-  mind, what has to be true of the platform end to end before Sprint 10's gap-closing can start
-  from a solid base rather than a shaky one?
+- Refine the backlog with the weeks still ahead in mind - what has to be true of the platform
+  end to end before the applied project week's gap-closing can start from a solid base rather
+  than a shaky one?
 
 ## What to present to the class
 

@@ -1,4 +1,4 @@
-# Sprint 6 - Project Friday Guidance
+# Spring Week - Project Friday Guidance
 
 ## Context
 
@@ -6,14 +6,14 @@ This week's teaching covers microservices, Spring Boot, layered architecture, RE
 contract-first design with OpenAPI, DTOs and validation, persistence with MyBatis, JWT
 validation and error handling.
 
-This week's deliverable is a REST service that exposes your Sprint 5 domain rules and your
-Sprint 3 data over HTTP: something a client can call to place an order and see the result,
+This week's deliverable is a REST service that exposes your existing domain rules and
+data over HTTP: something a client can call to place an order and see the result,
 secured, and returning errors in a form a caller can act on.
 
 ## The trap to avoid
 
-This is the first time your Sprint 5 domain gets called by something real. That's worth treating
-as a test of last week's decisions, not just this week's build:
+This is the first time your domain gets called by something real. That's worth treating
+as a test of earlier decisions, not just this week's build:
 
 - Did the domain module survive being wired into a real service unmodified, or did you find
   yourself bending a rule to fit the controller, or adding a business decision at the service
@@ -42,10 +42,10 @@ as a test of last week's decisions, not just this week's build:
 - Decide as a team whether you're leaving this service open for now, stubbing authentication, or
   building it for real, and record the decision rather than letting it happen by default.
 - Walk through error handling: what does the API actually return for each failure case your
-  Sprint 5 domain already defines?
+  domain already defines?
 - Get the service running as a container in your own environment, alongside what you've already
   built.
-- Revisit the OWASP Top 10 material from Sprint 2 against this specific service, not as a
+- Revisit the OWASP Top 10 material from earlier against this specific service, not as a
   checklist exercise, what actually applies here?
 - Refine the backlog against what building the API has taught you about the schema and the
   rules underneath it.
@@ -53,7 +53,7 @@ as a test of last week's decisions, not just this week's build:
 ## What to present to the class
 
 - A walkthrough of your API contract and how the implementation satisfies it.
-- Your team's decision on authentication this sprint, open, stubbed, or built for real, and why.
-- One place your Sprint 3 or Sprint 5 decisions caused friction here, and how you handled it. Hint - you are allowed to change things!
+- Your team's decision on authentication this week, open, stubbed, or built for real, and why.
+- One place an earlier decision caused friction here, and how you handled it. Hint - you are allowed to change things!
 - How you're enforcing BR-09 in this service.
 - An updated backlog.

@@ -6,7 +6,7 @@ By the end of this lab you will have:
 
 - Reviewed a real, working codebase honestly, without immediately trying to fix it
 - Named specific, concrete costs of technical debt - not a general impression of "messy code"
-- Read this sprint's mission brief and understood what the refactor mission actually asks for
+- Read this week's mission brief and understood what the refactor mission actually asks for
 
 ## Format
 

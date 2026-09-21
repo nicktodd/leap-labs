@@ -1,7 +1,7 @@
 # LEAP Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Enterprise Data &
-Engineering Excellence**, week 7 of the LEAP graduate programme.
+Engineering Excellence**, week 8 of the LEAP graduate programme.
 
 ## Prerequisites
 

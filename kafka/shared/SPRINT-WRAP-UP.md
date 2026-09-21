@@ -1,6 +1,6 @@
 # This Week's Wrap-up
 
-## What This Sprint Built
+## What This Week Built
 
 **Mission A - Real-Time.** The trading platform's `OrderService` (Module 9) publishes a trade
 event to Kafka (topics, partitions, and keys designed in Modules 4-6) every time an order is
@@ -37,14 +37,14 @@ worth another look at the relevant demo guide before Friday.
 
 - **Guest speaker**
 - **Weekly knowledge check (MCQ)**
-- **Group retrospective** - what went well this sprint, what was genuinely hard, what you'd want
+- **Group retrospective** - what went well this week, what was genuinely hard, what you'd want
   explained differently next time
 - The Secure Code Warrior Hackathon runs as its own standalone timed session, separate from this
   cadence
 
 ## What to Bring to the Retro
 
-One specific moment from this sprint where a tool or test caught something you wouldn't have
+One specific moment from this week where a tool or test caught something you wouldn't have
 caught by reading the code alone (Module 10's scanner, Module 12's SonarQube run, Module 13's
 gitleaks scan are all real candidates) - and one moment where a real, verified run surprised you
 (a number you expected to be different, an error you didn't anticipate).
