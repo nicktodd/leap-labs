@@ -4,6 +4,10 @@ One dataset runs through this whole week: a small book of trade records for a fi
 platform, "PaySprint" (the same fictional firm behind Sprint 3's enterprise schema, now viewed
 from an analytics angle rather than a relational-schema angle).
 
+This dataset is used by the instructor **demos**. The **labs** use a related card-payments
+dataset from the same firm, described in [`lab-dataset.md`](lab-dataset.md), so that each lab
+applies the demo's techniques to a new problem.
+
 ## Files
 
 - **`shared/trades.csv`** - twenty clean trade records: trade id, date, client, advisor,
@@ -17,9 +21,9 @@ from an analytics angle rather than a relational-schema angle).
 - **`shared/advisors.csv`** - a small reference table (advisor, team, years of experience).
   Introduced in Module 09 to demonstrate `merge`, combining `trades.csv` with a second table.
 
-## How it's used across the sprint
+## How it's used across the sprint (demos)
 
-| Module | Use |
+| Module | Demo use |
 |---|---|
 | 03 | Read `trades.csv` with plain Python, no libraries, to compute a simple summary |
 | 05 | Load the same file into pandas and compare the two approaches |
@@ -32,6 +36,6 @@ from an analytics angle rather than a relational-schema angle).
 | 13 | A simple predictive model built on the mission dataset |
 | 14 | Folded into the capstone analytics dashboard |
 
-Keeping one dataset across the whole sprint means later modules never have to explain a new
-domain, delegates already know what a "trade," a "client," and an "instrument" are from Module 03
-onward.
+Keeping one dataset across all the demos means later demos never have to explain a new domain:
+delegates already know what a "trade," a "client," and an "instrument" are from Module 03 onward.
+The labs follow the same principle with their own dataset.

@@ -1,0 +1,141 @@
+txn_id,txn_timestamp,customer_id,customer_name,merchant,merchant_category,channel,country,currency,amount,status,distance_from_home_km,is_fraud
+P0001,2026-02-02 12:23,K006,Farah Siddiqui,Tesco,Groceries,Online,GB,GBP,78.95,APPROVED,22.9,0
+P0002,2026-02-02 18:15,K003,Chloe Dubois,Amazon,Retail,Online,FR,EUR,143.92,APPROVED,20.2,0
+P0003,2026-02-02 18:28,K005,Eilidh Murray,TfL,Transport,Contactless,GB,GBP,4.63,APPROVED,24.1,0
+P0004,2026-02-03 06:05,K001,Amara Okoye,Netflix,Subscriptions,Online,GB,GBP,10.99,APPROVED,4.0,0
+P0005,2026-02-03 08:21,K010,Julia Novak,Uber,Transport,Online,GB,GBP,11.77,APPROVED,4.3,0
+P0006,2026-02-03 18:44,K002,Ben Carter,Apple Store,Electronics,In-store,GB,GBP,80.10,APPROVED,1.1,0
+P0007,2026-02-03 20:23,K002,Ben Carter,Trainline,Transport,Online,GB,GBP,116.14,APPROVED,10.7,0
+P0008,2026-02-03 20:40,K004,Daniel Price,Trainline,Transport,Online,GB,GBP,158.85,APPROVED,18.3,0
+P0009,2026-02-04 06:05,K002,Ben Carter,Spotify,Subscriptions,Online,GB,GBP,11.99,APPROVED,3.5,0
+P0010,2026-02-04 17:24,K002,Ben Carter,Waitrose,Groceries,Online,GB,GBP,24.01,APPROVED,23.1,0
+P0011,2026-02-04 17:39,K002,Ben Carter,ASOS,Retail,Online,GB,GBP,49.53,APPROVED,22.9,0
+P0012,2026-02-04 19:24,K006,Farah Siddiqui,British Airways,Travel,Online,GB,GBP,120.02,APPROVED,10.9,0
+P0013,2026-02-05 13:09,K009,Ibrahim Yusuf,ASOS,Retail,Online,GB,GBP,123.09,APPROVED,3.3,0
+P0014,2026-02-05 19:11,K006,Farah Siddiqui,Uber,Transport,Online,GB,GBP,35.43,APPROVED,1.6,0
+P0015,2026-02-05 20:31,K010,Julia Novak,Pret A Manger,Dining,Contactless,GB,GBP,5.05,APPROVED,18.0,0
+P0016,2026-02-06 02:45,K002,Ben Carter,Apple Store,Electronics,Online,US,USD,1594.61,DECLINED,5480.3,1
+P0017,2026-02-06 06:05,K005,Eilidh Murray,Netflix,Subscriptions,Online,GB,GBP,10.99,APPROVED,8.1,0
+P0018,2026-02-06 12:45,K002,Ben Carter,Tesco,Groceries,In-store,GB,GBP,39.17,APPROVED,13.0,0
+P0019,2026-02-06 18:09,K005,Eilidh Murray,Uber,Transport,Online,GB,GBP,7.46,APPROVED,3.3,0
+P0020,2026-02-06 19:10,K011,Kofi Asante,Sainsbury's,Groceries,In-store,GB,GBP,57.70,APPROVED,10.2,0
+P0021,2026-02-07 08:35,K004,Daniel Price,Pret A Manger,Dining,Contactless,GB,GBP,11.91,APPROVED,24.7,0
+P0022,2026-02-07 12:03,K007,George Mensah,Tesco,Groceries,Contactless,GB,GBP,94.57,APPROVED,12.4,0
+P0023,2026-02-07 12:56,K002,Ben Carter,Waitrose,Groceries,Online,GB,GBP,15.27,APPROVED,13.0,0
+P0024,2026-02-07 18:42,K001,Amara Okoye,ASOS,Retail,Online,GB,GBP,51.16,APPROVED,17.2,0
+P0025,2026-02-08 07:58,K008,Hannah Kelly,Uber,Transport,Online,IE,EUR,38.45,APPROVED,13.2,0
+P0026,2026-02-08 08:02,K003,Chloe Dubois,TfL,Transport,Contactless,FR,EUR,6.30,APPROVED,3.9,0
+P0027,2026-02-08 12:03,K010,Julia Novak,TfL,Transport,Contactless,GB,GBP,4.78,APPROVED,5.2,0
+P0028,2026-02-08 19:28,K009,Ibrahim Yusuf,British Airways,Travel,Online,GB,GBP,165.05,APPROVED,15.0,0
+P0029,2026-02-09 03:35,K005,Eilidh Murray,Currys,Electronics,Online,NL,EUR,825.02,DECLINED,356.8,1
+P0030,2026-02-09 06:05,K010,Julia Novak,Spotify,Subscriptions,Online,GB,GBP,11.99,APPROVED,14.3,0
+P0031,2026-02-09 12:23,K006,Farah Siddiqui,Sainsbury's,Groceries,In-store,GB,GBP,25.32,APPROVED,18.5,0
+P0032,2026-02-09 13:07,K001,Amara Okoye,TfL,Transport,Contactless,GB,GBP,7.13,APPROVED,19.3,0
+P0033,2026-02-09 13:52,K010,Julia Novak,Shell,Fuel,Contactless,GB,GBP,65.77,APPROVED,18.7,0
+P0034,2026-02-09 18:42,K009,Ibrahim Yusuf,Apple Store,Electronics,In-store,GB,GBP,293.81,APPROVED,0.3,0
+P0035,2026-02-10 07:33,K002,Ben Carter,TfL,Transport,Contactless,GB,GBP,5.09,APPROVED,8.8,0
+P0036,2026-02-10 12:24,K005,Eilidh Murray,TfL,Transport,Contactless,GB,GBP,4.16,APPROVED,20.4,0
+P0037,2026-02-10 17:53,K011,Kofi Asante,Shell,Fuel,Contactless,GB,GBP,72.40,DECLINED,16.8,0
+P0038,2026-02-10 18:03,K001,Amara Okoye,TfL,Transport,Contactless,GB,GBP,8.30,APPROVED,18.8,0
+P0039,2026-02-10 18:53,K001,Amara Okoye,TfL,Transport,Contactless,GB,GBP,6.47,APPROVED,10.9,0
+P0040,2026-02-11 17:05,K009,Ibrahim Yusuf,Tesco,Groceries,Online,GB,GBP,51.20,APPROVED,5.2,0
+P0041,2026-02-11 18:36,K004,Daniel Price,Costa Coffee,Dining,Contactless,GB,GBP,5.44,APPROVED,0.5,0
+P0042,2026-02-11 19:23,K012,Lena Fischer,Costa Coffee,Dining,Contactless,GB,GBP,3.10,APPROVED,20.2,0
+P0043,2026-02-12 01:33,K009,Ibrahim Yusuf,Amazon,Retail,Online,GB,GBP,1.50,APPROVED,0.0,1
+P0044,2026-02-12 01:55,K009,Ibrahim Yusuf,Amazon,Retail,Online,GB,GBP,1.00,APPROVED,0.0,1
+P0045,2026-02-12 02:10,K009,Ibrahim Yusuf,Apple Store,Electronics,Online,US,USD,1281.98,DECLINED,5510.9,1
+P0046,2026-02-12 06:05,K011,Kofi Asante,Netflix,Subscriptions,Online,GB,GBP,10.99,APPROVED,20.8,0
+P0047,2026-02-12 12:57,K007,George Mensah,Shell,Fuel,In-store,GB,GBP,63.61,APPROVED,9.6,0
+P0048,2026-02-12 18:14,K009,Ibrahim Yusuf,Uber,Transport,Online,GB,GBP,17.30,APPROVED,18.2,0
+P0049,2026-02-12 18:23,K001,Amara Okoye,TfL,Transport,Contactless,GB,GBP,3.95,APPROVED,8.0,0
+P0050,2026-02-12 21:34,K002,Ben Carter,Trainline,Transport,Online,GB,GBP,157.14,APPROVED,18.1,0
+P0051,2026-02-13 12:00,K004,Daniel Price,Dishoom,Dining,In-store,GB,GBP,59.43,APPROVED,24.2,0
+P0052,2026-02-13 12:37,K002,Ben Carter,Uber,Transport,Online,GB,GBP,35.62,APPROVED,12.6,0
+P0053,2026-02-13 13:35,K007,George Mensah,Dishoom,Dining,In-store,GB,GBP,56.44,APPROVED,7.3,0
+P0054,2026-02-14 03:44,K011,Kofi Asante,ASOS,Retail,Online,DE,EUR,485.34,APPROVED,932.4,1
+P0055,2026-02-14 08:44,K003,Chloe Dubois,Uber,Transport,Online,FR,EUR,33.73,APPROVED,7.4,0
+P0056,2026-02-14 08:48,K011,Kofi Asante,Costa Coffee,Dining,Contactless,GB,GBP,5.98,APPROVED,19.1,0
+P0057,2026-02-14 10:42,K004,Daniel Price,Airbnb,Travel,Online,ES,EUR,767.51,APPROVED,1761.7,0
+P0058,2026-02-14 12:27,K009,Ibrahim Yusuf,Costa Coffee,Dining,Contactless,GB,GBP,5.65,APPROVED,16.4,0
+P0059,2026-02-14 18:23,K001,Amara Okoye,Tesco,Groceries,Contactless,GB,GBP,19.17,APPROVED,20.2,0
+P0060,2026-02-15 07:37,K012,Lena Fischer,Uber,Transport,Online,GB,GBP,21.11,APPROVED,20.7,0
+P0061,2026-02-15 09:28,K004,Daniel Price,Pret A Manger,Dining,Contactless,ES,EUR,7.15,APPROVED,1777.4,0
+P0062,2026-02-15 12:04,K012,Lena Fischer,Costa Coffee,Dining,Contactless,GB,GBP,6.81,APPROVED,14.7,0
+P0063,2026-02-15 17:48,K005,Eilidh Murray,Sainsbury's,Groceries,Contactless,GB,GBP,81.22,APPROVED,8.2,0
+P0064,2026-02-15 20:39,K004,Daniel Price,Dishoom,Dining,In-store,ES,EUR,103.70,APPROVED,1734.3,0
+P0065,2026-02-15 21:00,K010,Julia Novak,Amazon,Retail,Online,GB,GBP,100.86,APPROVED,6.0,0
+P0066,2026-02-16 06:05,K009,Ibrahim Yusuf,Spotify,Subscriptions,Online,GB,GBP,11.99,APPROVED,11.7,0
+P0067,2026-02-16 09:28,K002,Ben Carter,Costa Coffee,Dining,Contactless,GB,GBP,6.30,APPROVED,4.9,0
+P0068,2026-02-16 11:17,K004,Daniel Price,Tesco,Groceries,Contactless,ES,EUR,50.20,APPROVED,1764.3,0
+P0069,2026-02-16 18:29,K004,Daniel Price,Amazon,Retail,Online,GB,GBP,85.54,APPROVED,23.0,0
+P0070,2026-02-16 21:43,K006,Farah Siddiqui,Shell,Fuel,In-store,GB,GBP,40.32,APPROVED,24.1,0
+P0071,2026-02-17 12:38,K004,Daniel Price,ASOS,Retail,Online,GB,GBP,142.63,APPROVED,4.6,0
+P0072,2026-02-17 13:11,K004,Daniel Price,Pret A Manger,Dining,Contactless,GB,GBP,11.49,APPROVED,18.3,0
+P0073,2026-02-17 13:18,K005,Eilidh Murray,Sainsbury's,Groceries,In-store,GB,GBP,51.48,APPROVED,12.2,0
+P0074,2026-02-17 17:51,K001,Amara Okoye,Uber,Transport,Online,GB,GBP,21.76,APPROVED,5.4,0
+P0075,2026-02-17 22:22,K004,Daniel Price,Uber,Transport,Online,ES,EUR,27.49,APPROVED,1758.3,0
+P0076,2026-02-18 04:39,K001,Amara Okoye,Apple Store,Electronics,Online,US,USD,1679.42,DECLINED,5460.2,1
+P0077,2026-02-18 08:11,K012,Lena Fischer,Waitrose,Groceries,In-store,GB,GBP,41.52,APPROVED,22.3,0
+P0078,2026-02-18 08:25,K010,Julia Novak,Costa Coffee,Dining,Contactless,GB,GBP,5.11,APPROVED,15.9,0
+P0079,2026-02-18 15:53,K004,Daniel Price,Shell,Fuel,In-store,ES,EUR,84.83,APPROVED,1744.3,0
+P0080,2026-02-18 17:18,K010,Julia Novak,Sainsbury's,Groceries,In-store,GB,GBP,26.95,APPROVED,8.3,0
+P0081,2026-02-19 07:17,K002,Ben Carter,TfL,Transport,Contactless,GB,GBP,4.58,APPROVED,12.7,0
+P0082,2026-02-19 08:55,K004,Daniel Price,Costa Coffee,Dining,Contactless,ES,EUR,5.72,APPROVED,1716.4,0
+P0083,2026-02-19 12:10,K012,Lena Fischer,Tesco,Groceries,Contactless,GB,GBP,49.42,APPROVED,17.2,0
+P0084,2026-02-19 13:10,K006,Farah Siddiqui,TfL,Transport,Contactless,GB,GBP,5.72,APPROVED,22.5,0
+P0085,2026-02-20 07:59,K006,Farah Siddiqui,Shell,Fuel,Contactless,GB,GBP,63.97,APPROVED,18.0,0
+P0086,2026-02-20 21:03,K004,Daniel Price,Amazon,Retail,Online,GB,GBP,128.50,APPROVED,15.3,0
+P0087,2026-02-20 21:48,K001,Amara Okoye,Uber,Transport,Online,GB,GBP,16.76,APPROVED,24.8,0
+P0088,2026-02-20 23:04,K010,Julia Novak,Currys,Electronics,Online,FR,EUR,1008.79,DECLINED,344.1,1
+P0089,2026-02-21 07:53,K009,Ibrahim Yusuf,TfL,Transport,Contactless,GB,GBP,6.73,APPROVED,13.7,0
+P0090,2026-02-21 08:39,K006,Farah Siddiqui,Sainsbury's,Groceries,Contactless,GB,GBP,82.30,APPROVED,12.9,0
+P0091,2026-02-21 08:42,K002,Ben Carter,Waitrose,Groceries,Online,GB,GBP,34.46,APPROVED,22.1,0
+P0092,2026-02-21 19:03,K009,Ibrahim Yusuf,ASOS,Retail,Online,GB,GBP,96.00,DECLINED,23.0,0
+P0093,2026-02-21 21:30,K006,Farah Siddiqui,Pret A Manger,Dining,Contactless,GB,GBP,9.00,APPROVED,18.1,0
+P0094,2026-02-22 02:01,K006,Farah Siddiqui,British Airways,Travel,Online,US,USD,2715.58,APPROVED,5620.7,1
+P0095,2026-02-22 08:13,K009,Ibrahim Yusuf,TfL,Transport,Contactless,GB,GBP,8.29,APPROVED,6.7,0
+P0096,2026-02-22 13:01,K011,Kofi Asante,Trainline,Transport,Online,GB,GBP,91.82,APPROVED,12.0,0
+P0097,2026-02-22 18:03,K004,Daniel Price,Tesco,Groceries,Online,GB,GBP,66.70,APPROVED,4.5,0
+P0098,2026-02-22 18:44,K011,Kofi Asante,British Airways,Travel,Online,GB,GBP,418.67,APPROVED,7.0,0
+P0099,2026-02-23 07:04,K012,Lena Fischer,Amazon,Retail,Online,GB,GBP,61.64,APPROVED,21.6,0
+P0100,2026-02-23 07:34,K007,George Mensah,British Airways,Travel,Online,US,USD,1522.75,APPROVED,5596.3,0
+P0101,2026-02-23 12:20,K009,Ibrahim Yusuf,Costa Coffee,Dining,Contactless,GB,GBP,4.23,APPROVED,10.8,0
+P0102,2026-02-23 18:32,K003,Chloe Dubois,Amazon,Retail,Online,FR,EUR,83.77,APPROVED,4.3,0
+P0103,2026-02-23 19:59,K007,George Mensah,Uber,Transport,Online,US,USD,59.82,APPROVED,5576.5,0
+P0104,2026-02-23 21:12,K006,Farah Siddiqui,Sainsbury's,Groceries,In-store,GB,GBP,25.70,APPROVED,16.5,0
+P0105,2026-02-24 07:04,K009,Ibrahim Yusuf,TfL,Transport,Contactless,GB,GBP,3.71,APPROVED,23.8,0
+P0106,2026-02-24 13:24,K005,Eilidh Murray,Trainline,Transport,Online,GB,GBP,142.00,DECLINED,20.6,0
+P0107,2026-02-24 19:30,K007,George Mensah,TfL,Transport,Contactless,GB,GBP,7.36,APPROVED,23.8,0
+P0108,2026-02-24 19:32,K004,Daniel Price,Currys,Electronics,Online,GB,GBP,369.06,APPROVED,10.4,0
+P0109,2026-02-24 20:13,K007,George Mensah,Dishoom,Dining,In-store,US,USD,261.25,APPROVED,5586.2,0
+P0110,2026-02-25 03:04,K002,Ben Carter,ASOS,Retail,Online,NL,EUR,363.55,DECLINED,358.2,1
+P0111,2026-02-25 08:32,K007,George Mensah,Uber,Transport,Online,US,USD,47.11,APPROVED,5558.7,0
+P0112,2026-02-25 13:05,K011,Kofi Asante,Costa Coffee,Dining,Contactless,GB,GBP,6.20,APPROVED,24.4,0
+P0113,2026-02-25 13:33,K001,Amara Okoye,Waitrose,Groceries,In-store,GB,GBP,61.70,APPROVED,1.1,0
+P0114,2026-02-25 18:16,K002,Ben Carter,Tesco,Groceries,In-store,GB,GBP,61.30,DECLINED,3.8,0
+P0115,2026-02-25 20:35,K011,Kofi Asante,Uber,Transport,Online,GB,GBP,34.54,APPROVED,16.6,0
+P0116,2026-02-26 13:37,K010,Julia Novak,ASOS,Retail,Online,GB,GBP,49.13,APPROVED,8.8,0
+P0117,2026-02-26 19:37,K004,Daniel Price,ASOS,Retail,Online,GB,GBP,69.36,APPROVED,7.7,0
+P0118,2026-02-26 20:24,K012,Lena Fischer,Amazon,Retail,Online,GB,GBP,212.00,DECLINED,23.9,0
+P0119,2026-02-26 21:18,K002,Ben Carter,Tesco,Groceries,Online,GB,GBP,70.71,APPROVED,20.4,0
+P0120,2026-02-27 01:59,K005,Eilidh Murray,Amazon,Retail,Online,DE,EUR,624.51,DECLINED,910.0,1
+P0121,2026-02-27 08:41,K012,Lena Fischer,Pret A Manger,Dining,Contactless,GB,GBP,3.32,APPROVED,18.5,0
+P0122,2026-02-27 12:13,K009,Ibrahim Yusuf,Uber,Transport,Online,GB,GBP,31.80,DECLINED,19.1,0
+P0123,2026-02-27 12:38,K011,Kofi Asante,ASOS,Retail,Online,GB,GBP,34.19,APPROVED,20.3,0
+P0124,2026-02-27 13:04,K001,Amara Okoye,Dishoom,Dining,In-store,GB,GBP,88.25,APPROVED,10.5,0
+P0125,2026-02-27 13:38,K005,Eilidh Murray,Costa Coffee,Dining,Contactless,GB,GBP,5.04,APPROVED,24.1,0
+P0126,2026-02-27 20:16,K004,Daniel Price,Costa Coffee,Dining,Contactless,GB,GBP,4.36,APPROVED,13.3,0
+P0127,2026-02-28 07:01,K007,George Mensah,Tesco,Groceries,In-store,GB,GBP,26.39,APPROVED,4.0,0
+P0128,2026-02-28 07:56,K010,Julia Novak,Tesco,Groceries,Contactless,GB,GBP,66.17,APPROVED,11.3,0
+P0129,2026-02-28 08:27,K010,Julia Novak,Tesco,Groceries,In-store,GB,GBP,87.55,APPROVED,22.2,0
+P0130,2026-02-28 09:23,K012,Lena Fischer,Amazon,Retail,Online,GB,GBP,43.91,APPROVED,6.0,0
+P0131,2026-02-28 09:35,K002,Ben Carter,Tesco,Groceries,In-store,GB,GBP,54.99,APPROVED,21.4,0
+P0132,2026-02-28 13:21,K007,George Mensah,Amazon,Retail,Online,GB,GBP,88.44,APPROVED,14.9,0
+P0133,2026-03-01 07:36,K008,Hannah Kelly,ASOS,Retail,Online,IE,EUR,156.07,APPROVED,1.8,0
+P0134,2026-03-01 12:32,K011,Kofi Asante,Costa Coffee,Dining,Contactless,GB,GBP,2.91,APPROVED,0.3,0
+P0135,2026-03-01 13:23,K008,Hannah Kelly,Amazon,Retail,Online,IE,EUR,29.78,APPROVED,23.3,0
+P0136,2026-03-01 14:19,K011,Kofi Asante,Currys,Electronics,In-store,GB,GBP,780.00,APPROVED,187.5,1
+P0137,2026-03-01 17:07,K011,Kofi Asante,Pret A Manger,Dining,Contactless,GB,GBP,10.13,APPROVED,6.4,0
+P0138,2026-03-01 18:18,K012,Lena Fischer,Dishoom,Dining,In-store,GB,GBP,36.19,APPROVED,22.1,0
+P0139,2026-03-01 18:22,K002,Ben Carter,Uber,Transport,Online,GB,GBP,9.11,APPROVED,16.8,0
+P0140,2026-03-01 21:30,K008,Hannah Kelly,Trainline,Transport,Online,IE,EUR,178.32,APPROVED,4.7,0

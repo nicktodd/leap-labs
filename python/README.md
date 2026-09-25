@@ -11,24 +11,50 @@ Data Analytics**, week 4 of the LEAP graduate programme.
 - GitHub Copilot Chat (continuing as a learning aid, and specifically used in Module 12 to help
   interpret an unfamiliar failing-test error)
 
-## One dataset runs through this whole week
+## Two datasets: one for the demos, one for the labs
 
-See **[`shared/mission-dataset.md`](shared/mission-dataset.md)**. In short:
+The demos and the labs use different datasets from the same fictional firm, PaySprint. Each lab
+applies the techniques shown in the demo to a new problem, so it cannot be completed by copying
+the demo code.
 
-- **`shared/trades.csv`** - twenty clean trade records for a fictional wealth platform. Read with
-  plain Python from Module 03, then with pandas from Module 05 onward.
-- **`shared/messy-trades-raw.csv`** - the same data, deliberately dirtied (bad dates, missing
-  values, a duplicate row, inconsistent casing, an outlier) for Module 06's cleaning exercise.
-- **`shared/advisors.csv`** - a small reference table (advisor, team, years of experience), used
-  from Module 09 onward to demonstrate merging `trades.csv` with a second table.
+**Demos: wealth-platform trades.** See [`shared/mission-dataset.md`](shared/mission-dataset.md).
+
+- **`shared/trades.csv`** - twenty clean trade records.
+- **`shared/messy-trades-raw.csv`** - the same data, deliberately dirtied, for the Module 06 demo.
+- **`shared/advisors.csv`** - a reference table (advisor, team, years of experience) for the
+  Module 09 merge demo.
+- **`shared/mock_api/trades_api.py`** - the mock API for the Module 11 demo.
+
+**Labs: card payments.** See [`shared/lab-dataset.md`](shared/lab-dataset.md).
+
+- **`shared/transactions.csv`** - 140 clean card transactions for February 2026, including
+  confirmed fraud outcomes.
+- **`shared/messy-transactions-raw.csv`** - 143 raw rows with a different set of data-quality
+  problems, for Modules 06, 12 and 14.
+- **`shared/customers.csv`** and **`shared/fx_rates.csv`** - reference data for customers and FX
+  (foreign exchange) rates.
+- **`shared/mock_api/payments_api.py`** - the mock API for the Module 11 lab.
+
+## Extension exercises
+
+Every lab ends with **Extension exercises**. They are optional and harder than the core task.
+Attempt them once the core acceptance criteria are met. Reference solutions for the extensions
+are in the matching `solutions/<module>/` folder, in files named `ext<N>_<topic>.py`, and are
+discussed in that folder's `model-answers.md`.
+
+## Output files
+
+Lab scripts write their generated files (reports, CSV and JSON outputs, charts) into an
+`output/` folder next to the script. These folders are ignored by git.
 
 ## Structure
 
 Each module has its own folder under `demos/`, `labs/`, and `solutions/`:
 
-- `demos/<module>/` - instructor-led demo assets and guides
-- `labs/<module>/` - your starter files and the task README for that module
-- `solutions/<module>/` - reference solutions (try the lab first!)
+- `demos/<module>/` - instructor-led demo assets and guides (trades dataset)
+- `labs/<module>/` - your starter files and the task README for that module (card-payments dataset)
+- `solutions/<module>/` - reference solutions for the core task and the extension exercises
+  (attempt the lab first)
 
 ## Modules
 

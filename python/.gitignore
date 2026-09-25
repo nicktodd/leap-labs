@@ -6,6 +6,7 @@ __pycache__/
 venv/
 .ipynb_checkpoints/
 .idea/
+output/
 instrument_summary.txt
 client_summary.txt
 report.txt
