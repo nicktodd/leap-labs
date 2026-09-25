@@ -1,7 +1,7 @@
-# LEAP Program - Sprint 4 Lab Exercises
+# LEAP Program - Python Week Lab Exercises
 
-This repository contains the hands-on lab exercises accompanying **Sprint 4: Financial Services &
-Data Analytics**, week 4 of the LEAP graduate programme.
+This repository contains the hands-on lab exercises accompanying **Python Week: Financial
+Services & Data Analytics**, week 7 of the LEAP graduate programme.
 
 ## Prerequisites
 
@@ -60,7 +60,7 @@ Each module has its own folder under `demos/`, `labs/`, and `solutions/`:
 
 | # | Module | Lab |
 |---|---|---|
-| 1 | Python Fundamentals: Syntax, Data Types & Control Flow | [labs/01-python-syntax-control-flow/README.md](labs/01-python-syntax-control-flow/README.md) |
+| 1 | Python Fundamentals: Syntax, Data Types & Control Flow | [labs/01-python-syntax-control-flow/README.md](labs/01-python-syntax-control-flow/README.md) (new to Python? start with [labs/00-python-first-steps/README.md](labs/00-python-first-steps/README.md) first) |
 | 2 | Python Fundamentals: Functions, Modules & Error Handling | [labs/02-functions-modules-errors/README.md](labs/02-functions-modules-errors/README.md) |
 | 3 | Python Data Structures & File I/O | [labs/03-data-structures-file-io/README.md](labs/03-data-structures-file-io/README.md) |
 | 4 | Python Fundamentals Consolidation Lab | [labs/04-fundamentals-consolidation/README.md](labs/04-fundamentals-consolidation/README.md) |
@@ -73,7 +73,7 @@ Each module has its own folder under `demos/`, `labs/`, and `solutions/`:
 | 11 | Accessing Data Through APIs | [labs/11-apis/README.md](labs/11-apis/README.md) |
 | 12 | ETL Concepts & Data Validation | [labs/12-etl-validation/README.md](labs/12-etl-validation/README.md) |
 | 13 | Predictive Analytics, Forecasting & Model Evaluation | [labs/13-predictive-analytics/README.md](labs/13-predictive-analytics/README.md) |
-| 14 | Capstone: Building the Analytics Dashboard & Sprint 4 Wrap-up | [labs/14-sprint4-capstone-wrapup/README.md](labs/14-sprint4-capstone-wrapup/README.md) |
+| 14 | Capstone: Building the Analytics Dashboard & Wrap-up | [labs/14-sprint4-capstone-wrapup/README.md](labs/14-sprint4-capstone-wrapup/README.md) |
 
 ## Getting started
 
