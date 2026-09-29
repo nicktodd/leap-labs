@@ -20,7 +20,7 @@ commit history - check `git log --follow` on a given folder if you need that his
 | 7 | [`python/`](python) | Python & data analytics |
 | 8 | [`kafka/`](kafka) | Kafka & enterprise data engineering |
 | 10 | [`cloud/`](cloud) | AWS cloud deployment |
-| - | [`project/`](project) | The group project: kickoff spec and Friday-by-Friday instructor guidance, run alongside the weeks above |
+| - | [`leap3-project`](https://github.com/nicktodd/leap3-project) | The group project: kickoff spec and Friday-by-Friday instructor guidance, run alongside the weeks above |
 
 Pipelines and Data run in the same week (2), split across two parallel tracks. Week 9 is
 deliberately unscheduled as technical content - candidates spend it on the group project
