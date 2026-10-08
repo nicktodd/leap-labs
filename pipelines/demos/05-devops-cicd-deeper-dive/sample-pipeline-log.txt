@@ -1,14 +1,14 @@
 Started by GitHub push event
-Obtained Jenkinsfile from git https://github.com/org/sprint2-team-project.git
+Obtained Jenkinsfile from git https://github.com/org/team-project.git
 Running in Durability level: MAX_SURVIVABILITY
 
 [Pipeline] Start of Pipeline
 [Pipeline] node
-Running on jenkins-agent-02 in /var/jenkins_home/workspace/sprint2-team-project
+Running on jenkins-agent-02 in /var/jenkins_home/workspace/team-project
 [Pipeline] {
 [Pipeline] stage
 [Pipeline] { (Checkout)
-10:02:01  Checking out git https://github.com/org/sprint2-team-project.git
+10:02:01  Checking out git https://github.com/org/team-project.git
 10:02:02  Commit: f3a8c21 "feat: add spending category endpoint"
 [Pipeline] }
 [Pipeline] // stage
@@ -16,7 +16,7 @@ Running on jenkins-agent-02 in /var/jenkins_home/workspace/sprint2-team-project
 [Pipeline] { (Build)
 10:02:03  + mvn -B clean package
 10:02:03  [INFO] Scanning for projects...
-10:02:04  [INFO] Building sprint2-team-project 0.2.0
+10:02:04  [INFO] Building team-project 0.2.0
 10:02:14  [INFO] Compiling 11 source files
 10:02:21  [INFO] BUILD SUCCESS
 10:02:21  [INFO] Total time: 18.114 s
@@ -44,7 +44,7 @@ Running on jenkins-agent-02 in /var/jenkins_home/workspace/sprint2-team-project
 [Pipeline] // stage
 [Pipeline] stage
 [Pipeline] { (Security Scan)
-10:02:42  + dependency-check --project sprint2-team-project --scan target/
+10:02:42  + dependency-check --project team-project --scan target/
 10:02:43  [INFO] Checking for updated NVD data...
 10:02:49  [INFO] Analyzing 47 dependencies
 10:03:06  [WARN] jackson-databind:2.9.8 has 1 known vulnerability

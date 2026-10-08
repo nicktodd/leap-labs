@@ -17,7 +17,7 @@ not need to be rewritten - they need a service wrapped around them.
 
 **Changes:**
 - Orders arrive over HTTP, not from a CSV file read once a day
-- Client and portfolio data is persisted in Postgres (the Sprint 3 enterprise schema), not held
+- Client and portfolio data is persisted in Postgres (the Week 2 enterprise schema), not held
   in an in-memory `Map<String, Client>`
 - Every request must be authenticated - a valid JWT, issued by a separate Node.js auth service
   (introduced in Module 9), is required before an order can be submitted
@@ -28,7 +28,7 @@ not need to be rewritten - they need a service wrapped around them.
 1. **Days 1-2**: build the service's skeleton - Spring Boot, layered architecture, REST API
    design, contract-first with OpenAPI, DTOs and validation. No persistence yet, no security yet -
    get the shape right first.
-2. **Day 3**: wire in persistence (MyBatis, against the Sprint 3 schema), security (JWT
+2. **Day 3**: wire in persistence (MyBatis, against the Week 2 schema), security (JWT
    validation against the Node auth stub), and centralised error handling.
 3. **Day 4**: assemble everything into one working, secured, persisted service (Module 11), then
    containerise it and integration-test it end-to-end against the real auth service (Modules

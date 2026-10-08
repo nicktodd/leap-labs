@@ -32,21 +32,21 @@ Angular.
 ## Why Day 1 Is HTML/CSS/Browser JS, Not Angular
 
 Nobody has touched HTML, CSS, or the browser yet at this point in the programme. Without a
-day spent on the raw platform first, Module 8 (Components & Templates) would be the first
-time anyone had touched an HTML tag or a stylesheet. Modules 1-4 build a static page, style
+day spent on the raw platform first, Module 12 (Components & Templates) would be the first
+time anyone had touched an HTML tag or a stylesheet. Modules 1-6 build a static page, style
 it, make it interactive, and call a real backend with `fetch()` - all by hand, no framework -
-so that when Angular is introduced in Module 6, every abstraction it offers (components,
+so that when Angular is introduced in Module 10, every abstraction it offers (components,
 `HttpClient`, reactive forms) has something concrete to be an improvement *over*, not a new
 set of ideas learned in a vacuum.
 
-## Why Module 6 Opens With a TypeScript Primer
+## Why TypeScript Comes Before Angular
 
 Nobody has seen TypeScript yet either - the Node week, where it's normally taught properly,
-comes later in the programme now. Module 6 opens with a short, focused primer (types,
+comes later in the programme now. Modules 7-8 give a short, focused primer (types,
 interfaces, classes, generics) before touching Angular at all, and everything after that
 folds Angular-specific TypeScript usage (decorators, typed component properties, generics in
 `HttpClient`) into the components and HTTP modules where it naturally comes up, rather than
-teaching it as one long separate block. Module 15 combines the login form, the JWT
+teaching it as one long separate block. Module 19 combines the login form, the JWT
 interceptor, and the route guard into one module rather than three, because a login form
 without the interceptor and guard is non-functional - splitting them apart would mean testing
 incomplete pieces at every step instead of one working flow.

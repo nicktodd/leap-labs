@@ -10,7 +10,8 @@ By the end of this lab you will have:
 
 ## Setup
 
-- Your team's hardened DDL from Module 09 (including `client_holdings`)
+- Your team's hardened DDL from Module 09 (including `client_holdings`, and the history
+  columns on `model_portfolio_holdings` and `client_subscriptions`)
 - Access to a Postgres instance
 - `shared/enterprise-schema.sql`, as the source instrument universe: populate your own
   `instruments` table with the same tickers, names, asset classes, and currencies rather than
@@ -30,18 +31,22 @@ By the end of this lab you will have:
    "Adventurous Growth").
 4. For each model portfolio, insert 2-4 `model_portfolio_holdings` rows, referencing real
    instruments (the same ticker universe as the enterprise schema), with target weights that
-   add up to 100 for each portfolio.
+   add up to 100 for each portfolio. For one portfolio, also load its **previous** composition
+   (closed with an `effective_to` date) as well as its current one, so there's history to query.
 5. Insert at least five clients into your mission model's `clients` table.
-6. Subscribe each client to a model portfolio via `client_subscriptions`.
+6. Subscribe each client to a model portfolio via `client_subscriptions`. Give at least one client
+   an earlier, ended subscription (with an `ended_date`) to a different portfolio, as if they'd
+   switched.
 7. Insert `client_holdings` rows for at least three clients, showing their actual current
    holdings (which may differ from their subscribed model portfolio's target weights).
 
 ### Part C - Verify
 
 8. Write a query joining `model_portfolios`, `model_portfolio_holdings`, and `instruments` that
-   shows each portfolio's target composition, readable end to end.
+   shows each portfolio's **current** target composition, readable end to end. Then change it to
+   show the composition on a past date, before the rebalance you loaded in step 4.
 9. Write a query joining `clients`, `client_subscriptions`, and `model_portfolios` showing which
-   client is subscribed to which portfolio.
+   client is subscribed to which portfolio, including any ended subscriptions.
 10. Deliberately try to insert a row that violates one of your Module 09 constraints (e.g. a
     `target_weight_pct` over 100). Confirm Postgres rejects it, and note the exact error message.
 
@@ -49,7 +54,8 @@ By the end of this lab you will have:
 
 - All tables exist in a real Postgres database, matching the Module 09 DDL exactly.
 - Sample data is loaded for all five tables, referencing real instruments, and is internally
-  consistent (target weights per portfolio sum to something sensible).
+  consistent (target weights per portfolio sum to something sensible), and includes at least
+  one past composition and one ended subscription.
 - Both verification queries in Part C run correctly and return readable, sensible output.
 - You've demonstrated, with a real error message, that at least one constraint rejects bad data.
 

@@ -5,7 +5,7 @@
 # USER instruction needed).
 #
 # Build context must be starter/, e.g. from the lab root:
-#   docker build -f solutions/Dockerfile_Distroless_GoingFurther -t sprint1-greeter-app:distroless starter/
+#   docker build -f solutions/Dockerfile_Distroless_GoingFurther -t greeter-app:distroless starter/
 
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /src
@@ -15,7 +15,7 @@ RUN mvn -B clean package -DskipTests
 
 FROM gcr.io/distroless/java21-debian12:nonroot
 WORKDIR /app
-COPY --from=build /src/target/sprint1-greeter-app.jar app.jar
+COPY --from=build /src/target/greeter-app.jar app.jar
 
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]

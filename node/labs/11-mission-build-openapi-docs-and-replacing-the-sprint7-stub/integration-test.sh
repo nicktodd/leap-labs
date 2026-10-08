@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# MISSION_SERVICE_DIR points at YOUR OWN Sprint 6/7 mission service
+# MISSION_SERVICE_DIR points at YOUR OWN Week 4 mission service
 # checkout - the one whose SecurityConfig this script proves needs zero
 # changes. Override it if your copy lives somewhere else:
 #   MISSION_SERVICE_DIR=/path/to/it ./integration-test.sh
@@ -40,7 +40,7 @@ docker run -d --name "$SERVICE_CONTAINER" --network "$NETWORK" -p "$SERVICE_PORT
 # TODO 4: wait for both containers to be ready - poll the auth service's
 # GET /health and the mission service's POST /accounts/1/orders (any
 # non-000 curl code means it's answering), same retry-loop shape as
-# Sprint 6, Module 13.
+# Week 4, Module 13.
 
 # TODO 5: smoke test - a request to POST /accounts/1/orders on the
 # mission service with NO Authorization header must return 401. Exit 1
@@ -54,6 +54,6 @@ docker run -d --name "$SERVICE_CONTAINER" --network "$NETWORK" -p "$SERVICE_PORT
 
 # TODO 7: confirm the order actually landed in Postgres - query the
 # holdings/instruments join for account 1's ULVR.L quantity, the same
-# way Sprint 6, Module 13 did.
+# way Week 4, Module 13 did.
 
 echo "== ALL STAGES PASSED =="

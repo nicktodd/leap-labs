@@ -3,7 +3,8 @@
 **Duration:** 10 minutes
 **Prerequisite:** IntelliJ IDEA 2025.1 with GitHub Copilot installed and signed in (as part of
 your environment setup). Have `unfamiliar-jenkinsfile-snippet.txt` and
-`unfamiliar-dockerfile-snippet.txt` open in the editor.
+`unfamiliar-dockerfile-snippet.txt` open in the editor. Jenkins and Docker are
+not taught until Week 2; that is the point - delegates are explaining syntax they have not met yet.
 
 > **Scope reminder for delegates:** today Copilot is a *learning aid* only - asking it to
 > explain things. You are not using it to write or complete code this week. Hands-on

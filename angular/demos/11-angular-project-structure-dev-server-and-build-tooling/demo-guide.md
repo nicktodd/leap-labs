@@ -84,7 +84,7 @@ Verified real output, the actual page a browser loads at that URL:
 
 ![The real Angular default page, served by ng serve](screenshots/ng-serve-default-page.png)
 
-This isn't Module 6's `python3 -m http.server` serving a static file - `ng serve` compiles
+This isn't Module 6's `npx http-server` serving a static file - `ng serve` compiles
 TypeScript, processes the templates, and rebuilds automatically the moment a source file
 changes, pushing the update to the browser without a manual refresh. Change `app.html`'s
 text live and watch the browser update on its own.
@@ -118,7 +118,7 @@ a real app grows.
 
 ## Key message
 
-The CLI's whole job is removing the setup decisions Module 6's raw `fetch()`/`http.server`
+The CLI's whole job is removing the setup decisions Module 6's raw `fetch()`/`http-server`
 approach left entirely manual: where files live, how TypeScript compiles, how the dev
 server rebuilds on change, and how a production bundle gets built - one command each,
 consistent across every Angular project, not reinvented per app.

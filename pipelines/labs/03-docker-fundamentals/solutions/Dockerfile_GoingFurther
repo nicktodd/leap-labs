@@ -5,7 +5,7 @@
 # The stretch option (Compose) is in docker-compose_GoingFurther.yml.
 #
 # Build context must be starter/, e.g. from the lab root:
-#   docker build -f solutions/Dockerfile_GoingFurther -t sprint1-greeter-app:going-further starter/
+#   docker build -f solutions/Dockerfile_GoingFurther -t greeter-app:going-further starter/
 
 FROM maven:3.9-eclipse-temurin-21 AS build
 WORKDIR /src
@@ -20,9 +20,9 @@ RUN addgroup -S app && adduser -S app -G app \
     && mkdir -p /app/logs \
     && chown -R app:app /app
 
-COPY --from=build /src/target/sprint1-greeter-app.jar app.jar
+COPY --from=build /src/target/greeter-app.jar app.jar
 
-ENV GREETING_NAME="Sprint 1"
+ENV GREETING_NAME="Week 2"
 VOLUME /app/logs
 
 USER app

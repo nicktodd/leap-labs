@@ -12,7 +12,7 @@ interface StoredUser {
 
 const SALT_ROUNDS = 10;
 
-// Sprint 6's real auth-stub reads this from process.env.JWT_SECRET, with
+// Week 4's real auth-stub reads this from process.env.JWT_SECRET, with
 // this exact string as its fallback. This is what lets this service's
 // tokens be accepted by the SAME mission service, unchanged, without
 // either side's code needing to know about the other.
@@ -23,7 +23,7 @@ export class AuthService {
   private readonly users = new Map<string, StoredUser>();
 
   constructor() {
-    // alice/mission123/MISSION_OPERATOR - matches Sprint 6's auth-stub
+    // alice/mission123/MISSION_OPERATOR - matches Week 4's auth-stub
     // exactly: same username, same password, same role claim, so a
     // token from THIS service authenticates identically to a token
     // from the stub it replaces.

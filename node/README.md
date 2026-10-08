@@ -1,7 +1,7 @@
-# LEAP Program - Sprint 8 Lab Exercises
+# LEAP Programme - Week 6 Lab Exercises
 
-This repository contains the hands-on lab exercises accompanying **Sprint 8: Node.js / NestJS
-Authentication Service**, week 8 of the LEAP graduate programme.
+This repository contains the hands-on lab exercises accompanying **Week 6: Node.js / NestJS
+Authentication Service**, week 6 of the LEAP graduate programme.
 
 ## Prerequisites
 
@@ -11,16 +11,16 @@ Authentication Service**, week 8 of the LEAP graduate programme.
   JavaScript fundamentals from the Angular week, and Module 4 (TypeScript Build Process)
   builds on the full TypeScript grounding (basic types through interfaces and generics) from
   that same week
-- Postgres (the Sprint 3 enterprise schema, extended with a `users` table - see `shared/`)
-- Java 21 (JDK) and Maven, and Docker - to run Sprint 6/7's mission service, which the new auth
+- Postgres (the Week 2 enterprise schema, extended with a `users` table - see `shared/`)
+- Java 21 (JDK) and Maven, and Docker - to run Week 4's mission service, which the new auth
   service integrates with from Module 11 onward
 - GitHub Copilot Chat (continuing as a learning aid)
 
-## Coming from Sprint 7
+## Coming from Week 5
 
-Sprint 6 built a Spring Boot mission service that trusts JWTs from `shared/auth-stub` - a
+Week 4 built a Spring Boot mission service that trusts JWTs from `shared/auth-stub` - a
 minimal, hardcoded-credentials Node service, good enough to build and test `SecurityConfig`
-against, never intended to be real. Sprint 8 builds the real thing: a NestJS auth service with
+against, never intended to be real. Week 6 builds the real thing: a NestJS auth service with
 genuine user registration, password hashing, and database-backed login, issuing tokens the
 mission service already knows how to validate without any changes on its side. See
 `shared/mission-brief.md`.
@@ -55,7 +55,7 @@ exercise runnable directly with `node`.
 | 8 | Secure DB Access & Password Hashing | [labs/08-secure-db-access-and-password-hashing/README.md](labs/08-secure-db-access-and-password-hashing/README.md) |
 | 9 | JWT Essentials: Issuing & Validating Tokens | [labs/09-jwt-essentials-issuing-and-validating-tokens/README.md](labs/09-jwt-essentials-issuing-and-validating-tokens/README.md) |
 | 10 | Securing & Testing the Service - Lightweight Pass | [labs/10-securing-and-testing-the-service-lightweight-pass/README.md](labs/10-securing-and-testing-the-service-lightweight-pass/README.md) |
-| 11 | Mission Build: OpenAPI Docs & Replacing the Sprint 7 Stub | [labs/11-mission-build-openapi-docs-and-replacing-the-sprint7-stub/README.md](labs/11-mission-build-openapi-docs-and-replacing-the-sprint7-stub/README.md) |
+| 11 | Mission Build: OpenAPI Docs & Replacing the Stub | [labs/11-mission-build-openapi-docs-and-replacing-the-sprint7-stub/README.md](labs/11-mission-build-openapi-docs-and-replacing-the-sprint7-stub/README.md) |
 
 ## Support
 

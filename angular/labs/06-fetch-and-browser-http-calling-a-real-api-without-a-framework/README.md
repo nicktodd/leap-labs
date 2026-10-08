@@ -10,7 +10,7 @@ Two things have to be running, exactly as in today's demo:
    enabled for your page's origin (uncomment the `cors()` line in `server.js` - ask your
    trainer if this isn't already set up on the class copy).
 2. **This lab's page served over HTTP, not opened as a `file://` URL** - run
-   `python3 -m http.server 8000` from this folder, then visit `http://localhost:8000` in a
+   `npx http-server -p 8000` from this folder (Node is already installed for this week), then visit `http://localhost:8000` in a
    browser. Fetch's CORS rules only make sense with a real origin; today's demo showed
    exactly what goes wrong otherwise.
 

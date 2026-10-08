@@ -11,8 +11,10 @@
 
 ## 2. Entities and data needed
 
-- `client_subscriptions` (to find each client's current model portfolio)
-- `model_portfolio_holdings` (target weight per instrument, for that portfolio)
+- `client_subscriptions` (to find each client's current model portfolio: the row with no
+  `ended_date`)
+- `model_portfolio_holdings` (current target weight per instrument, for that portfolio: the
+  rows with no `effective_to`)
 - `client_holdings` (actual quantity per instrument, most recent `as_of_date`)
 - `instruments` (for readable names in the output)
 

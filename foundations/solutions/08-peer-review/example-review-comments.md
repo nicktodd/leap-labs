@@ -13,10 +13,9 @@ without being prescriptive about *how*.
 
 ## Example: security-adjacent issue
 
-> The Dockerfile copies `target/*.jar` rather than a pinned filename. If more than one jar ever
-> ends up in `target/` (say, from a shaded/fat-jar plugin later), this glob could pick up the
-> wrong one silently. Worth pinning to the exact jar name now, before that becomes a real
-> problem?
+> The `.gitignore` covers `target/` and `.idea/` but not `.env` files. If anyone adds local
+> credentials later, they could be committed by accident. Worth adding `.env` now, before that
+> becomes a real problem?
 
 Why this is good: explains the *consequence*, not just "this looks risky", and frames it as a
 question rather than a demand.

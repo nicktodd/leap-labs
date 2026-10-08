@@ -46,7 +46,7 @@ Branch protection rules** for `main`:
 
 - Require a pull request before merging
 - Require at least one approving review
-- Require status checks (the Jenkins build) to pass before merging
+- Require status checks (the automated CI build, set up in Week 2) to pass before merging
 
 Narration: branch protection is what turns "we agreed to use PRs" into something Git actually
 enforces. Without it, anyone can still push straight to `main` by habit or under pressure.
@@ -59,10 +59,10 @@ Have a partner review the PR: at least one comment, then an approval. Merge it.
 
 Narration: this week's Module 04 covered the basics (`target/`, `.idea/`). Today's addition:
 `.gitignore` is also a security boundary, secrets, credentials, and `.env` files belong there
-too, never in a commit. The Pipelines week's OWASP (Module 9) and Secure Coding (Module 11)
+too, never in a commit. The Week 2 OWASP Top 10 and Secure Coding
 modules come back to exactly why that matters.
 
 ## Key message
 
 A PR isn't extra process for its own sake, it's the moment a change gets a second pair of eyes
-and an automated safety net (Jenkins) *before* it reaches `main`, not after.
+and an automated safety net (an automated CI build) *before* it reaches `main`, not after.

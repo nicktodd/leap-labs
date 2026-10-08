@@ -8,16 +8,16 @@ interface StoredUser {
 // This is the SKELETON - deliberately incomplete in two specific ways,
 // both flagged so nothing here is mistaken for "the real thing":
 //
-//   1. Passwords are stored in PLAIN TEXT. Module 12 (Secure DB Access &
+//   1. Passwords are stored in PLAIN TEXT. Module 8 (Secure DB Access &
 //      Password Hashing) replaces this with real hashing - never do this
 //      in anything that isn't a training skeleton.
-//   2. Tokens are just random strings, not real JWTs. Module 13 (JWT
+//   2. Tokens are just random strings, not real JWTs. Module 9 (JWT
 //      Essentials) replaces issueAccessToken/issueRefreshToken with real
-//      signed tokens - matching the exact contract Sprint 6's real
+//      signed tokens - matching the exact contract Week 4's real
 //      auth-stub already uses (POST /login -> { token }, HS256-signed).
 //
-// alice/mission123 is preloaded to match Sprint 6's auth-stub exactly -
-// this service is the eventual REPLACEMENT for that stub, and Sprint 6's
+// alice/mission123 is preloaded to match Week 4's auth-stub exactly -
+// this service is the eventual REPLACEMENT for that stub, and Week 4's
 // mission service must be able to log in against it unchanged.
 @Injectable()
 export class AuthService {
@@ -53,8 +53,8 @@ export class AuthService {
     return { accessToken: this.issueStubToken("access", username) };
   }
 
-  // TODO (Module 13): replace this with a real HS256-signed JWT, matching
-  // Sprint 6's auth-stub. For now, a random string is enough to prove the
+  // TODO (Module 9): replace this with a real HS256-signed JWT, matching
+  // Week 4's auth-stub. For now, a random string is enough to prove the
   // REQUEST/RESPONSE SHAPE is right - which is what this module is about.
   private issueStubToken(kind: "access" | "refresh", username: string): string {
     return `stub-${kind}-token-for-${username}-${Math.random().toString(36).slice(2, 10)}`;

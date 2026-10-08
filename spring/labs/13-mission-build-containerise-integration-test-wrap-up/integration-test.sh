@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # KATA: complete the network/build/run staging is given - your job is the
 # verification stages below (Wait, Smoke Test, End-to-End, Confirm).
-# Staged like the Jenkinsfiles from Sprint 1/2 - each stage should fail
+# Staged like the Jenkinsfiles from Week 2 - each stage should fail
 # fast and loud, not silently.
 set -euo pipefail
 

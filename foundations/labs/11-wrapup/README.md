@@ -22,12 +22,8 @@ the thing, not just tell you it works. Tick it off only once you've seen it your
 ### Environment
 
 - [ ] IntelliJ IDEA 2025.1 opens and can open a project
-- [ ] Docker Desktop is installed and the daemon is reachable (e.g. `docker
-      ps`) - verified this week, used in depth starting next week
 - [ ] GitHub account is signed in and has access to the LEAP organisation
 - [ ] GitHub Copilot Chat is available in IntelliJ
-- [ ] Access to the team's Jenkins instance is confirmed (login only - Jenkins itself starts
-      next week)
 
 ### Agile & Ceremonies (Modules 02-03)
 

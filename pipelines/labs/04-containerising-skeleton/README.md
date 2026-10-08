@@ -70,5 +70,4 @@ By the end of this lab your team will have:
 - Your team's Jenkins job runs the `Jenkinsfile` from `main` and completes with all three
   stages green.
 
-This is the last hands-on lab of this week's Pipelines content. Module 13 wraps up and prepares you for Friday's
-assessment.
+Next, Module 05 takes the pipeline further, with more stages and a security gate.

@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Every test you've written this sprint used @Test and assertEquals/assertTrue.
+// Every test you've written this week used @Test and assertEquals/assertTrue.
 // That's a small fraction of what JUnit offers. This demo walks through the rest,
 // applied to classes you already know: Holding, Instrument, and its subclasses.
 @DisplayName("JUnit 5 features, applied to familiar classes")

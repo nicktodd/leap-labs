@@ -11,7 +11,10 @@ By the end of this lab you will have:
 
 ## Setup
 
-- A Snowflake trial/sandbox account, provisioned by your trainer
+- A Snowflake trial/sandbox account, provisioned by your trainer. Check you can sign in before
+  the session: if you have no account details, tell your trainer straight away, this lab can't
+  be done without one. (A free 30-day trial from <https://signup.snowflake.com> also works, and
+  includes the same sample data.)
 - No installation needed, Snowflake runs in the browser (Snowsight)
 
 ## Task sheet

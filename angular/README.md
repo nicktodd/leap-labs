@@ -1,7 +1,7 @@
 # LEAP Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: UI Development
-with Angular**, week 9 of the LEAP graduate programme.
+with Angular**, Week 5 of the LEAP graduate programme.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ itself is introduced in Module 10.
 ## Structure
 
 Each module has its own folder under `demos/`, `labs/`, and `solutions/`, following the same
-pattern as every previous sprint.
+pattern as every previous week.
 
 - `demos/<module>/` - instructor-led demo assets and guides
 - `labs/<module>/` - your starter files and the task README for that module

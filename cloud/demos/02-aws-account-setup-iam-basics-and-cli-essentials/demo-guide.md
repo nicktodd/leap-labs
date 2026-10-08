@@ -51,7 +51,7 @@ aws ec2 describe-availability-zones --region us-east-1 \
 ```
 
 Later modules place resources into a specific AZ deliberately - you'll see exactly how and why
-in Module 3. "Which region" and "which AZ" are two different questions this sprint asks
+in Module 3. "Which region" and "which AZ" are two different questions this week answers
 repeatedly, not interchangeable ideas.
 
 ## Part 2: Accessing AWS via the Console (7 min)

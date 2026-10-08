@@ -16,7 +16,7 @@ export class AuthService {
   private readonly users = new Map<string, StoredUser>();
 
   constructor() {
-    // Preloaded to match Sprint 6's auth-stub - but the password is now
+    // Preloaded to match Week 4's auth-stub - but the password is now
     // HASHED, not stored as "mission123" in plain text the way Module
     // 11's skeleton left it.
     void this.register("alice", "mission123");
@@ -63,7 +63,7 @@ export class AuthService {
     return [...this.users.entries()].find(([, u]) => u.refreshToken === refreshToken);
   }
 
-  // Still a stub - Module 13 replaces this with a real signed JWT.
+  // Still a stub - Module 9 replaces this with a real signed JWT.
   private issueStubToken(kind: "access" | "refresh", username: string): string {
     return `stub-${kind}-token-for-${username}-${Math.random().toString(36).slice(2, 10)}`;
   }

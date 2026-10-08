@@ -32,7 +32,7 @@ Narration: close by naming the pattern that ran through the whole week. Every sk
 the concept, practise the mechanics, and where relevant, use GenAI as a learning aid to speed up
 understanding an unfamiliar piece of syntax or an error message, but always verify before
 trusting it. That pattern doesn't stop after this week, it's how you'll approach every new tool
-for the rest of the programme - starting next week, when CI/CD, Docker, and security join the
+for the rest of the programme - starting in Week 2, when CI/CD, Jenkins, Docker, and security join the
 same Git and GitHub habits you've just built.
 
 ## Key message

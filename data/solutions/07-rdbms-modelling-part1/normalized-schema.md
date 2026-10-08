@@ -51,8 +51,8 @@ instruments (instrument_id, ticker, name)
 clients (client_id, name, advisor_id)
 model_portfolios (model_portfolio_id, name)
 instruments (instrument_id, ticker, name)
-model_portfolio_holdings (model_portfolio_id, instrument_id, target_weight_pct)
-client_subscriptions (client_id, model_portfolio_id, subscribed_date)
+model_portfolio_holdings (model_portfolio_id, instrument_id, target_weight_pct, effective_from, effective_to)
+client_subscriptions (client_id, model_portfolio_id, subscribed_date, ended_date)
 ```
 
 `model_portfolio_holdings` and `client_subscriptions` are both linking tables resolving the
@@ -67,5 +67,7 @@ than being handed it.
   atomicity, not redundancy.
 - The 2NF and 3NF splits are justified with the *specific* dependency being removed, not just
   "this feels like it should be its own table."
-- `client_subscriptions` includes `subscribed_date`, this is what lets Module 14's capstone
-  later track subscription history, worth flagging now even though it's not the focus yet.
+- `client_subscriptions` includes `subscribed_date` (and `ended_date`), and
+  `model_portfolio_holdings` includes `effective_from` / `effective_to`. The flat file only shows
+  current state, but the mission brief's requirements 1 and 2 ask for the history of both, so
+  teams should add these date columns here rather than discover the gap later.

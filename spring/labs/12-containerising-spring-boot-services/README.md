@@ -70,7 +70,7 @@ Write a multi-stage `Dockerfile` at the root of this lab folder:
 
 - **Stage 1 (`build`)**: base it on `maven:3.9-eclipse-temurin-21`. Copy `pom.xml` first and run
   `mvn -B dependency:go-offline` as its own layer (so Docker can cache downloaded dependencies
-  separately from your source code - see Module 11's demo-guide for why that ordering matters).
+  separately from your source code - see Module 12's demo-guide for why that ordering matters).
   Then copy `src/`, and run `mvn -B clean package -DskipTests`.
 - **Stage 2 (runtime)**: base it on `eclipse-temurin:21-jre-alpine` - no Maven, no JDK compiler,
   just enough to run a jar. Copy **only** the built jar from stage 1 (`COPY --from=build ...`).

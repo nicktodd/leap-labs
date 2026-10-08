@@ -5,7 +5,7 @@
 
 ## Part 1: Why this module has a retrospective, not just a checklist (2 min)
 
-Narration: every other sprint wrap-up in this programme is a straight checklist. This week gets
+Narration: every other weekly wrap-up in this programme is a straight checklist. This week gets
 one extra thing first, because this week's whole arc was different - Module 3 asked you to
 design something before you knew SOLID, clean code, or TDD; Module 13 asked you to actually build
 it once you did. The gap between those two points is worth examining deliberately, not just
@@ -24,7 +24,7 @@ from it and narrate the full arc:
  nothing had tested that decision yet.
 
  Module 13's actual build: still a status field, unchanged. This decision genuinely
- survived the whole sprint. But we CAN now say why with more confidence than we could
+ survived the whole week. But we CAN now say why with more confidence than we could
  in Module 3 - the mission never grew a second, independent reason to track a
  confirmation's lifecycle, so the simpler option kept being the right one all the way
  through."
@@ -53,7 +53,7 @@ Pick a volunteer pair. Run through a few checklist items live:
 
 ## Part 4: Naming this week's throughline (1 min)
 
-Narration: This week didn't teach you a single tool the way Docker or Jenkins did in Sprint 1. It
+Narration: This week didn't teach you a single tool the way Docker or Jenkins did in Week 2. It
 taught you a *sequence*: design something, get it reviewed, learn the vocabulary to name what's
 wrong with it (SOLID), learn the discipline to build it correctly the first time (TDD), and then
 actually build it. Nothing in Modules 7-13 works without Module 3's requirement or Module 4's
@@ -63,5 +63,5 @@ really checking.
 
 ## Key message
 
-This module has two jobs, not one: make the sprint's design evolution genuinely visible (not
+This module has two jobs, not one: make the week's design evolution genuinely visible (not
 just implied), and catch any remaining gaps while there's still time to close them.

@@ -46,9 +46,15 @@ CREATE TABLE model_portfolio_holdings (
     model_portfolio_id  INTEGER NOT NULL REFERENCES model_portfolios(model_portfolio_id),
     instrument_id       INTEGER NOT NULL REFERENCES instruments(instrument_id),
     target_weight_pct   NUMERIC(5,2) NOT NULL CHECK (target_weight_pct BETWEEN 0 AND 100),
-    PRIMARY KEY (model_portfolio_id, instrument_id)
+    effective_from      DATE NOT NULL DEFAULT CURRENT_DATE,
+    effective_to        DATE,
+    PRIMARY KEY (model_portfolio_id, instrument_id, effective_from),
+    CHECK (effective_to IS NULL OR effective_to > effective_from)
 );
 ```
+
+Point out `effective_from` / `effective_to`: the mission brief needs the history of each
+portfolio's target composition, so a rebalance closes old rows rather than overwriting them.
 
 Narration, naming each: `NOT NULL` rejects a missing value outright. `UNIQUE` rejects a
 duplicate value in a column that isn't the primary key (e.g. an instrument's `ticker` should

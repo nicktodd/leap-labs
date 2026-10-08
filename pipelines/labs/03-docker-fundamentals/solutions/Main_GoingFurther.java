@@ -4,7 +4,7 @@
 // (which already declares GREETING_NAME and VOLUME /app/logs to match).
 //
 // Try it with, e.g.:
-//   docker run -d --name greeter -e GREETING_NAME=Class -v greeter-logs:/app/logs sprint1-greeter-app:going-further
+//   docker run -d --name greeter -e GREETING_NAME=Class -v greeter-logs:/app/logs greeter-app:going-further
 
 package com.neueda.leap;
 
@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 
 public class Main {
     public static void main(String[] args) throws InterruptedException, IOException {
-        String name = System.getenv().getOrDefault("GREETING_NAME", "Sprint 1");
+        String name = System.getenv().getOrDefault("GREETING_NAME", "Week 2");
         Greeter greeter = new Greeter();
         String message = greeter.greet(name);
         System.out.println(message);

@@ -27,11 +27,24 @@ INSERT INTO model_portfolios (name) VALUES
     ('Income Focus'),
     ('Adventurous Growth');
 
--- Target compositions (also matching messy-flat-file.csv)
-INSERT INTO model_portfolio_holdings (model_portfolio_id, instrument_id, target_weight_pct) VALUES
-    (1, 7, 40), (1, 6, 30), (1, 8, 30),   -- Balanced Growth
-    (2, 6, 60), (2, 5, 30), (2, 8, 10),   -- Income Focus
-    (3, 7, 70), (3, 5, 20), (3, 8, 10);   -- Adventurous Growth
+-- Target compositions (current ones match messy-flat-file.csv).
+-- History: Balanced Growth was rebalanced on 2025-01-01. Its original 2022
+-- composition (50/30/20) is kept, closed with effective_to, rather than
+-- overwritten, so we can still say what it looked like before the rebalance.
+INSERT INTO model_portfolio_holdings
+    (model_portfolio_id, instrument_id, target_weight_pct, effective_from, effective_to) VALUES
+    (1, 7, 50, '2022-01-01', '2025-01-01'),  -- Balanced Growth, before rebalance
+    (1, 6, 30, '2022-01-01', '2025-01-01'),
+    (1, 8, 20, '2022-01-01', '2025-01-01'),
+    (1, 7, 40, '2025-01-01', NULL),          -- Balanced Growth, current
+    (1, 6, 30, '2025-01-01', NULL),
+    (1, 8, 30, '2025-01-01', NULL),
+    (2, 6, 60, '2022-01-01', NULL),          -- Income Focus
+    (2, 5, 30, '2022-01-01', NULL),
+    (2, 8, 10, '2022-01-01', NULL),
+    (3, 7, 70, '2022-01-01', NULL),          -- Adventurous Growth
+    (3, 5, 20, '2022-01-01', NULL),
+    (3, 8, 10, '2022-01-01', NULL);
 
 -- Clients
 INSERT INTO clients (name, advisor_id) VALUES
@@ -41,13 +54,16 @@ INSERT INTO clients (name, advisor_id) VALUES
     ('David Kim', 3),
     ('Elena Petrova', 2);
 
--- Subscriptions (matching messy-flat-file.csv's client-to-portfolio mapping)
-INSERT INTO client_subscriptions (client_id, model_portfolio_id, subscribed_date) VALUES
-    (1, 1, '2023-01-15'),  -- Alice Johnson -> Balanced Growth
-    (2, 3, '2023-03-01'),  -- Brian Osei -> Adventurous Growth
-    (3, 2, '2022-11-01'),  -- Carla Mendes -> Income Focus
-    (4, 3, '2023-06-01'),  -- David Kim -> Adventurous Growth
-    (5, 1, '2022-09-01');  -- Elena Petrova -> Balanced Growth
+-- Subscriptions (current ones match messy-flat-file.csv's client-to-portfolio
+-- mapping). History: David Kim started on Income Focus and switched to
+-- Adventurous Growth; the old subscription is kept, closed with ended_date.
+INSERT INTO client_subscriptions (client_id, model_portfolio_id, subscribed_date, ended_date) VALUES
+    (1, 1, '2023-01-15', NULL),          -- Alice Johnson -> Balanced Growth
+    (2, 3, '2023-03-01', NULL),          -- Brian Osei -> Adventurous Growth
+    (3, 2, '2022-11-01', NULL),          -- Carla Mendes -> Income Focus
+    (4, 2, '2022-05-01', '2023-06-01'),  -- David Kim -> Income Focus (ended)
+    (4, 3, '2023-06-01', NULL),          -- David Kim -> Adventurous Growth
+    (5, 1, '2022-09-01', NULL);          -- Elena Petrova -> Balanced Growth
 
 -- Actual current holdings, deliberately drifted from target for at least one client
 INSERT INTO client_holdings (client_id, instrument_id, quantity, as_of_date) VALUES

@@ -2,8 +2,10 @@
 
 **Duration:** 12 minutes
 **Prerequisite:** The `starter/` project from this lab pushed to a GitHub repository. Access to
-this week's Jenkins instance with admin rights to create a job. GitHub webhook access to the
-repository (or a trainer-provided equivalent).
+your local Jenkins (in Docker, on `http://localhost:8080`) with rights to create a job, and the
+GitHub Branch Source and GitHub plugins installed. Admin rights on the GitHub repository (to add a
+webhook), and Node.js installed (for `npx smee-client`). Start a smee.io channel before the
+session so the URL is ready to paste.
 
 ## Part 1: Recap, quickly (2 min)
 
@@ -29,6 +31,12 @@ changes.
 ```groovy
 pipeline {
     agent any
+    tools {
+        maven 'Maven3'
+    }
+    triggers {
+        githubPush()
+    }
     stages {
         stage('Checkout') {
             steps {
@@ -56,15 +64,26 @@ pipeline {
 
 Narration: three stages, nothing here is new syntax, this is Module 05's shape (Checkout,
 Build, Test) applied to the multi-stage Dockerfile from Module 06. `${BUILD_NUMBER}` tags each
-image uniquely, a small habit worth normalising early.
+image uniquely, a small habit worth normalising early. `githubPush()` is the Jenkinsfile
+equivalent of ticking **GitHub hook trigger for GITScm polling**: build when GitHub says so.
 
 ## Part 4: Configuring the Multibranch Pipeline job (3 min)
 
 In Jenkins: **New Item > Multibranch Pipeline**, point it at the GitHub repository, and confirm
 it discovers `main` plus any open branches/PRs, each getting its own sub-job automatically.
 
-Add (or confirm) a GitHub webhook pointed at the Jenkins instance, so pushes and PR events
-trigger a build immediately rather than waiting on a polling interval.
+Then the webhook. Jenkins is on `localhost`, which GitHub can't reach, so relay it through
+smee.io:
+
+```bash
+npx smee-client --url https://smee.io/<channel> --target http://localhost:8080/github-webhook/
+```
+
+On GitHub: **Settings > Webhooks > Add webhook**, payload URL = the smee.io channel URL,
+content type `application/json`, events **Pushes** and **Pull requests**. Show the `ping`
+arriving in three places: the smee.io tab, the smee-client terminal, and a green tick under
+**Recent Deliveries**. Point out the trailing `/github-webhook/` on the target, it's the most
+common mistake.
 
 ## Part 5: Prove the triggers work (1 min)
 

@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 
 // Module 10's handler, unchanged, applied here too - the same four failure
 // modes (malformed request, not found, business rule, unanticipated) exist
-// in every module this sprint has built, and they still all converge on
+// in every module this week has built, and they still all converge on
 // the same ErrorResponse shape.
 @RestControllerAdvice
 public class GlobalExceptionHandler {

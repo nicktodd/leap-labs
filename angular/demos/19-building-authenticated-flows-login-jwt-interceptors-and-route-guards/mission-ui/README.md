@@ -4,7 +4,7 @@
 > Modules 7-17 build up incrementally, module by module - Module 7's solution is exactly
 > `ng new mission-ui --routing --style=css --ssr=false` with nothing added yet. `node_modules/`
 > and `dist/` are gitignored; run `npm install` before `ng serve`/`ng build`. Learners scaffold
-> their own copy per `labs/07-.../README.md` and keep building in it for the rest of the sprint
+> their own copy per `labs/11-.../README.md` and keep building in it for the rest of the week
 > - this folder is the instructor-facing answer key, not something learners clone directly.
 >
 > Pinned to **Angular 21** and **TypeScript 5.9** (not the latest Angular 22/TS 6.0) -

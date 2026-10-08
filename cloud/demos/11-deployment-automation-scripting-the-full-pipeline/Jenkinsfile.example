@@ -77,8 +77,8 @@ pipeline {
         }
 
         // 'Deploy' only confirms a task reached RUNNING - it says nothing
-        // about whether the application works for a user. Reuses Sprint
-        // 9 Module 16's Playwright suite (login.spec.ts) unchanged,
+        // about whether the application works for a user. Reuses Week
+        // 5 Module 20's Playwright suite (login.spec.ts) unchanged,
         // against the real deployed frontend instead of localhost.
         stage('Acceptance Tests') {
             steps {

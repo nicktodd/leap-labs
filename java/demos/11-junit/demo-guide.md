@@ -11,7 +11,7 @@ deliberate, not a problem (see `@Disabled` at the bottom).
 
 ## `@BeforeEach` - Fresh State, Every Test
 
-Every lab this sprint has created its test objects inline, inside each test method. `setUp()`
+Every lab this week has created its test objects inline, inside each test method. `setUp()`
 here does it once, and JUnit re-runs it before *every single test method* - each test gets its
 own fresh `Holding`, with zero risk of one test's leftover state leaking into another. Ask: what
 would happen if `holding` were created once, outside any method, and shared across tests? (Answer:

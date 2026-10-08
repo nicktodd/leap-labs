@@ -1,5 +1,5 @@
 // Shared across all three demo files - a fake network call to verify a
-// username, standing in for a real HTTP request to Sprint 6's auth-stub.
+// username, standing in for a real HTTP request to Week 4's auth-stub.
 // setTimeout is the stand-in for "this takes time and doesn't finish
 // immediately" - the same reason a real fetch() to an auth service is
 // asynchronous.

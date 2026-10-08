@@ -29,7 +29,7 @@ new problem, rather than repeating the demo with different parameters.
   Module 11 (bearer-token authentication, cursor pagination, filtering, rate limiting, and an
   optional `--flaky` mode). The demo uses the separate `trades_api.py`.
 
-## How it is used across the sprint
+## How it is used across the week
 
 | Module | Lab use |
 |---|---|

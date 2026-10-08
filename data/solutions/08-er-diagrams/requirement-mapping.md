@@ -10,14 +10,17 @@ assumption, not a gap.
 
 1. **"Record which model portfolios exist, and what instruments and target weights make each
    one up... a model portfolio's composition can change over time."**
-   Satisfied by `model_portfolios` and `model_portfolio_holdings`. Note the first-draft schema
-   only captures *current* composition, it has no history of past target weights. Worth
-   flagging as a known gap, not yet required by the brief's wording, but worth teams noticing.
+   Satisfied by `model_portfolios` and `model_portfolio_holdings`, **provided** the holdings
+   table keeps history: `effective_from` / `effective_to` columns, with `effective_from` in the
+   primary key. The brief explicitly asks to know what a portfolio "looked like at any point in
+   the past", so a table keyed only on (`model_portfolio_id`, `instrument_id`) that overwrites
+   weights on a rebalance does **not** meet it. This is a common miss, prompt teams who have it.
 
 2. **"Record which client is subscribed to which model portfolio, and since when... keep that
    history too."**
    Satisfied by `client_subscriptions`, with `subscribed_date` as part of the key specifically
-   to allow more than one subscription record per client over time.
+   to allow more than one subscription record per client over time, and an `ended_date`
+   (`NULL` = current) so it's clear which subscription is the current one.
 
 3. **"Record each client's actual current holdings."**
    **Not yet satisfied** by this draft schema. This is a genuine gap worth teams finding

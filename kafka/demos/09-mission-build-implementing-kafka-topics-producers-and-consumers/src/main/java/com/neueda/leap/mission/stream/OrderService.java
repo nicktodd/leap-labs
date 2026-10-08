@@ -29,7 +29,7 @@ public class OrderService {
         publishTradeEvent(order);
     }
 
-    // NEW this sprint: every accepted order also publishes a trade event.
+    // NEW this week: every accepted order also publishes a trade event.
     // The mission service does not know or care who (if anyone) consumes it.
     private void publishTradeEvent(Order order) throws Exception {
         String value = String.format("%s,%s,%.0f", order.ticker(), order.side(), order.quantity());

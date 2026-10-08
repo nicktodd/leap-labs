@@ -1,7 +1,7 @@
 // Module 2 Demo — plain JavaScript, nothing else. No frameworks, no npm
 // packages, no objects/arrays-of-objects yet (that's Module 3). Just
 // variables, functions, and control flow, applied to something real: a
-// short log of login attempts against this sprint's mission.
+// short log of login attempts against this week's mission.
 
 // VARIABLES: `const` for values that never get reassigned, `let` for ones
 // that do. Prefer `const` by default — reassignment is worth signalling

@@ -10,7 +10,7 @@ set as part of your environment setup). A scratch folder to demo in.
 mkdir demo-repo && cd demo-repo
 git init
 git status
-echo "Hello sprint 1" > notes.txt
+echo "Hello week 1" > notes.txt
 git status
 ```
 
@@ -23,7 +23,7 @@ untracked.
 ```bash
 git add notes.txt
 git status
-git commit -m "Add sprint 1 notes"
+git commit -m "Add week 1 notes"
 git log
 ```
 

@@ -7,11 +7,13 @@
 -- Part B: load sample data
 -- At least three model portfolios, 2-4 holdings each (weights summing to 100), at least five
 -- clients, a subscription per client, and client_holdings for at least three clients.
+-- Include history: one portfolio's previous composition (with effective_to set), and one
+-- client's earlier, ended subscription (with ended_date set).
 
 
 -- Part C: verify
 -- 8. Query joining model_portfolios, model_portfolio_holdings, and instruments showing each
---    portfolio's target composition.
+--    portfolio's current target composition, then its composition on a past date.
 
 
 -- 9. Query joining clients, client_subscriptions, and model_portfolios showing which client is

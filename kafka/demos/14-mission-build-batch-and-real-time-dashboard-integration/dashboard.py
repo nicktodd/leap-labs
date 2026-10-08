@@ -2,7 +2,7 @@
 This Week's Mission Build - the Python week's dashboard, extended.
 
 The Python week's dashboard.py had one extract() reading a local CSV. This version
-has TWO extract functions - one per data-movement pattern this sprint spent
+has TWO extract functions - one per data-movement pattern this week spent
 14 modules teaching - merged into one combined view, exactly as the mission
 brief promised: "two different data-movement patterns, feeding one
 dashboard, each used where it's actually the right tool."

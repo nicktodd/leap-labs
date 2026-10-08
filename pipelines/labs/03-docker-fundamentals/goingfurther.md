@@ -9,7 +9,7 @@ first. Note the solution Dockerfiles `COPY pom.xml`/`COPY src` like a multi-stag
 if you build one directly you'll need to point the build **context** at `starter/`, e.g.:
 
 ```
-docker build -f solutions/Dockerfile_GoingFurther -t sprint1-greeter-app:going-further starter/
+docker build -f solutions/Dockerfile_GoingFurther -t greeter-app:going-further starter/
 ```
 
 ## 1. Write the real multi-stage version yourself

@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.neueda.leap</groupId>
-    <artifactId>sprint1-greeter-app</artifactId>
+    <artifactId>greeter-app</artifactId>
     <version>0.1.0</version>
     <packaging>jar</packaging>
 
@@ -12,7 +12,7 @@
     </properties>
 
     <build>
-        <finalName>sprint1-greeter-app</finalName>
+        <finalName>greeter-app</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>

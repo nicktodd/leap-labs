@@ -24,7 +24,7 @@ By the end of this lab you will have:
 
 2. **Review your partner's repository**
    Using `review-checklist.md`, review their code from earlier this week (their Greeter/skeleton app,
-   Dockerfile, and Jenkinsfile are all fair game). You don't need a live PR for this, comments
+   README, and .gitignore are all fair game). You don't need a live PR for this, comments
    can be left directly on specific files and lines via GitHub's file view, or written up
    separately if that's easier logistically.
    - Leave **at least two** specific, constructive comments

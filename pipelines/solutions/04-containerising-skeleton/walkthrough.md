@@ -8,7 +8,7 @@ git switch -c feature/docker-skeleton
 mvn clean package
 docker build -t team-skeleton .
 docker run --rm team-skeleton
-# Hello world from Sprint Squad's project skeleton
+# Hello world from the firm's Week 2 project skeleton
 
 git add Dockerfile pom.xml src
 git commit -m "Add containerised hello world skeleton"

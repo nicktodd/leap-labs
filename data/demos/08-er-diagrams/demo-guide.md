@@ -45,7 +45,9 @@ CREATE TABLE model_portfolio_holdings (
     model_portfolio_id  INTEGER REFERENCES model_portfolios(model_portfolio_id),
     instrument_id       INTEGER REFERENCES instruments(instrument_id),
     target_weight_pct   NUMERIC(5,2) NOT NULL,
-    PRIMARY KEY (model_portfolio_id, instrument_id)
+    effective_from      DATE NOT NULL,
+    effective_to        DATE,
+    PRIMARY KEY (model_portfolio_id, instrument_id, effective_from)
 );
 ```
 
@@ -54,7 +56,8 @@ structure, `CREATE TABLE`, `ALTER TABLE`, and similar, as opposed to querying or
 itself. Point out the direct translation: each entity box becomes a `CREATE TABLE`, each
 attribute becomes a column, each relationship becomes a foreign key. A many-to-many
 relationship (model portfolios to instruments) becomes a table of its own, with a **composite
-primary key** made of both foreign keys together.
+primary key** made of both foreign keys together, plus `effective_from`, because the mission
+brief asks for the history of each portfolio's composition, not just its current state.
 
 ## Part 4: What's deliberately missing today (1 min)
 

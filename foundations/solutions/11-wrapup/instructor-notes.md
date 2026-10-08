@@ -7,7 +7,7 @@ gaps to watch for.
 ## What good looks like
 
 - **Environment**: no surprises expected here if setup was solid; if someone still can't
-  open Docker Desktop or sign in to GitHub by this point, that's a priority fix before anything
+  open IntelliJ or sign in to GitHub by this point, that's a priority fix before anything
   else.
 - **Agile & Ceremonies**: watch for delegates who can recite the three Scrum roles but can't
   apply INVEST to a real backlog item, that's a sign Module 02 was memorised rather than

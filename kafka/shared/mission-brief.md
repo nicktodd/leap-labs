@@ -50,6 +50,6 @@ doesn't.
 
 ## Non-Goals
 
-No new business rules this sprint. Kafka and batch ETL are new *data-movement* mechanisms for
-data that already exists and is already correct - this sprint is about how data moves, not what
+No new business rules this week. Kafka and batch ETL are new *data-movement* mechanisms for
+data that already exists and is already correct - this week is about how data moves, not what
 it means.

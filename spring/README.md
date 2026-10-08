@@ -1,13 +1,13 @@
 # LEAP Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Software
-Architecture & Enterprise Java**, week 6 of the LEAP graduate programme.
+Architecture & Enterprise Java**, Week 4 of the LEAP graduate programme.
 
 ## Prerequisites
 
 - Java 21 (JDK) and Maven
 - Docker (for Modules 12-13)
-- Postgres (the Sprint 3 enterprise schema - see `shared/`)
+- Postgres (the Week 2 enterprise schema - see `shared/`)
 - Node.js (for the auth stub used in Modules 9 and 13)
 - GitHub Copilot Chat (continuing as a learning aid - Module 9 specifically has you critically
   interpret a GenAI-suggested explanation of an unfamiliar security stack trace, not accept it

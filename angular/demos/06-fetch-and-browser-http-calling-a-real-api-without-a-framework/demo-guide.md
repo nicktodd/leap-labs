@@ -3,7 +3,7 @@
 **Duration:** 30 minutes
 **Prerequisite:** Module 5's interactive login page. This week's auth stub
 (`shared/auth-stub`) running on `http://localhost:3000`, served from a page on
-`http://localhost:8000` (e.g. `python3 -m http.server 8000` from this folder) - **not**
+`http://localhost:8000` (e.g. `npx http-server -p 8000` from this folder) - **not**
 opened as a `file://` URL. Fetch's CORS rules need a real origin to demonstrate honestly;
 see Part 2 for why.
 

@@ -1,7 +1,7 @@
-# LEAP Program - Sprint 11 Lab Exercises
+# LEAP Program - Week 10 Lab Exercises
 
-This repository contains the hands-on lab exercises accompanying **Sprint 11: Cloud &
-Deployment + Final Showcase**, week 11 of the LEAP graduate programme.
+This repository contains the hands-on lab exercises accompanying **Week 10: Cloud &
+Deployment + Final Showcase** in the LEAP graduate programme.
 
 ## Prerequisites
 
@@ -9,34 +9,34 @@ Deployment + Final Showcase**, week 11 of the LEAP graduate programme.
   provided for this cohort before Module 2
 - AWS CLI v2, installed and ready to authenticate (`aws --version`)
 - Docker, for Module 6 onward (building and pushing the mission's container images)
-- A working checkout of Sprint 6/7's mission service (Spring Boot), Sprint 8's
-  `sprint8-auth-service` (NestJS), and Sprint 9's `mission-ui` (Angular) - this sprint deploys
+- A working checkout of Week 4's mission service (Spring Boot), Week 6's
+  `sprint8-auth-service` (NestJS), and Week 5's `mission-ui` (Angular) - this week deploys
   all three, unchanged, to AWS
-- Your Sprint 10 capstone project, if you want to apply this sprint's deployment steps to it as
+- Your Week 9 capstone project, if you want to apply this week's deployment steps to it as
   well as the baseline mission - several labs suggest this as a stretch step, not a requirement
 - GitHub Copilot Chat (continuing as a learning aid)
 
-## Coming from Sprint 10
+## Coming from Week 9
 
-Sprint 10 was a project week - you extended the mission with a feature of your own. Sprint 11
+Week 9 was a project week - you extended the mission with a feature of your own. Week 10
 doesn't touch that work directly; it teaches you how to put the mission (and, if you choose,
 your own extension) on AWS, reachable by a real URL instead of `localhost`. See
 `shared/mission-brief.md`.
 
 Before Module 1, a platform engineering SME from the firm runs a session on the firm's own AWS
-environment - its guardrails, approved service catalogue, and security baselines. This sprint
+environment - its guardrails, approved service catalogue, and security baselines. This week
 teaches generic AWS principles; that session teaches how the firm actually does it.
 
 ## Structure
 
 Each module has its own folder under `demos/`, `labs/`, and `solutions/`, following the same
-pattern as every previous sprint.
+pattern as every previous week.
 
 - `demos/<module>/` - instructor-led demo assets and guides
 - `labs/<module>/` - your starter files and the task README for that module
 - `solutions/<module>/` - reference solutions (try the lab first!)
 
-Unlike prior sprints, most of this sprint's "solution" is a set of real AWS resources rather
+Unlike prior weeks, most of this week's "solution" is a set of real AWS resources rather
 than source code - model answers describe verified CLI/console output and the exact commands
 used, since the underlying infrastructure is torn down after each module's lab.
 
@@ -61,15 +61,15 @@ used, since the underlying infrastructure is torn down after each module's lab.
 | 9 | Managed Data & Secrets: RDS & Secrets Manager | [labs/09-managed-data-and-secrets-rds-and-secrets-manager/README.md](labs/09-managed-data-and-secrets-rds-and-secrets-manager/README.md) |
 | 10 | Observability & Cost Awareness | [labs/10-observability-and-cost-awareness/README.md](labs/10-observability-and-cost-awareness/README.md) |
 | 11 | Deployment Automation: Scripting the Full Pipeline | [labs/11-deployment-automation-scripting-the-full-pipeline/README.md](labs/11-deployment-automation-scripting-the-full-pipeline/README.md) |
-| 12 | Final Capstone Preparations & Sprint 11 Wrap-up | [labs/12-final-capstone-preparations-and-sprint-11-wrap-up/README.md](labs/12-final-capstone-preparations-and-sprint-11-wrap-up/README.md) |
+| 12 | Final Capstone Preparations & Week 10 Wrap-up | [labs/12-final-capstone-preparations-and-sprint-11-wrap-up/README.md](labs/12-final-capstone-preparations-and-sprint-11-wrap-up/README.md) |
 
 ## Friday: Final Showcase
 
 Friday breaks from the usual weekly cadence - there's no guest speaker or Weekly Knowledge
 Check. The whole day is the Final Showcase: live demos to the firm's leaders, instructors, and
-peers, covering the trading platform, your chosen Sprint 10 extension, your design decisions,
+peers, covering the trading platform, your chosen Week 9 extension, your design decisions,
 Copilot usage, and code quality story, followed by panel Q&A. The day closes with a Group Retro
-reflecting on the full 11-sprint programme, not just this week.
+reflecting on the full 10-week programme, not just this week.
 
 ## Support
 

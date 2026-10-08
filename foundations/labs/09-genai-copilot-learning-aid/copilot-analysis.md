@@ -31,4 +31,4 @@ The pipeline has three stages:
 
 ## Reflection
 
-Copilot as a learning aid is most useful when encountering unfamiliar syntax mid-sprint - for example, seeing a new Jenkins post-condition or an AWS CLI flag and needing a quick explanation before continuing. I would be most careful when Copilot explains security-related behaviour (like what `EXPOSE` actually does vs. what it sounds like it does), since confidently wrong explanations in security contexts can cause real problems.
+Copilot as a learning aid is most useful when encountering unfamiliar syntax mid-task - for example, seeing a new Jenkins post-condition or an AWS CLI flag and needing a quick explanation before continuing. I would be most careful when Copilot explains security-related behaviour (like what `EXPOSE` actually does vs. what it sounds like it does), since confidently wrong explanations in security contexts can cause real problems.

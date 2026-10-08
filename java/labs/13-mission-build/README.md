@@ -6,7 +6,7 @@ By the end of this lab you will have:
 
 - Built the two genuinely new pieces of the mission engine - `SettlementReport` and
   `OrderProcessingEngine` - wiring together everything built in Modules 1-12
-- Seen an entire sprint's worth of separately-built, separately-tested classes work together
+- Seen an entire week's worth of separately-built, separately-tested classes work together
   correctly the first time they're actually connected
 
 ## Setup

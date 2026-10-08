@@ -49,7 +49,7 @@ Narration: the flip side matters just as much. When you get a comment:
 
 A review that only checks "does it compile" has missed most of the value. Walk through what
 else to look for: logic (does it actually do what it claims), naming (will this make sense to
-someone else in six months), security (anything that looks like an OWASP category from the Pipelines week's Module 9), and tests (is the behaviour actually verified, not just exercised).
+someone else in six months), security (anything that looks like an OWASP category from Week 2's OWASP Top 10 module), and tests (is the behaviour actually verified, not just exercised).
 
 ## Key message
 

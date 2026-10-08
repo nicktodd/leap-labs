@@ -71,4 +71,4 @@ current branch) in one step. This is exactly how you'll receive a partner's work
 `origin` is just a name for "the GitHub copy." `push` sends your commits there, `pull` brings
 theirs to you, `clone` does both for the first time in one step. Everything else about
 collaborating through GitHub builds on these three commands - Pull Requests come later this
-week (Module 7), but the underlying data flow is exactly this.
+week (Module 07), but the underlying data flow is exactly this.

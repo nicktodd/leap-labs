@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 // mission-brief.md requirement 2: "orders arrive in a batch... from an upstream
-// system (for this sprint: a CSV/text file)". One line = one order:
+// system (for this week: a CSV/text file)". One line = one order:
 //   clientId,ticker,instrumentType,quantity,price,side
 // e.g. C001,AAPL,EQUITY,100,150.00,BUY
 public class OrderBatchReader {

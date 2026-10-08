@@ -1,4 +1,4 @@
-# Sprint 4 Mission Dataset
+# Week 7 Mission Dataset
 
 One dataset runs through this whole week: a small book of trade records for a fictional wealth
 platform, "PaySprint" (the same fictional firm behind Sprint 3's enterprise schema, now viewed
@@ -21,7 +21,7 @@ applies the demo's techniques to a new problem.
 - **`shared/advisors.csv`** - a small reference table (advisor, team, years of experience).
   Introduced in Module 09 to demonstrate `merge`, combining `trades.csv` with a second table.
 
-## How it's used across the sprint (demos)
+## How it's used across the week (demos)
 
 | Module | Demo use |
 |---|---|

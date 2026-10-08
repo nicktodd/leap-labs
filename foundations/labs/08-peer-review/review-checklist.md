@@ -15,7 +15,7 @@ change, use judgement, but check all of them before deciding approve vs change r
 - [ ] Would someone unfamiliar with this code understand it without asking the author?
 - [ ] Is there dead code, commented-out blocks, or leftover debug output?
 
-## Security (preview of the Pipelines week's Module 9)
+## Security (preview of Week 2's OWASP Top 10 module)
 
 - [ ] Is any user input used without validation?
 - [ ] Are there any hardcoded secrets, credentials, or API keys?

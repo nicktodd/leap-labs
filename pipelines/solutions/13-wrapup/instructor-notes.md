@@ -24,7 +24,7 @@ gaps.
 | Gap | Likely cause | Quick fix |
 |---|---|---|
 | No real reviewer comments on PRs | Foundations week's Module 7 rushed, or pairs approved without engaging | Have them do one real review, live, before Friday |
-| Multibranch Pipeline never auto-triggered | Webhook never actually configured in Module 08 | Check the webhook delivery log in GitHub settings together |
+| Multibranch Pipeline never auto-triggered | Webhook never configured in Module 08, or the smee.io relay (smee-client) not running | Check the webhook's Recent Deliveries in GitHub settings together, then the smee-client terminal; see the Module 08 README troubleshooting table |
 | Vague or missing OWASP categories | Passive exposure (reading slides) rather than active recall | Redo a couple of Module 09's vulnerable-examples cold, unprompted |
 | Mission Day fixes not properly committed via PR | Time pressure led to a direct push shortcut | Acceptable if flagged honestly; use it as a live example of a real trade-off under pressure |
 

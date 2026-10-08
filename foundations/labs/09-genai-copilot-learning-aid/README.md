@@ -18,7 +18,8 @@ By the end of this lab you will have:
 
 > **Reminder:** this week Copilot is a learning aid only. Every prompt in this lab should ask
 > Copilot to *explain* something, never to *write* or *complete* something. Code-generation
-> use of Copilot is covered later in the programme.
+> use of Copilot is covered later in the programme. Jenkins and Docker are taught properly in
+> Week 2; here they are deliberately unfamiliar syntax to practise on.
 
 ## Task sheet
 

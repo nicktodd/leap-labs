@@ -1,5 +1,13 @@
 pipeline {
     agent any
+    tools {
+        maven 'Maven3'
+    }
+    triggers {
+        // Equivalent of ticking "GitHub hook trigger for GITScm polling" on the job.
+        // GitHub's webhook (relayed through smee.io to /github-webhook/) starts the build.
+        githubPush()
+    }
     stages {
         stage('Checkout') {
             steps {

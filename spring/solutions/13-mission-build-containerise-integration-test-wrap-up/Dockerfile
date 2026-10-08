@@ -5,7 +5,7 @@ WORKDIR /build
 
 # Copy the pom first and download dependencies as their own layer - Docker
 # caches this layer and skips re-downloading the entire dependency tree
-# every time only the source code changes (Sprint 1's caching idea, applied
+# every time only the source code changes (Week 2's caching idea, applied
 # to a Dockerfile instead of a CI pipeline).
 COPY pom.xml .
 RUN mvn -B dependency:go-offline

@@ -74,7 +74,7 @@ aws s3api get-public-access-block --bucket <bucket-name>
 
 Since this module's job is deliberately public static hosting (Module 5 fixes this properly with
 CloudFront and a private bucket - this module's public bucket is a deliberate, temporary
-stepping stone, not the sprint's final answer), disable Block Public Access explicitly and
+stepping stone, not the week's final answer), disable Block Public Access explicitly and
 knowingly:
 
 ```bash

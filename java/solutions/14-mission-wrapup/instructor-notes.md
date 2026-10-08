@@ -34,7 +34,7 @@ both.
   than genuine understanding - ask a follow-up ("would you mock `Holding` in a test of itself?
   why not?") to check.
 - **Mission Build**: "point to a class reused unchanged from an earlier module" is the single
-  best signal that the whole sprint actually connected for this delegate, rather than each module
+  best signal that the whole week actually connected for this delegate, rather than each module
   being learned in isolation.
 
 ## Common gaps and quick fixes

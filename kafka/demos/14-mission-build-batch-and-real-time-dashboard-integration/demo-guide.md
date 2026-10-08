@@ -3,7 +3,7 @@
 Everything this week built lands here. Module 6 designed the trade-events topic. Module 9
 implemented a producer publishing to it. Module 7 built an idempotent batch loader into a
 Postgres warehouse table. Today: one dashboard, reading from both, at once - exactly what the
-mission brief promised in Week 1.
+mission brief promised at the start of the week.
 
 ## Setup
 

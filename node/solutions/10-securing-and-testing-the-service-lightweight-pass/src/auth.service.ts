@@ -12,7 +12,7 @@ interface StoredUser {
 
 const SALT_ROUNDS = 10;
 
-// Sprint 6's real auth-stub reads this from process.env.JWT_SECRET, with
+// Week 4's real auth-stub reads this from process.env.JWT_SECRET, with
 // this exact string as its fallback. Exported so the Jest suite can verify
 // tokens the same way a real client of this service would.
 export const JWT_SECRET = process.env.JWT_SECRET || "mission-control-shared-secret-key-32-bytes-minimum";
@@ -22,7 +22,7 @@ export class AuthService {
   private readonly users = new Map<string, StoredUser>();
 
   constructor() {
-    // alice/mission123/MISSION_OPERATOR - matches Sprint 6's auth-stub.
+    // alice/mission123/MISSION_OPERATOR - matches Week 4's auth-stub.
     void this.register("alice", "mission123", ["MISSION_OPERATOR"]);
   }
 

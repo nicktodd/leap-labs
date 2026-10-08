@@ -27,7 +27,7 @@ There's no code for this module - this is what a strong whiteboard sketch should
    trust is established by the signature check alone, with no network round-trip back to the
    issuer.
 3. **If invalid or missing**: `401 Unauthorized` - exactly what the demo's smoke test verified
-   live, before any real credential logic existed anywhere in this sprint's own code.
+   live, before any real credential logic existed anywhere in this week's own code.
 4. **If valid but wrong role**: the request should be rejected too, but with `403 Forbidden`, not
    `401` - the token proved WHO the trader is (authentication succeeded), but the mission
    service's own authorization check on that endpoint should reject the role. This decision

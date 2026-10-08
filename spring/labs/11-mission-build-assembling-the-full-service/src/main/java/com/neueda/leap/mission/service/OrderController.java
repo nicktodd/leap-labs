@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 // KATA: assemble everything the last five modules built into one endpoint.
 // Every piece you need already exists and already works:
 //   - domain.OrderValidator, domain.HoldingUpdater, domain.InstrumentFactory (from the Java week, unchanged)
-//   - AccountMapper (Module 7's MyBatis, against the real Sprint 3 schema)
+//   - AccountMapper (Module 7's MyBatis, against the real Week 2 schema)
 //   - SecurityConfig (Module 9) already protects this controller - you don't touch it
 //   - GlobalExceptionHandler (Module 10) already handles everything you throw
 //

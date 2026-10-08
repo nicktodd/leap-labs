@@ -2,7 +2,7 @@ import { Injectable, signal, computed } from '@angular/core';
 
 // In-memory only, deliberately: no localStorage/cookie. The token
 // disappears on a page refresh, which is the correct behaviour for
-// this sprint - a persistent session is a separate concern this
+// this week - a persistent session is a separate concern this
 // module doesn't build.
 @Injectable({
   providedIn: 'root',

@@ -7,7 +7,7 @@
 
 Narration: two things, a Git repo submission and a short presentation, covering your agile
 workflow and your secure coding approach. Both are things you've already produced this week,
-Friday isn't asking for anything new, it's checking that what you built during the sprint is
+Friday isn't asking for anything new, it's checking that what you built during the week is
 genuinely in a submittable state.
 
 ## Part 2: Model a peer-check (4 min)

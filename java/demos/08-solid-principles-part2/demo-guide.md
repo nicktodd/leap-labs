@@ -50,7 +50,7 @@ up to satisfy an interface the high-level code defines.
   up as friction - a stubbed method here, an untestable class there - that's easy to shrug off as
   normal, rather than recognising as a design smell with a name.
 - **`InMemoryReportWriter` isn't a demo trick - it's the actual reason DIP matters for testing.**
-  Every JUnit test written this sprint that doesn't hit a real database, file, or console is
+  Every JUnit test written this week that doesn't hit a real database, file, or console is
   benefiting from this exact pattern, whether or not it was called out explicitly.
 
 ## Transition to the Lab

@@ -2,7 +2,8 @@
 -- Start from Module 08's first-draft DDL and add NOT NULL, UNIQUE, CHECK constraints,
 -- and indexes on FK columns. This DDL is run in the `mission` schema in Module 13.
 
--- Part A: close the gap — add a client_holdings table
+-- Part A: close the gap — add a client_holdings table, and make model_portfolio_holdings and
+-- client_subscriptions keep history (effective_from / effective_to, ended_date)
 
 
 -- Part B: constraints
@@ -19,3 +20,8 @@
 -- Part D: prove it works
 -- Run this against a real Postgres database, then try to insert a row that violates one of
 -- your constraints and note the actual error message.
+
+
+-- Part E: read an execution plan
+-- EXPLAIN ANALYZE a query before and after adding an index, then rewrite
+-- WHERE UPPER(ticker) = 'GLBEQ1' so it can use the index on ticker.

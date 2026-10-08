@@ -1,4 +1,4 @@
-// The exact jwt.sign/jwt.verify calls Sprint 6's real auth-stub uses -
+// The exact jwt.sign/jwt.verify calls Week 4's real auth-stub uses -
 // same library, same algorithm, same secret variable name.
 
 import jwt from "jsonwebtoken";

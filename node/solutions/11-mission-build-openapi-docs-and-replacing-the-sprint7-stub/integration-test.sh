@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# MISSION_SERVICE_DIR points at YOUR OWN Sprint 6/7 mission service
+# MISSION_SERVICE_DIR points at YOUR OWN Week 4 mission service
 # checkout - the one whose SecurityConfig this script proves needs zero
 # changes. Override it if your copy lives somewhere else:
 #   MISSION_SERVICE_DIR=/path/to/it ./integration-test.sh

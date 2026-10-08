@@ -3,9 +3,9 @@
 A small, real, currently-working utility: reads `trades.csv`, calculates trade value and fees per
 instrument, prints a per-ticker summary, and writes `report.csv`.
 
-It's also the codebase this sprint's refactor mission runs against, from Module 1 through Module
+It's also the codebase this week's refactor mission runs against, from Module 1 through Module
 13. Nobody has touched it in a while. It works - that's not in question. What it costs to keep
-working, and what it would cost to safely change, is the question this sprint asks.
+working, and what it would cost to safely change, is the question this week asks.
 
 ## Run it
 

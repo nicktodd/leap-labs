@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.NoSuchElementException;
 
-// Every earlier module in this sprint meets here:
+// Every earlier module in this week meets here:
 //   Module 4  - REST resource shape:      POST /accounts/{accountId}/orders
 //   Module 6  - DTO + Bean Validation:     @Valid OrderRequestDto
-//   Module 7  - MyBatis persistence:       AccountMapper, against the real Sprint 3 schema
+//   Module 7  - MyBatis persistence:       AccountMapper, against the real Week 2 schema
 //   Module 9  - JWT security:              @AuthenticationPrincipal Jwt (SecurityConfig protects this)
 //   Module 10 - Centralised error handling: every failure below throws, never returns an ad-hoc body
 // domain.* (OrderValidator, HoldingUpdater, InstrumentFactory, Feeable) is from the Java
@@ -52,7 +52,7 @@ public class OrderController {
         // incoming order's own price against the existing holding is a
         // stand-in that keeps OrderValidator's real signature and real
         // logic exercised against real data, without fabricating a price
-        // feed this sprint was never going to build.
+        // feed this week was never going to build.
         double currentPortfolioValue = currentQuantity * dto.price();
 
         OrderRequest domainRequest = new OrderRequest(dto.quantity(), dto.price(), dto.isBuy());

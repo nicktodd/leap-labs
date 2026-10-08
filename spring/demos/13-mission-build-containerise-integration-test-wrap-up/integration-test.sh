@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # End-to-end integration test: builds and runs BOTH containers (the mission
-# service and, for the first time this sprint, the Node auth stub itself),
+# service and, for the first time this week, the Node auth stub itself),
 # on the same network as Postgres, and proves a real authenticated request
-# works across all three. Staged like the Jenkinsfiles from Sprint 1/2 -
+# works across all three. Staged like the Jenkinsfiles from Week 2 -
 # each stage fails fast and loud, not silently.
 set -euo pipefail
 

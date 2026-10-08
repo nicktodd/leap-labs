@@ -53,7 +53,7 @@ Each module has its own folder under `demos/`, `labs/`, and `solutions/`:
 | 12 | Cloud Data Warehouses & Snowflake Overview | [labs/12-snowflake-overview/README.md](labs/12-snowflake-overview/README.md) |
 | 13 | Implementing the Data Model in Postgres | [labs/13-implementing-the-model/README.md](labs/13-implementing-the-model/README.md) |
 | 14 | Capstone: Extending the Schema for Historical Trade Data | [labs/14-capstone-historical-trades/README.md](labs/14-capstone-historical-trades/README.md) |
-| 15 | Week 2 Wrap-up & Assessment Prep (Data) | [labs/15-sprint3-wrapup/README.md](labs/15-sprint3-wrapup/README.md) |
+| 15 | Week 2 Wrap-up & Assessment Prep (Data) | [labs/15-wrapup/README.md](labs/15-wrapup/README.md) |
 
 ## Getting started
 

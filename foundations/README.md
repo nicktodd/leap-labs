@@ -6,9 +6,6 @@ Git, Ways of Working & GenAI**, week 1 of the LEAP graduate programme.
 ## Prerequisites
 
 - Git 2.49, GitHub account with access to the LEAP organisation
-- Docker Desktop 27.x and access to the team's Jenkins instance - installed and verified this
-  week, not taught in depth here (deep Docker and CI/CD content is covered the following week,
-  in `pipelines/`)
 - IntelliJ IDEA 2025.1
 - Access to your organisation's approved GenAI tool (see Module 9 for guardrails)
 
@@ -49,7 +46,7 @@ guardrails.
 ## Getting started
 
 1. Clone this repository.
-2. Confirm your dev environment (Git, GitHub, IntelliJ, Docker Desktop, Jenkins access) is
+2. Confirm your dev environment (Git, GitHub, IntelliJ, GitHub Copilot Chat) is
    working before starting.
 3. Work through the modules in order, starting with `labs/02-ways-of-working/README.md`.
 

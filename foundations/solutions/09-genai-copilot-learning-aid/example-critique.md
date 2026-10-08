@@ -31,7 +31,7 @@ smaller than Debian-based equivalents.
 ## Reflection (example answer)
 
 Good use case: explaining an unfamiliar Jenkinsfile stage before touching CI/CD pipelines
-next week, so I understand what I'm about to change rather than guessing.
+in Week 2, so I understand what I'm about to change rather than guessing.
 Caution needed: anything involving specific numbers, versions, or security implications (like
 whether an image has known CVEs) should always be verified against an official source, not
 taken as given from a single explanation.
