@@ -1,6 +1,6 @@
-# LEAP Labs
+# Leap Labs
 
-Monorepo for the LEAP training programme: the group project guidance and all per-week technical
+Monorepo for the Leap training programme: the group project guidance and all per-week technical
 labs.
 
 Some folders below were originally merged in with `git subtree`, preserving their original

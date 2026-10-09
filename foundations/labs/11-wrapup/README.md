@@ -22,7 +22,7 @@ the thing, not just tell you it works. Tick it off only once you've seen it your
 ### Environment
 
 - [ ] IntelliJ IDEA 2025.1 opens and can open a project
-- [ ] GitHub account is signed in and has access to the LEAP organisation
+- [ ] GitHub account is signed in and has access to the Leap organisation
 - [ ] GitHub Copilot Chat is available in IntelliJ
 
 ### Agile & Ceremonies (Modules 02-03)

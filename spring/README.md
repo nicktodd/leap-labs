@@ -1,7 +1,7 @@
-# LEAP Program - This Week's Lab Exercises
+# Leap Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Software
-Architecture & Enterprise Java**, Week 4 of the LEAP graduate programme.
+Architecture & Enterprise Java**, Week 4 of the Leap graduate programme.
 
 ## Prerequisites
 

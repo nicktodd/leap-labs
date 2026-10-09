@@ -1,13 +1,13 @@
-# LEAP Program - This Week's Lab Exercises
+# Leap Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Pipelines -
-CI/CD, Containers, Infrastructure & Security**, taught as part of week 2 of the LEAP graduate
+CI/CD, Containers, Infrastructure & Security**, taught as part of week 2 of the Leap graduate
 programme (alongside `data/`, which covers this same week's data systems content).
 
 ## Prerequisites
 
 - Everything from the Foundations week: Git 2.49, Docker Desktop 27.x, Jenkins access,
-  IntelliJ IDEA 2025.1, GitHub account with LEAP organisation access, GitHub Copilot
+  IntelliJ IDEA 2025.1, GitHub account with Leap organisation access, GitHub Copilot
 - Access to the Secure Code Warrior platform (Modules 10-11)
 - A working team repository from the Foundations week (referenced conceptually in a few
   modules; this repo also includes a self-contained copy of that skeleton so the labs work

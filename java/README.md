@@ -1,7 +1,7 @@
-# LEAP Program - This Week's Lab Exercises
+# Leap Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Software
-Engineering Essentials, Java & OOAD**, week 3 of the LEAP graduate programme.
+Engineering Essentials, Java & OOAD**, week 3 of the Leap graduate programme.
 
 ## Prerequisites
 

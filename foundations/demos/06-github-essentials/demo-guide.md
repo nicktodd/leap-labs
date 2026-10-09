@@ -1,7 +1,7 @@
 # Demo: Module 06 - GitHub Essentials
 
 **Duration:** 10 minutes
-**Prerequisite:** GitHub account with access to the LEAP organisation, a local repo with at
+**Prerequisite:** GitHub account with access to the Leap organisation, a local repo with at
 least one commit (use the `starter/` project), Git 2.49.
 
 ## Part 1: Navigating the GitHub UI (2 min)

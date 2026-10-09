@@ -1,7 +1,7 @@
-# LEAP Program - Python Week Lab Exercises
+# Leap Program - Python Week Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Python Week: Financial
-Services & Data Analytics**, week 7 of the LEAP graduate programme.
+Services & Data Analytics**, week 7 of the Leap graduate programme.
 
 ## Prerequisites
 

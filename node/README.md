@@ -1,7 +1,7 @@
-# LEAP Programme - Week 6 Lab Exercises
+# Leap Programme - Week 6 Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Week 6: Node.js / NestJS
-Authentication Service**, week 6 of the LEAP graduate programme.
+Authentication Service**, week 6 of the Leap graduate programme.
 
 ## Prerequisites
 

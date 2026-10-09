@@ -1,11 +1,11 @@
-# LEAP Program - This Week's Lab Exercises
+# Leap Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Foundations -
-Git, Ways of Working & GenAI**, week 1 of the LEAP graduate programme.
+Git, Ways of Working & GenAI**, week 1 of the Leap graduate programme.
 
 ## Prerequisites
 
-- Git 2.49, GitHub account with access to the LEAP organisation
+- Git 2.49, GitHub account with access to the Leap organisation
 - IntelliJ IDEA 2025.1
 - Access to your organisation's approved GenAI tool (see Module 9 for guardrails)
 

@@ -6,7 +6,7 @@ against the acceptance criteria.
 ```markdown
 # Sprint Squad Foundations Project
 
-Placeholder repository for our LEAP programme project. Real project work begins properly
+Placeholder repository for our Leap programme project. Real project work begins properly
 later in the programme; this repo exists so we can practise our Git and GitHub workflow from
 this week onward.
 

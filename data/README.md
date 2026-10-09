@@ -1,7 +1,7 @@
-# LEAP Program - This Week's Lab Exercises
+# Leap Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: Data Systems and
-Data Modelling**, taught as part of week 2 of the LEAP graduate programme (alongside
+Data Modelling**, taught as part of week 2 of the Leap graduate programme (alongside
 `pipelines/`, which covers this same week's engineering-practices content).
 
 ## Prerequisites

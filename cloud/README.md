@@ -1,7 +1,7 @@
-# LEAP Program - Week 10 Lab Exercises
+# Leap Program - Week 10 Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **Week 10: Cloud &
-Deployment + Final Showcase** in the LEAP graduate programme.
+Deployment + Final Showcase** in the Leap graduate programme.
 
 ## Prerequisites
 

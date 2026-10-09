@@ -12,7 +12,7 @@ extends these.
 
 ## The Business Problem
 
-LEAP Wealth (our fictional business unit) accepts client instructions
+Leap Wealth (our fictional business unit) accepts client instructions
 to buy or sell financial instruments, and must process them safely before they
 reach a settlement report. Right now this is done by hand. We are building the
 **Order Processing & Settlement Engine** to automate it.

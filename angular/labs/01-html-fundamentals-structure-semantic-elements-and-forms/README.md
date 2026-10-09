@@ -18,7 +18,7 @@ Complete the three TODOs in `index.html`, building the mission's login page:
    to its `<input>`'s `id`), and a submit `<button>`. The username input needs
    `required` and `minlength="3"`; the password input needs `required` and
    `minlength="8"`.
-3. **TODO 3** - a `<footer>` containing a `<p>` reading "LEAP Mission
+3. **TODO 3** - a `<footer>` containing a `<p>` reading "Leap Mission
    Control".
 
 Run this now, before changing anything: open `index.html` in a browser. It's blank -

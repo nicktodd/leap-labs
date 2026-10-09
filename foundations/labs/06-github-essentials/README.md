@@ -11,7 +11,7 @@ By the end of this lab you will have:
 
 ## Setup
 
-- GitHub account with access to the LEAP organisation
+- GitHub account with access to the Leap organisation
 - Git 2.49
 - The [`starter/`](starter) folder from this lab, copied to a working location of your choice
 - Work in pairs. If you don't have a partner available, follow the **solo variant** at the

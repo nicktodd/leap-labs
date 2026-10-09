@@ -1,7 +1,7 @@
-# LEAP Program - This Week's Lab Exercises
+# Leap Program - This Week's Lab Exercises
 
 This repository contains the hands-on lab exercises accompanying **This Week: UI Development
-with Angular**, Week 5 of the LEAP graduate programme.
+with Angular**, Week 5 of the Leap graduate programme.
 
 ## Prerequisites
 
